@@ -16,14 +16,14 @@ import java.util.List;
 public class Solution {
     public int threeSumClosest(int[] nums, int target) {
         Arrays.sort(nums);
-        int min = Integer.MAX_VALUE;
+        long min = Integer.MAX_VALUE;
 
         for (int i = 0; i < nums.length - 2; i++) {
             int j = i + 1;
             int k = nums.length - 1;
 
             while (j < k) {
-                int sum = nums[i] + nums[j] + nums[k];
+                long sum = nums[i] + nums[j] + nums[k];
                 if (Math.abs(sum - target) < Math.abs(min - target))
                     min = sum;
                 if (sum < target) {
@@ -42,11 +42,11 @@ public class Solution {
                 }
             }
         }
-        return min;
+        return (int)min;
     }
 
     public static void main(String[] args) {
-        int[] nums = new int[]{2,1,-4};
-        System.out.println(new Solution().threeSumClosest(nums, 1));
+        int[] nums = new int[]{1,1,-1,-1,3};
+        System.out.println(new Solution().threeSumClosest(nums, -1));
     }
 }
