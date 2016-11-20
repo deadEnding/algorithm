@@ -20,13 +20,13 @@ public class Solution {
 
             if (nums[mid] >= nums[left]) {
                 if (nums[left] <= target && target < nums[mid]) {
-                    right = mid;
+                    right = mid - 1;
                 } else {
                     left = mid + 1;
                 }
             } else {
                 if (nums[mid] < target && target <= nums[right]) {
-                    left = mid;
+                    left = mid + 1;
                 } else {
                     right = mid - 1;
                 }
@@ -38,6 +38,6 @@ public class Solution {
 
     public static void main(String[] args) {
         int[] nums = {4,5,1,2,3};
-        System.out.println(new Solution().search(nums, 4));
+        System.out.println(new Solution().search(nums, 5));
     }
 }
