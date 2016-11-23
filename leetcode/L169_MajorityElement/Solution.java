@@ -25,6 +25,26 @@ public class Solution {
 
     public static void main(String[] args) {
         int[] nums = {2,2,1,1,1,2,2};
-        System.out.println(new Solution().majorityElement(nums));
+        System.out.println(new BitSolution().majorityElement(nums));
+    }
+}
+
+
+class BitSolution {
+    public int majorityElement(int[] nums) {
+        final int size = 32;
+        int majority = 0;
+
+        for (int i = 0; i < size; i++) {
+            int bitCounter = 0;
+            for (int n : nums) {
+                bitCounter += (1 << i & n) != 0 ? 1 : 0;
+            }
+
+            if (bitCounter > nums.length / 2) {
+                majority += 1 << i;
+            }
+        }
+        return majority;
     }
 }
