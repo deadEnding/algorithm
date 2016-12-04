@@ -1,5 +1,7 @@
 package leetcode.L100_SameTree;
 
+import java.util.LinkedList;
+
 /**
  * @author: deadend
  * @date: 10:10 AM 12/3/16
