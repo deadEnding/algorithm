@@ -1,5 +1,6 @@
 package leetcode.L297_SerializeAndDeserializeBinaryTree;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 
 /**
@@ -17,6 +18,47 @@ class TreeNode {
 }
 
 public class Codec {
+
+    private void serialize(TreeNode root, StringBuffer sb) {
+        if (root == null) {
+            sb.append((sb.length() == 0 ? "" : ",") + "null");
+            return;
+        }
+
+        sb.append((sb.length() == 0 ? "" : ",") + root.val);
+        serialize(root.left, sb);
+        serialize(root.right, sb);
+    }
+
+    // Encodes a tree to a single string.
+    public String serialize(TreeNode root) {
+        StringBuffer sb = new StringBuffer();
+        serialize(root, sb);
+        return sb.toString();
+    }
+
+    private TreeNode deserialize(LinkedList<String> vals) {
+        String v = vals.poll();
+        if (v.equals("null")) {
+            return null;
+        }
+
+        TreeNode root = new TreeNode(Integer.valueOf(v));
+        root.left = deserialize(vals);
+        root.right = deserialize(vals);
+        return root;
+    }
+
+    // Decodes your encoded data to tree.
+    public TreeNode deserialize(String data) {
+        LinkedList<String> queue = new LinkedList<>();
+        queue.addAll(Arrays.asList(data.split(",")));
+        return deserialize(queue);
+    }
+}
+
+// BFS
+class BasicCodec {
 
     // Encodes a tree to a single string.
     public String serialize(TreeNode root) {
@@ -66,25 +108,5 @@ public class Codec {
             size = level.size();
         }
         return root;
-    }
-
-    public static void main(String[] args) {
-        TreeNode root = new TreeNode(1);
-        TreeNode n1 = new TreeNode(2);
-        TreeNode n2 = new TreeNode(3);
-        TreeNode n21 = new TreeNode(4);
-        TreeNode n22 = new TreeNode(5);
-
-        root.left = n1;
-        root.right = n2;
-        n2.left = n21;
-        n2.right = n22;
-        String data = new Codec().serialize(root);
-        TreeNode r = new Codec().deserialize(data);
-        System.out.println(r.val);
-        System.out.println(r.left.val);
-        System.out.println(r.right.val);
-        System.out.println(r.right.left.val);
-        System.out.println(r.right.right.val);
     }
 }
