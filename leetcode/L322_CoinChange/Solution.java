@@ -26,6 +26,34 @@ public class Solution {
     }
 }
 
+
+class DPSolution {
+    private int coinChange(int[] coins, int amount, HashMap<Integer, Integer> map) {
+        if (amount <= 0) {
+            return amount == 0 ? 0 : -1;
+        }
+
+        if (!map.containsKey(amount)) {
+            int min = -1;
+            for (int i = coins.length - 1; i >= 0; i--) {
+                if (amount >= coins[i]) {
+                    int m = coinChange(coins, amount - coins[i], map);
+                    if (m != -1) {
+                        min = min == -1 ? m + 1 : Math.min(min, m + 1);
+                    }
+                }
+            }
+            map.put(amount, min);
+        }
+        return map.get(amount);
+    }
+
+    public int coinChange(int[] coins, int amount) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        return coinChange(coins, amount, map);
+    }
+}
+
 // 错误解法，去掉参数ix即正确，为啥？
 class WrongSolution {
     private int coinChange(int[] coins, int ix,int amount, HashMap<Integer, Integer> map) {
@@ -56,6 +84,6 @@ class WrongSolution {
     public static void main(String[] args) {
         int[] coins = {3,7,405,436};
         int amount = 8839;
-        System.out.println(new DPSolution().coinChange(coins, amount));
+        System.out.println(new WrongSolution().coinChange(coins, amount));
     }
 }
