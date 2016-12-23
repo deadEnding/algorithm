@@ -42,3 +42,4 @@ On the way.
 + Arrays.sort()
 + Arrays.binarySearch()
 + StringBuffer
++ TreeMap
