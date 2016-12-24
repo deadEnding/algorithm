@@ -43,3 +43,6 @@ On the way.
 + Arrays.binarySearch()
 + StringBuffer
 + TreeMap
+
+### 后续疑问题型
++ 字符串非连续子串满足某约束条件时使用stack解决的题型
