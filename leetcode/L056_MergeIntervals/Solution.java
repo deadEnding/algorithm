@@ -1,9 +1,6 @@
-package L056_MergeIntervals;
+package leetcode.L056_MergeIntervals;
 
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author: deadend
@@ -19,8 +16,31 @@ class Interval {
     Interval(int s, int e) { start = s; end = e; }
 }
 
-
 public class Solution {
+    public List<Interval> merge(List<Interval> intervals) {
+        if (intervals.size() <= 1) {
+            return intervals;
+        }
+        Collections.sort(intervals, (i1, i2) -> (i1.start != i2.start ? i1.start - i2.start : i1.end - i2.end));
+
+        List<Interval> result = new ArrayList<>();
+        result.add(intervals.get(0));
+        Interval last = intervals.get(0);
+        for (int i = 1; i < intervals.size(); i++) {
+            Interval p = intervals.get(i);
+            if (p.start > last.end) {
+                result.add(p);
+                last = p;
+            } else {
+                last.end = Math.max(last.end, p.end);
+            }
+        }
+        return result;
+    }
+}
+
+
+class FirstSolution {
     public List<Interval> merge(List<Interval> intervals) {
         Collections.sort(intervals, new Comparator<Interval>() {
             @Override
@@ -49,9 +69,10 @@ public class Solution {
 
     public static void main(String[] args) {
         List<Interval> intervals = new LinkedList<>();
-        intervals.add(new Interval(4, 6));
         intervals.add(new Interval(1, 3));
-        intervals.add(new Interval(5, 7));
+        intervals.add(new Interval(2, 6));
+        intervals.add(new Interval(8, 10));
+        intervals.add(new Interval(15, 18));
         List<Interval> result = new Solution().merge(intervals);
         for (Interval interval : result) {
             System.out.println(interval.start + " " + interval.end);

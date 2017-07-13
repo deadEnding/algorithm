@@ -40,7 +40,7 @@ public class Solution {
 
     public static void main(String[] args) {
         String s = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
-        String[] parts = {"a","aa","aaa","aaaa","aaaaa","aaaaaa","aaaaaaa","aaaaaaaa","aaaaaaaaa","aaaaaaaaaa"};
+        String[] parts = {"A","aa","alibaba","aaaa","aaaaa","aaaaaa","aaaaaaa","aaaaaaaa","aaaaaaaaa","aaaaaaaaaa"};
         Set<String> set = new HashSet<>();
         for (String t : parts) {
             set.add(t);
@@ -51,7 +51,7 @@ public class Solution {
 
 class RightSolution {
     public ArrayList<String> wordBreak(String s, Set<String> dict) {
-        // Note: The Solution object is instantiated only once and is reused by each test case.
+        // Note: The RandomOneHundred object is instantiated only once and is reused by each test case.
         Map<String, ArrayList<String>> map = new HashMap<String, ArrayList<String>>();
         return wordBreakHelper(s,dict,map);
     }

@@ -5,7 +5,7 @@ import java.util.LinkedList;
 
 /**
  * @author: deadend
- * @date: 10:28 PM 12/12/16
+ * @date: P10:28 PM 12/12/16
  * @version: 1.0
  * @description:
  */
@@ -30,7 +30,7 @@ public class Codec {
         serialize(root.right, sb);
     }
 
-    // Encodes a tree to a single string.
+    // Encodes TrieMain tree to TrieMain single string.
     public String serialize(TreeNode root) {
         StringBuffer sb = new StringBuffer();
         serialize(root, sb);
@@ -60,7 +60,7 @@ public class Codec {
 // BFS
 class BasicCodec {
 
-    // Encodes a tree to a single string.
+    // Encodes TrieMain tree to TrieMain single string.
     public String serialize(TreeNode root) {
         LinkedList<TreeNode> queue = new LinkedList<>();
         StringBuffer sb = new StringBuffer();

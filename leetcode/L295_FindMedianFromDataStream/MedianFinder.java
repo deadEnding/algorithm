@@ -5,7 +5,7 @@ import java.util.PriorityQueue;
 
 /**
  * @author: deadend
- * @date: 10:19 AM 12/12/16
+ * @date: P10:19 AM 12/12/16
  * @version: 1.0
  * @description:
  */
@@ -15,7 +15,7 @@ public class MedianFinder {
     private PriorityQueue<Integer> smallMinHeap = new PriorityQueue<>();
     private PriorityQueue<Integer> largeMinHeap = new PriorityQueue<>();
 
-    // Adds a number into the data structure.
+    // Adds A number into the data structure.
     public void addNum(int num) {
         largeMinHeap.add(num);
         smallMinHeap.add(-largeMinHeap.poll());

@@ -5,13 +5,13 @@ import java.util.Set;
 
 /**
  * @author: deadend
- * @date: 10:48 AM 12/22/16
+ * @date: P10:48 AM 12/22/16
  * @version: 1.0
  * @description: unresolved
  */
 
 
-// 若a ^ b = c，则有 a ^ c = b
+// 若a ^ b = c，则有 A ^ c = b
 public class Solution {
     public int findMaximumXOR(int[] nums) {
         int max = 0;

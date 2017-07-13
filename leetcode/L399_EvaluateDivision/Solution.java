@@ -60,9 +60,9 @@ public class Solution {
     }
 
     public static void main(String[] args) {
-        String[][] eq = {{"a", "b"}, {"b", "c"}};
+        String[][] eq = {{"A", "b"}, {"b", "c"}};
         double[] values = {2.0, 3.0};
-        String[][] queries = {{"a", "c"}, {"b", "c"}, {"a", "e"}, {"a", "a"}, {"x", "x"}};
+        String[][] queries = {{"A", "c"}, {"b", "c"}, {"A", "e"}, {"A", "A"}, {"x", "x"}};
         double[] result = new Solution().calcEquation(eq, values, queries);
         for (double d : result) {
             System.out.println(d);

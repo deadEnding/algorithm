@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 /**
  * @author: deadend
- * @date: 10:20 PM 12/8/16
+ * @date: P10:20 PM 12/8/16
  * @version: 1.0
  * @description:
  */
@@ -28,7 +28,7 @@ public class Trie {
         root = new TrieNode();
     }
 
-    // Inserts a word into the trie.
+    // Inserts A word into the trie.
     public void insert(String word) {
         TrieNode p = root;
         for (int i = 0; i < word.length(); i++) {

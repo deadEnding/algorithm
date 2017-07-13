@@ -2,7 +2,7 @@ package leetcode.L027_RemoveElement;
 
 /**
  * @author: deadend
- * @date: 10:18 AM 11/10/16
+ * @date: P10:18 AM 11/P10/16
  * @version: 1.0
  * @description:
  */

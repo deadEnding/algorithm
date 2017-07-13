@@ -26,7 +26,7 @@ public class Solution {
         this.head = head;
     }
     
-    /** Returns a random node's value. */
+    /** Returns A random node's value. */
     public int getRandom() {
         int val = -1;
         ListNode curr = head;

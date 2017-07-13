@@ -3,7 +3,7 @@ package leetcode.L052_N_QueensII;
 
 /**
  * @author: deadend
- * @date: 10:23 PM 11/30/16
+ * @date: P10:23 PM 11/30/16
  * @version: 1.0
  * @description:
  */

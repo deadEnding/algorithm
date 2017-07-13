@@ -15,13 +15,13 @@ public class Solution {
         int[] count = new int[26];
 
         for (int i = 0, len = 1; i < p.length(); i++) {
-            if (i > 0 && (p.charAt(i - 1) - 'a' + 1) % 26 + 1 == (p.charAt(i) - 'a' + 1)) {
+            if (i > 0 && (p.charAt(i - 1) - 'A' + 1) % 26 + 1 == (p.charAt(i) - 'A' + 1)) {
                 len++;
             } else {
                 len = 1;
             }
 
-            int ix = p.charAt(i) - 'a';
+            int ix = p.charAt(i) - 'A';
             count[ix] = Math.max(count[ix], len);
         }
 
@@ -33,7 +33,7 @@ public class Solution {
     }
 
     public static void main(String[] args) {
-        String p = "a";
+        String p = "A";
         System.out.println(new Solution().findSubstringInWraproundString(p));
     }
 }

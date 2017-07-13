@@ -2,7 +2,7 @@ package leetcode.L236_LowestCommonAncestorOfABinaryTree;
 
 /**
  * @author: deadend
- * @date: 9:09 PM 12/10/16
+ * @date: 9:09 PM 12/P10/16
  * @version: 1.0
  * @description:
  */
@@ -24,6 +24,7 @@ public class Solution {
         return left == null ? right : (right == null ? left : root);
     }
 }
+
 
 class BasicSolution {
     private TreeNode lca;

@@ -2,7 +2,7 @@ package leetcode.L234_PalindromeLinkedList;
 
 /**
  * @author: deadend
- * @date: 8:30 PM 12/10/16
+ * @date: 8:30 PM 12/P10/16
  * @version: 1.0
  * @description:
  */

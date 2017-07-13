@@ -1,7 +1,6 @@
 package leetcode.L315_CountOfSmallerNumbersAfterSelf;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author: deadend
@@ -10,7 +9,60 @@ import java.util.List;
  * @description:
  */
 
+
+// 二叉索引树 / 树状数组
 public class Solution {
+
+    private int[] sum;
+
+    private void update(int i, int val) {
+        while (i < sum.length) {
+            sum[i] += val;
+            i += lowestBit(i);
+        }
+    }
+
+    private int sum(int i) {
+        int s = 0;
+        while (i > 0) {
+            s += sum[i];
+            i -= lowestBit(i);
+        }
+        return s;
+    }
+
+    private int lowestBit(int n) {
+        return n & -n;
+    }
+
+    public List<Integer> countSmaller(int[] nums) {
+        int[] numscp = Arrays.copyOf(nums, nums.length);
+        Arrays.sort(numscp);
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for (int i = 0, ix = 1; i < numscp.length; i++) {
+            if (i == 0 || numscp[i] != numscp[i - 1]) {
+                map.put(numscp[i], ix++);
+            }
+        }
+
+        sum = new int[map.size() + 1];
+        List<Integer> result = new ArrayList<>(nums.length);
+        for (int i = nums.length - 1; i >= 0; i--) {
+            result.add(0, sum(map.get(nums[i]) - 1));
+            update(map.get(nums[i]), 1);
+        }
+        return result;
+    }
+
+    public static void main(String[] args) {
+        int[] nums = {3,3,1,1};
+        List<Integer> count = new Solution().countSmaller(nums);
+        System.out.println(count.toString());
+    }
+}
+
+
+class BinarySearchTreeSolution {
     class Node {
         int val, dup;
         int count;

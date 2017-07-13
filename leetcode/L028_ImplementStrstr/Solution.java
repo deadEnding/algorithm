@@ -2,7 +2,7 @@ package leetcode.L028_ImplementStrstr;
 
 /**
  * @author: deadend
- * @date: 10:31 AM 11/30/16
+ * @date: P10:31 AM 11/30/16
  * @version: 1.0
  * @description:
  */

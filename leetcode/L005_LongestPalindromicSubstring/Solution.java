@@ -2,7 +2,7 @@ package leetcode.L005_LongestPalindromicSubstring;
 
 /**
  * @author: deadend
- * @date: 10:31 AM 11/27/16
+ * @date: P10:31 AM 11/27/16
  * @version: 1.0
  * @description:
  */

@@ -34,6 +34,6 @@ public class Solution {
     public static void main(String[] args) {
 //        String s = "PAYPALISHIRING";
 //        String t = "PAHNAPLSIIGYIR";
-        System.out.println(new Solution().convert("A", 2));
+        System.out.println(new Solution().convert("L476_NumberComplement", 2));
     }
 }

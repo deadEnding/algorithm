@@ -16,18 +16,52 @@ class TreeNode {
     TreeNode(int x) { val = x; }
 }
 
+
 public class BSTIterator {
+
+    private TreeNode p;
+    private LinkedList<TreeNode> stack = new LinkedList<>();
+
+    public BSTIterator(TreeNode root) {
+        p = root;
+    }
+
+    /** @return whether we have a next smallest number */
+    public boolean hasNext() {
+        return p != null || !stack.isEmpty();
+    }
+
+    /** @return the next smallest number */
+    public int next() {
+        int val = -1;
+        while (p != null || !stack.isEmpty()) {
+            if (p != null) {
+                stack.push(p);
+                p = p.left;
+            } else {
+                p = stack.pop();
+                val = p.val;
+                p = p.right;
+                break;
+            }
+        }
+        return val;
+    }
+}
+
+
+class FirstBSTIterator {
 
     private LinkedList<TreeNode> stack;
     private TreeNode p;
 
-    public BSTIterator(TreeNode root) {
+    public FirstBSTIterator(TreeNode root) {
         p = root;
         stack = new LinkedList<>();
     }
 
 
-    /** @return whether we have a next smallest number */
+    /** @return whether we have A next smallest number */
     public boolean hasNext() {
         return p != null || !stack.isEmpty();
     }

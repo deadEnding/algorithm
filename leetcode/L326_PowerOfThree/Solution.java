@@ -2,7 +2,7 @@ package leetcode.L326_PowerOfThree;
 
 /**
  * @author: deadend
- * @date: 10:53 PM 12/14/16
+ * @date: P10:53 PM 12/14/16
  * @version: 1.0
  * @description:
  */

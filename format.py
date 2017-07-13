@@ -4,8 +4,8 @@
 import sys
 
 if __name__ == '__main__':
-    if len(sys.argv) != 2:
-        print "Usage: format.py <string>"
+    if len(sys.argv) != 2 or len(sys.argv[1]) == 0:
+        print "Usage: format.py <nonempty-string>"
         exit(0)
 
     n, s = sys.argv

@@ -27,7 +27,7 @@ public class WordDictionary {
         root = new TrieNode();
     }
 
-    // Adds a word into the data structure.
+    // Adds A word into the data structure.
     public void addWord(String word) {
         TrieNode p = root;
         for (int i = 0; i < word.length(); i++) {
@@ -40,7 +40,7 @@ public class WordDictionary {
         p.isWord = true;
     }
 
-    // Returns if the word is in the data structure. A word could
+    // Returns if the word is in the data structure. L476_NumberComplement word could
     // contain the dot character '.' to represent any one letter.
     public boolean search(String word) {
         if (word == null) {

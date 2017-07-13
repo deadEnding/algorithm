@@ -26,7 +26,7 @@ public class RandomizedCollection {
         random = new Random();
     }
 
-    /** Inserts a value to the collection. Returns true if the collection did not already contain the specified element. */
+    /** Inserts A value to the collection. Returns true if the collection did not already contain the specified element. */
     public boolean insert(int val) {
         if (!map.containsKey(val)) {
             map.put(val, new HashSet<Integer>());
@@ -36,7 +36,7 @@ public class RandomizedCollection {
         return map.get(val).size() == 1;
     }
 
-    /** Removes a value from the collection. Returns true if the collection contained the specified element. */
+    /** Removes A value from the collection. Returns true if the collection contained the specified element. */
     public boolean remove(int val) {
         if (!map.containsKey(val) || map.get(val).size() == 0) {
             return false;
@@ -53,7 +53,7 @@ public class RandomizedCollection {
         return true;
     }
 
-    /** Get a random element from the collection. */
+    /** Get A random element from the collection. */
     public int getRandom() {
         return list.get(random.nextInt(size));
     }

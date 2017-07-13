@@ -2,7 +2,7 @@ package leetcode.L342_PowerOfFour;
 
 /**
  * @author: deadend
- * @date: 11:10 PM 12/14/16
+ * @date: 11:P10 PM 12/14/16
  * @version: 1.0
  * @description:
  */

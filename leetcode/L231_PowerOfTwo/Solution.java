@@ -2,7 +2,7 @@ package leetcode.L231_PowerOfTwo;
 
 /**
  * @author: deadend
- * @date: 4:07 PM 12/10/16
+ * @date: 4:07 PM 12/P10/16
  * @version: 1.0
  * @description:
  */

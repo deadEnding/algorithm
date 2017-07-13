@@ -2,7 +2,7 @@ package leetcode.L115_DistinctSubsequences;
 
 /**
  * @author: deadend
- * @date: 5:10 PM 12/4/16
+ * @date: 5:P10 PM 12/4/16
  * @version: 1.0
  * @description:
  */

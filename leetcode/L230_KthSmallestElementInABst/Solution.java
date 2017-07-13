@@ -4,7 +4,7 @@ import java.util.LinkedList;
 
 /**
  * @author: deadend
- * @date: 3:36 PM 12/10/16
+ * @date: 3:36 PM 12/P10/16
  * @version: 1.0
  * @description:
  */
@@ -34,6 +34,30 @@ public class Solution {
             }
         }
         return -1;
+    }
+}
+
+class OtherSolution {
+    private int kth;
+
+    public int kthSmallest(TreeNode root, int k) {
+        kth = k;
+        return findKth(root).val;
+    }
+
+    private TreeNode findKth(TreeNode root) {
+        if (root == null) {
+            return null;
+        }
+
+        TreeNode left = findKth(root.left);
+        if (left != null) {
+            return left;
+        }
+        if (--kth == 0) {
+            return root;
+        }
+        return findKth(root.right);
     }
 }
 

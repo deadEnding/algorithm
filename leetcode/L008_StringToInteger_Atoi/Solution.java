@@ -11,7 +11,7 @@ package leetcode.L008_StringToInteger_Atoi;
 public class Solution {
     public int myAtoi(String str) {
         // Start typing your Java solution below
-        // DO NOT write main() function
+        // DO NOT write Main() function
         if(str == null) {
             return 0;
         }

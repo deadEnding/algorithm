@@ -2,7 +2,7 @@ package leetcode.L313_SuperUglyNumber;
 
 /**
  * @author: deadend
- * @date: 10:58 PM 12/13/16
+ * @date: P10:58 PM 12/13/16
  * @version: 1.0
  * @description:
  */

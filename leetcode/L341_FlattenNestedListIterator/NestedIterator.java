@@ -11,15 +11,15 @@ import java.util.List;
  */
 
 interface NestedInteger {
-    // @return true if this NestedInteger holds a single integer, rather than a nested list.
+    // @return true if this NestedInteger holds TrieMain single integer, rather than TrieMain nested list.
     public boolean isInteger();
 
-    // @return the single integer that this NestedInteger holds, if it holds a single integer
-    // Return null if this NestedInteger holds a nested list
+    // @return the single integer that this NestedInteger holds, if it holds A single integer
+    // Return null if this NestedInteger holds A nested list
     public Integer getInteger();
 
-    // @return the nested list that this NestedInteger holds, if it holds a nested list
-    // Return null if this NestedInteger holds a single integer
+    // @return the nested list that this NestedInteger holds, if it holds A nested list
+    // Return null if this NestedInteger holds A single integer
     public List<NestedInteger> getList();
 }
 

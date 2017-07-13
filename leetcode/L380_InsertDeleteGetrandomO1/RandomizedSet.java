@@ -27,7 +27,7 @@ public class RandomizedSet {
         random = new Random();
     }
 
-    /** Inserts a value to the set. Returns true if the set did not already contain the specified element. */
+    /** Inserts A value to the set. Returns true if the set did not already contain the specified element. */
     public boolean insert(int val) {
         if (map.containsKey(val)) {
             return false;
@@ -37,7 +37,7 @@ public class RandomizedSet {
         return true;
     }
 
-    /** Removes a value from the set. Returns true if the set contained the specified element. */
+    /** Removes A value from the set. Returns true if the set contained the specified element. */
     public boolean remove(int val) {
         if (!map.containsKey(val)) {
             return false;
@@ -52,7 +52,7 @@ public class RandomizedSet {
         return true;
     }
 
-    /** Get a random element from the set. */
+    /** Get A random element from the set. */
     public int getRandom() {
         return list.get(random.nextInt(size));
     }

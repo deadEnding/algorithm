@@ -9,6 +9,58 @@ package leetcode.L307_RangeSumQuery_Mutable;
 
 public class NumArray {
 
+    class BIT {
+        private int[] sums;
+
+        public BIT(int[] nums) {
+            sums = new int[nums.length + 1];
+            for (int i = 0; i < nums.length; i++) {
+                add(i + 1, nums[i]);
+            }
+        }
+
+        public int lowbit(int x) {
+            return x & -x;
+        }
+
+        public void add(int ix, int diff) {
+            while (ix < sums.length) {
+                sums[ix] += diff;
+                ix += lowbit(ix);
+            }
+        }
+
+        public int sum(int ix) {
+            int s = 0;
+            while (ix > 0) {
+                s += sums[ix];
+                ix -= lowbit(ix);
+            }
+            return s;
+        }
+    }
+
+    private int[] nums;
+    private BIT bit;
+
+    public NumArray(int[] nums) {
+        this.nums = nums;
+        this.bit = new BIT(nums);
+    }
+
+    public void update(int i, int val) {
+        bit.add(i + 1, val - nums[i]);
+        nums[i] = val;   // 保存下更新值
+    }
+
+    public int sumRange(int i, int j) {
+        return bit.sum(j + 1) - bit.sum(i);
+    }
+}
+
+
+class ArrayNumArray {
+
     private int[] tree;
     private int n;
 
@@ -22,7 +74,7 @@ public class NumArray {
         }
     }
 
-    public NumArray(int[] nums) {
+    public ArrayNumArray(int[] nums) {
         n = nums.length;
         if (n > 0) {
             tree = new int[2 * n];

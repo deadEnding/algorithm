@@ -10,6 +10,51 @@ package leetcode.L081_SearchInRotatedSortedArrayII;
 
 public class Solution {
     public boolean search(int[] nums, int target) {
+        int l = 0;
+        int r = nums.length - 1;
+
+        while (l <= r) {
+            int m = l + (r - l) / 2;
+            if (nums[m] == target) {
+                return true;
+            } else if (nums[m] < nums[r]) {
+                if (nums[m] < target && target <= nums[r]) {
+                    l = m + 1;
+                } else {
+                    r = m - 1;
+                }
+            } else if (nums[m] > nums[r]) {
+                if (nums[l] <= target && target < nums[m]) {
+                    r  = m - 1;
+                } else {
+                    l = m + 1;
+                }
+            } else {
+                r--;
+            }
+        }
+        return false;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+class FirstSolution {
+    public boolean search(int[] nums, int target) {
         int left = 0;
         int right = nums.length - 1;
 

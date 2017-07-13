@@ -2,7 +2,7 @@ package leetcode.L303_RangeSumQuery_Immutable;
 
 /**
  * @author: deadend
- * @date: 10:02 PM 12/12/16
+ * @date: P10:02 PM 12/12/16
  * @version: 1.0
  * @description:
  */

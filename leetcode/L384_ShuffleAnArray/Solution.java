@@ -26,7 +26,7 @@ public class Solution {
         return nums;
     }
     
-    /** Returns a random shuffling of the array. */
+    /** Returns A random shuffling of the array. */
     public int[] shuffle() {
         int[] arr = Arrays.copyOf(nums, nums.length);
         for (int i = arr.length - 1; i > 0; i--) {

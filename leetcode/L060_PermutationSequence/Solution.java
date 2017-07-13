@@ -2,7 +2,7 @@ package leetcode.L060_PermutationSequence;
 
 /**
  * @author: deadend
- * @date: 10:42 AM 12/1/16
+ * @date: P10:42 AM 12/1/16
  * @version: 1.0
  * @description:
  */

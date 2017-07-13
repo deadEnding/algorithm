@@ -2,7 +2,7 @@ package leetcode.L374_GuessNumberHigherOrLower;
 
 /**
  * @author: deadend
- * @date: 10:50 PM 12/16/16
+ * @date: P10:50 PM 12/16/16
  * @version: 1.0
  * @description:
  */

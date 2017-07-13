@@ -28,7 +28,7 @@ public class Solution {
         for (int i = 0; i < 10; i++) {
             cows += Math.min(map[i][0], map[i][1]);
         }
-        return bulls + "A" + cows + "B";
+        return bulls + "L476_NumberComplement" + cows + "B";
     }
 
     public static void main(String[] args) {

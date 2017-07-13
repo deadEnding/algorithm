@@ -2,7 +2,7 @@ package leetcode.L058_LengthOfLastWord;
 
 /**
  * @author: deadend
- * @date: 10:45 PM 11/30/16
+ * @date: P10:45 PM 11/30/16
  * @version: 1.0
  * @description:
  */

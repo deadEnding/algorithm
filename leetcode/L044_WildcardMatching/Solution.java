@@ -10,32 +10,20 @@ package leetcode.L044_WildcardMatching;
 
 public class Solution {
     public boolean isMatch(String s, String p) {
+        int match = 0;     // 遇到过*后匹配失败时回溯到match重新匹配
+        int starIx = -1;   // 最近的*的下标
+
         int i = 0, j = 0;
-        int bi = -1, bj = -1;
         while (i < s.length()) {
-            if (j == p.length()) {
-                if (bj != -1) {
-                    i = ++bi;
-                    j = bj + 1;
-                    continue;
-                } else {
-                    return false;
-                }
-            }
-            char sc = s.charAt(i);
-            char pc = p.charAt(j);
-            if (pc == '?' || pc == sc) {
+            if (j < p.length() && (p.charAt(j) == '?' || s.charAt(i) == p.charAt(j))) {
                 i++;
                 j++;
-            } else if (pc == '*') {
-                bi = i;
-                bj = j++;
-                if (j == p.length()) {
-                    return true;
-                }
-            } else if (bj != -1) {
-                i = ++bi;
-                j = bj + 1;
+            } else if (j < p.length() && p.charAt(j) == '*') {
+                match = i;
+                starIx = j++;
+            } else if (starIx != -1){
+                j = starIx + 1;
+                i = match++;
             } else {
                 return false;
             }
@@ -48,8 +36,8 @@ public class Solution {
     }
 
     public static void main(String[] args) {
-        String s = "aa";
-        String p = "a";
+        String s = "alibaba";
+        String p = "**A";
         System.out.println(new Solution().isMatch(s, p));
     }
 }

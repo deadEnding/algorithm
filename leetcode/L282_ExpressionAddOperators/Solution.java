@@ -12,7 +12,7 @@ import java.util.List;
 
 
 public class Solution {
-    private void helper(List<String> rst, String path, String num, int target, int ix, long eval, long tomulti) {
+    private void helper(List<String> rst, String path, String num, int target, int ix, long eval, long tomulti) { // tomulti 上一次数字结尾的乘法公式片段
         if (ix == num.length()) {
             if (target == eval) {
                 rst.add(path);
