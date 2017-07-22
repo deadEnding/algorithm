@@ -7,8 +7,43 @@ class ListNode {
     ListNode(int x) { val = x; }
 }
 
-
 public class Solution {
+
+    private int lengthOf(ListNode head) {
+        int len = 0;
+        while (head != null) {
+            head = head.next;
+            len++;
+        }
+
+        return len;
+    }
+
+    private ListNode reverseKGroup(ListNode head, int k, int len) {
+        if (len < k) {
+            return head;
+        }
+
+        ListNode dummy = new ListNode(-1);
+
+        ListNode p = head;
+        for (int i = 0; i < k; i++) {
+            ListNode tmp = p;
+            p = p.next;
+            tmp.next = dummy.next;
+            dummy.next = tmp;
+        }
+
+        head.next = reverseKGroup(p, k, len - k);
+        return dummy.next;
+    }
+
+    public ListNode reverseKGroup(ListNode head, int k) {
+        return reverseKGroup(head, k, lengthOf(head));
+    }
+}
+
+class OldSolution {
 
     private int getLength(ListNode head) {
         int len = 0;

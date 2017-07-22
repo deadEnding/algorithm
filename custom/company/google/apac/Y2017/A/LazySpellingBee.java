@@ -17,10 +17,10 @@ import java.util.Scanner;
 
 public class LazySpellingBee {
     public static void main(String[] args) throws FileNotFoundException {
-        FileInputStream fis = new FileInputStream("/tmp/L476_NumberComplement-large-practice.in");
+        FileInputStream fis = new FileInputStream("/tmp/L476_NumberComplement-large-practice1.in");
         System.setIn(fis);
 
-        PrintStream ps=new PrintStream(new FileOutputStream("/tmp/L476_NumberComplement-large-practice.out"));
+        PrintStream ps=new PrintStream(new FileOutputStream("/tmp/L476_NumberComplement-large-practice1.out"));
         System.setOut(ps);
 
         final int MOD = 1000000007;

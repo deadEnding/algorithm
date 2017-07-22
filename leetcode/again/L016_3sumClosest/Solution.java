@@ -12,6 +12,33 @@ import java.util.Arrays;
 
 public class Solution {
     public int threeSumClosest(int[] nums, int target) {
+        final int n = nums.length;
+        Arrays.sort(nums);
+
+        Integer minDiff = null;
+        for (int i = 0; i < n - 2; i++) {
+            for (int j = i + 1, k = n - 1; j < k;) {
+                int sum = nums[i] + nums[j] + nums[k];
+                if (minDiff == null || Math.abs(target - sum) < Math.abs(minDiff)) {
+                    minDiff = target - sum;
+                }
+
+                if (sum == target) {
+                    return sum;
+                } else if (sum < target) {
+                    j++;
+                } else {
+                    k--;
+                }
+            }
+        }
+
+        return target - minDiff;
+    }
+}
+
+class OldSolution {
+    public int threeSumClosest(int[] nums, int target) {
         Arrays.sort(nums);
         long closet = Long.MAX_VALUE;
 

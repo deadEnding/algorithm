@@ -10,37 +10,48 @@ package leetcode.L483_SmallestGoodBase;
 
 public class Solution {
     public String smallestGoodBase(String n) {
-        long num = 0;
-        for (char c : n.toCharArray()) num = num * 10 + c - '0';
+        long num = Long.valueOf(n);
+        int maxBits = (int) (Math.log(num + 1) / Math.log(2)) + 1;
 
-        long x = 1;
-        for (int p = 100; p >= 2; p--) {
-            if ((x << p) < num) {
-                long k = helper(num, p);
-                if (k != -1) return String.valueOf(k);
+        for (int len = maxBits; len >= 2; len--) {
+            long base = binarySearch(num, len);
+            if (base != -1) {
+                return String.valueOf(base);
             }
         }
+
         return String.valueOf(num - 1);
     }
 
-    private long helper(long num, int p) {
-        long l = 1, r = (long)(Math.pow(num, 1.0/p) + 1);
-        while (l < r) {
+    public long binarySearch(long num, int len) {
+        long l = 2, r = (long) Math.pow(num + 1, 1.0 / (len - 1)) + 1;
+        while (l <= r) {
             long mid = l + (r - l) / 2;
-            long sum = 0, cur = 1;
-            for (int i = 0; i <= p; i++) {
-                sum += cur;
-                cur *= mid;
+            long curNum = base2dec(mid, len);
+            if (curNum == num) {
+                return mid;
+            } else if (curNum < num) {
+                l = mid + 1;
+            } else {
+                r = mid - 1;
             }
-            if (sum == num) return mid;
-            else if (sum > num) r = mid;
-            else l = mid + 1;
         }
+
         return -1;
     }
 
+    private long base2dec(long base, int len) {
+        long num = 0L, bit = 1L;
+        for (int i = 0; i < len; i++) {
+            num += bit;
+            bit *= base;
+        }
+
+        return num;
+    }
+
     public static void main(String[] args) {
-        String s = "2251799813685247";
-        System.out.println(new Solution().smallestGoodBase(s));
+        String n = "15";
+        System.out.println(new Solution().smallestGoodBase(n));
     }
 }

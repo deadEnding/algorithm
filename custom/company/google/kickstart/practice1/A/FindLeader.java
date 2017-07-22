@@ -1,4 +1,4 @@
-package custom.company.google.kickstart.practice.A;
+package custom.company.google.kickstart.practice1.A;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -27,10 +27,10 @@ public class FindLeader {
     }
 
     public static void main(String[] args) throws FileNotFoundException {
-        FileInputStream fis = new FileInputStream("/tmp/A-large-practice.in");
+        FileInputStream fis = new FileInputStream("/tmp/A-large-practice1.in");
         System.setIn(fis);
 
-        PrintStream ps=new PrintStream(new FileOutputStream("/tmp/A-large-practice.out"));
+        PrintStream ps=new PrintStream(new FileOutputStream("/tmp/A-large-practice1.out"));
         System.setOut(ps);
 
         Scanner sc = new Scanner(System.in);

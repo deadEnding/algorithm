@@ -71,7 +71,25 @@ public class FastExponentiation {
         return result;
     }
 
+    /** 整数快速幂取模 */
+    public int fastExpAndModForInt(int x, int p, int mod) {
+        int result = 1;
+
+        int base = x % mod;
+        while (p > 0) {
+            if (p % 2 == 1) {
+                result = (result * base) % mod;
+            }
+
+            base = base * base % mod;
+            p >>= 1;
+        }
+
+        return result;
+    }
+
     public static void main(String[] args) {
         System.out.println(new FastExponentiation().fastExpForInt(3, 4));
+        System.out.println(new FastExponentiation().fastExpAndModForInt(2, 10, 3));
     }
 }

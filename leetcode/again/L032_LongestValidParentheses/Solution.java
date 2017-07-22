@@ -11,6 +11,38 @@ import java.util.LinkedList;
 
 
 public class Solution {
+    class Item {
+        int ix;
+        char c;
+
+        public Item(int ix, char c) {
+            this.ix = ix;
+            this.c = c;
+        }
+    }
+
+    public int longestValidParentheses(String s) {
+        final int n = s.length();
+
+        int max = 0;
+        LinkedList<Item> stack = new LinkedList<>();
+        stack.push(new Item(-1, ')'));
+
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if (c == ')' && stack.peek().c == '(') {
+                stack.pop();
+                max = Math.max(max, i - stack.peek().ix);
+            } else {
+                stack.push(new Item(i, c));
+            }
+        }
+
+        return max;
+    }
+}
+
+class OldSolution {
 
     public int longestValidParentheses(String s) {
         LinkedList<Integer> stack = new LinkedList<>();

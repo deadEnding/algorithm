@@ -18,9 +18,9 @@ public class Solution {
         StringBuffer buffer = new StringBuffer();
         int dist = 2 * numRows - 2;
         for (int i = 0; i < numRows; i++) {
+            int d = dist - 2 * i;
             for (int j = i; j < n; j += dist) {
                 buffer.append(s.charAt(j));
-                int d = dist - 2 * i;
                 if (d != 0 && d != dist && j + d < n)
                     buffer.append(s.charAt(j + d));
             }

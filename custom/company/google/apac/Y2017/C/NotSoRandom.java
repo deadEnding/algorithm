@@ -44,10 +44,10 @@ public class NotSoRandom {
     }
 
     public static void main(String[] args) throws FileNotFoundException {
-        FileInputStream fis = new FileInputStream("/tmp/D-large-practice.in");
+        FileInputStream fis = new FileInputStream("/tmp/D-large-practice1.in");
         System.setIn(fis);
 
-        PrintStream ps = new PrintStream(new FileOutputStream("/tmp/D-large-practice.out"));
+        PrintStream ps = new PrintStream(new FileOutputStream("/tmp/D-large-practice1.out"));
         System.setOut(ps);
 
         Scanner sc = new Scanner(System.in);

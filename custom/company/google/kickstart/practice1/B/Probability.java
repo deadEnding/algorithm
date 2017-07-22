@@ -1,4 +1,4 @@
-package custom.company.google.kickstart.practice.B;
+package custom.company.google.kickstart.practice1.B;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -39,10 +39,10 @@ public class Probability {
     }
 
     public static void main(String[] args) throws FileNotFoundException {
-        FileInputStream fis = new FileInputStream("/tmp/B-large-practice.in");
+        FileInputStream fis = new FileInputStream("/tmp/B-large-practice1.in");
         System.setIn(fis);
 
-        PrintStream ps=new PrintStream(new FileOutputStream("/tmp/B-large-practice.out"));
+        PrintStream ps=new PrintStream(new FileOutputStream("/tmp/B-large-practice1.out"));
         System.setOut(ps);
 
         Scanner sc = new Scanner(System.in);
