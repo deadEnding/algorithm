@@ -1,4 +1,4 @@
-package leetcode.again.L581_ShortestUnsortedContinuousSubarray;
+package leetcode.L581_ShortestUnsortedContinuousSubarray;
 
 
 public class Solution {

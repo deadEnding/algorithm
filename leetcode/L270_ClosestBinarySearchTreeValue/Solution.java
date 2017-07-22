@@ -1,4 +1,4 @@
-package leetcode.again.L270_ClosestBinarySearchTreeValue;
+package leetcode.L270_ClosestBinarySearchTreeValue;
 
 /**
  * @author: deadend

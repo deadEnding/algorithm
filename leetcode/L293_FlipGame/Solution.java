@@ -1,4 +1,4 @@
-package leetcode.again.L293_FlipGame;
+package leetcode.L293_FlipGame;
 
 import java.util.LinkedList;
 import java.util.List;

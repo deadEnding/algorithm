@@ -1,4 +1,4 @@
-package leetcode.again.L323_NumberOfConnectedComponentsInAnUndirectedGraph;
+package leetcode.L323_NumberOfConnectedComponentsInAnUndirectedGraph;
 
 /**
  * @author: deadend

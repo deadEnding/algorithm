@@ -1,4 +1,4 @@
-package leetcode.again.L236_LowestCommonAncestorOfABinaryTree;
+package leetcode.L236_LowestCommonAncestorOfABinaryTree;
 
 class TreeNode {
     int val;

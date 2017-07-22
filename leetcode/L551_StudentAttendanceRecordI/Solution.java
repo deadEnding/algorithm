@@ -1,4 +1,4 @@
-package leetcode.again.L551_StudentAttendanceRecordI;
+package leetcode.L551_StudentAttendanceRecordI;
 
 
 public class Solution {

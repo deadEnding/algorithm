@@ -1,4 +1,4 @@
-package leetcode.again.L030_SubstringWithConcatenationOfAllWords;
+package leetcode.L030_SubstringWithConcatenationOfAllWords;
 
 
 import java.util.HashMap;

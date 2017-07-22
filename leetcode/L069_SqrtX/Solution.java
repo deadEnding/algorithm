@@ -1,4 +1,4 @@
-package leetcode.again.L069_SqrtX;
+package leetcode.L069_SqrtX;
 
 /**
  * @author: deadend

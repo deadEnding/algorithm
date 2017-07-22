@@ -1,4 +1,4 @@
-package leetcode.again.L593_ValidSquare;
+package leetcode.L593_ValidSquare;
 
 
 public class Solution {

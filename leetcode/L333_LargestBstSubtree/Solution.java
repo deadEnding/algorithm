@@ -1,4 +1,4 @@
-package leetcode.again.L333_LargestBstSubtree;
+package leetcode.L333_LargestBstSubtree;
 
 
 class TreeNode {

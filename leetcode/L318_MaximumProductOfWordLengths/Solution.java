@@ -1,4 +1,4 @@
-package leetcode.again.L318_MaximumProductOfWordLengths;
+package leetcode.L318_MaximumProductOfWordLengths;
 
 /**
  * @author: deadend

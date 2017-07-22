@@ -1,4 +1,4 @@
-package leetcode.again.L537_ComplexNumberMultiplication;
+package leetcode.L537_ComplexNumberMultiplication;
 
 /**
  * @author: deadend

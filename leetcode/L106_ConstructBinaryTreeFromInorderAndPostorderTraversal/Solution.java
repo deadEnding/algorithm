@@ -1,4 +1,4 @@
-package leetcode.again.L106_ConstructBinaryTreeFromInorderAndPostorderTraversal;
+package leetcode.L106_ConstructBinaryTreeFromInorderAndPostorderTraversal;
 
 
 class TreeNode {

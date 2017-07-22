@@ -1,4 +1,4 @@
-package leetcode.again.L007_ReverseInteger;
+package leetcode.L007_ReverseInteger;
 
 
 public class Solution {

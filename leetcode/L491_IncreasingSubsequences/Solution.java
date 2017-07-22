@@ -1,4 +1,4 @@
-package leetcode.again.L491_IncreasingSubsequences;
+package leetcode.L491_IncreasingSubsequences;
 
 import java.util.HashSet;
 import java.util.LinkedList;

@@ -1,4 +1,4 @@
-package leetcode.again.L452_MinimumNumberOfArrowsToBurstBalloons;
+package leetcode.L452_MinimumNumberOfArrowsToBurstBalloons;
 
 import java.util.Arrays;
 

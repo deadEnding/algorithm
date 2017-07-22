@@ -1,4 +1,4 @@
-package leetcode.again.L446_ArithmeticSlicesIISubsequence;
+package leetcode.L446_ArithmeticSlicesIISubsequence;
 
 import java.util.HashMap;
 

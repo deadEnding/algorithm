@@ -1,4 +1,4 @@
-package leetcode.again.L315_CountOfSmallerNumbersAfterSelf;
+package leetcode.L315_CountOfSmallerNumbersAfterSelf;
 
 import java.util.LinkedList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package leetcode.again.L284_PeekingIterator;
+package leetcode.L284_PeekingIterator;
 
 import java.util.Iterator;
 

@@ -1,4 +1,4 @@
-package leetcode.again.L565_ArrayNesting;
+package leetcode.L565_ArrayNesting;
 
 import java.util.Arrays;
 

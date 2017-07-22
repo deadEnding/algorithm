@@ -1,4 +1,4 @@
-package leetcode.again.L341_FlattenNestedListIterator;
+package leetcode.L341_FlattenNestedListIterator;
 
 import java.util.Iterator;
 import java.util.LinkedList;

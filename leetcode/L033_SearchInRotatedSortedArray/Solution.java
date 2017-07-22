@@ -1,4 +1,4 @@
-package leetcode.again.L033_SearchInRotatedSortedArray;
+package leetcode.L033_SearchInRotatedSortedArray;
 
 /**
  * @author: deadend

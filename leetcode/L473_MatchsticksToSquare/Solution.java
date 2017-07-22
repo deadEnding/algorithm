@@ -1,4 +1,4 @@
-package leetcode.again.L473_MatchsticksToSquare;
+package leetcode.L473_MatchsticksToSquare;
 
 /**
  * @author: deadend

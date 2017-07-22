@@ -1,4 +1,4 @@
-package leetcode.again.L621_TaskScheduler;
+package leetcode.L621_TaskScheduler;
 
 
 import java.util.ArrayList;

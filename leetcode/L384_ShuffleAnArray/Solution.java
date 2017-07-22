@@ -1,4 +1,4 @@
-package leetcode.again.L384_ShuffleAnArray;
+package leetcode.L384_ShuffleAnArray;
 
 
 import java.util.Arrays;

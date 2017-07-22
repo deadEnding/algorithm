@@ -1,4 +1,4 @@
-package leetcode.again.L347_TopKFrequentElements;
+package leetcode.L347_TopKFrequentElements;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -1,4 +1,4 @@
-package leetcode.again.L463_IslandPerimeter;
+package leetcode.L463_IslandPerimeter;
 
 /**
  * @author: deadend

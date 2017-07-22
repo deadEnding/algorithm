@@ -1,4 +1,4 @@
-package leetcode.again.L091_DecodeWays;
+package leetcode.L091_DecodeWays;
 
 /**
  * @author: deadend

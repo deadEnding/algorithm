@@ -1,4 +1,4 @@
-package leetcode.again.L554_BrickWall;
+package leetcode.L554_BrickWall;
 
 import java.util.HashMap;
 import java.util.List;

@@ -1,4 +1,4 @@
-package leetcode.again.L046_Permutations;
+package leetcode.L046_Permutations;
 
 import java.util.LinkedList;
 import java.util.List;

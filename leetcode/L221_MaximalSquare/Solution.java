@@ -1,4 +1,4 @@
-package leetcode.again.L221_MaximalSquare;
+package leetcode.L221_MaximalSquare;
 
 /**
  * @author: deadend

@@ -1,4 +1,4 @@
-package leetcode.again.L490_TheMaze;
+package leetcode.L490_TheMaze;
 
 import java.util.LinkedList;
 import java.util.Queue;

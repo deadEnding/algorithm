@@ -1,4 +1,4 @@
-package leetcode.again.L101_SymmetricTree;
+package leetcode.L101_SymmetricTree;
 
 
 class TreeNode {

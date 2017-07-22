@@ -1,4 +1,4 @@
-package leetcode.again.L261_GraphValidTree;
+package leetcode.L261_GraphValidTree;
 
 /**
  * @author: deadend

@@ -1,4 +1,4 @@
-package leetcode.again.L467_UniqueSubstringsInWraparoundString;
+package leetcode.L467_UniqueSubstringsInWraparoundString;
 
 /**
  * @author: deadend

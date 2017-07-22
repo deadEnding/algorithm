@@ -1,4 +1,4 @@
-package leetcode.again.L157_ReadNCharactersGivenRead4;
+package leetcode.L157_ReadNCharactersGivenRead4;
 
 import java.util.LinkedList;
 

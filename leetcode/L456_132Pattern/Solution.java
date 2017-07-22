@@ -1,4 +1,4 @@
-package leetcode.again.L456_132Pattern;
+package leetcode.L456_132Pattern;
 
 import java.util.LinkedList;
 

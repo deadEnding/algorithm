@@ -1,4 +1,4 @@
-package leetcode.again.L228_SummaryRanges;
+package leetcode.L228_SummaryRanges;
 
 import java.util.LinkedList;
 import java.util.List;

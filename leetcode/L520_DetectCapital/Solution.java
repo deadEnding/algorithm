@@ -1,4 +1,4 @@
-package leetcode.again.L520_DetectCapital;
+package leetcode.L520_DetectCapital;
 
 /**
  * @author: deadend

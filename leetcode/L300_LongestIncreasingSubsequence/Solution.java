@@ -1,4 +1,4 @@
-package leetcode.again.L300_LongestIncreasingSubsequence;
+package leetcode.L300_LongestIncreasingSubsequence;
 
 import java.util.Arrays;
 

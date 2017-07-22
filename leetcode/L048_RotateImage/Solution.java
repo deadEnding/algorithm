@@ -1,4 +1,4 @@
-package leetcode.again.L048_RotateImage;
+package leetcode.L048_RotateImage;
 
 
 public class Solution {

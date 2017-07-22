@@ -1,4 +1,4 @@
-package leetcode.again.L115_DistinctSubsequences;
+package leetcode.L115_DistinctSubsequences;
 
 /**
  * @author: deadend

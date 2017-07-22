@@ -1,4 +1,4 @@
-package leetcode.again.L075_SortColors;
+package leetcode.L075_SortColors;
 
 
 public class Solution {

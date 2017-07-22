@@ -1,4 +1,4 @@
-package leetcode.again.L408_ValidWordAbbreviation;
+package leetcode.L408_ValidWordAbbreviation;
 
 import java.util.Arrays;
 

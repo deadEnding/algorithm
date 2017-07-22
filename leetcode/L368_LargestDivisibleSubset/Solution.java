@@ -1,4 +1,4 @@
-package leetcode.again.L368_LargestDivisibleSubset;
+package leetcode.L368_LargestDivisibleSubset;
 
 import java.util.Arrays;
 import java.util.LinkedList;

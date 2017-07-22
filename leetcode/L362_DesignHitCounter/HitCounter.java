@@ -1,4 +1,4 @@
-package leetcode.again.L362_DesignHitCounter;
+package leetcode.L362_DesignHitCounter;
 
 import java.util.LinkedList;
 

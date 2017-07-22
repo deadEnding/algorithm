@@ -1,4 +1,4 @@
-package leetcode.again.L514_FreedomTrail;
+package leetcode.L514_FreedomTrail;
 
 /**
  * @author: deadend

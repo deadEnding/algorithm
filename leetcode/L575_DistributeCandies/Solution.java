@@ -1,4 +1,4 @@
-package leetcode.again.L575_DistributeCandies;
+package leetcode.L575_DistributeCandies;
 
 
 import java.util.HashSet;

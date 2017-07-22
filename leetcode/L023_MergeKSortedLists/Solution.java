@@ -1,4 +1,4 @@
-package leetcode.again.L023_MergeKSortedLists;
+package leetcode.L023_MergeKSortedLists;
 
 import java.util.PriorityQueue;
 

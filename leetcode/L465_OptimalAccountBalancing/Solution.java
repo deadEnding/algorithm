@@ -1,4 +1,4 @@
-package leetcode.again.L465_OptimalAccountBalancing;
+package leetcode.L465_OptimalAccountBalancing;
 
 import java.util.ArrayList;
 import java.util.HashMap;

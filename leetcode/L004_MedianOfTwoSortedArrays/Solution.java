@@ -1,4 +1,4 @@
-package leetcode.again.L004_MedianOfTwoSortedArrays;
+package leetcode.L004_MedianOfTwoSortedArrays;
 
 /**
  * @author: deadend

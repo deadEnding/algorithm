@@ -1,4 +1,4 @@
-package leetcode.again.L232_ImplementQueueUsingStacks;
+package leetcode.L232_ImplementQueueUsingStacks;
 
 
 import java.util.LinkedList;

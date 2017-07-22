@@ -1,4 +1,4 @@
-package leetcode.again.L084_LargestRectangleInHistogram;
+package leetcode.L084_LargestRectangleInHistogram;
 
 import java.util.LinkedList;
 

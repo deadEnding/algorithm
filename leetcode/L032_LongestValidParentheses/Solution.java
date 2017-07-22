@@ -1,4 +1,4 @@
-package leetcode.again.L032_LongestValidParentheses;
+package leetcode.L032_LongestValidParentheses;
 
 import java.util.LinkedList;
 

@@ -1,4 +1,4 @@
-package leetcode.again.L572_SubtreeOfAnotherTree;
+package leetcode.L572_SubtreeOfAnotherTree;
 
 class TreeNode {
     int val;

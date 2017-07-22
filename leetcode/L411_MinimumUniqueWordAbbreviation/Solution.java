@@ -1,4 +1,4 @@
-package leetcode.again.L411_MinimumUniqueWordAbbreviation;
+package leetcode.L411_MinimumUniqueWordAbbreviation;
 
 import java.util.ArrayList;
 import java.util.Collections;

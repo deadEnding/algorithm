@@ -1,4 +1,4 @@
-package leetcode.again.L406_QueueReconstructionByHeight;
+package leetcode.L406_QueueReconstructionByHeight;
 
 import java.util.ArrayList;
 import java.util.Arrays;

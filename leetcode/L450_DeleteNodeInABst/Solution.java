@@ -1,4 +1,4 @@
-package leetcode.again.L450_DeleteNodeInABst;
+package leetcode.L450_DeleteNodeInABst;
 
 /**
  * @author: deadend

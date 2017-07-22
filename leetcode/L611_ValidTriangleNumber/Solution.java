@@ -1,4 +1,4 @@
-package leetcode.again.L611_ValidTriangleNumber;
+package leetcode.L611_ValidTriangleNumber;
 
 
 import java.util.Arrays;

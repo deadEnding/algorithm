@@ -1,4 +1,4 @@
-package leetcode.again.L345_ReverseVowelsOfAString;
+package leetcode.L345_ReverseVowelsOfAString;
 
 /**
  * @author: deadend

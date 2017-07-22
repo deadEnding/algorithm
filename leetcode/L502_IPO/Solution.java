@@ -1,4 +1,4 @@
-package leetcode.again.L502_IPO;
+package leetcode.L502_IPO;
 
 import java.util.PriorityQueue;
 

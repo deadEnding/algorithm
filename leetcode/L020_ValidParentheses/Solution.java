@@ -1,4 +1,4 @@
-package leetcode.again.L020_ValidParentheses;
+package leetcode.L020_ValidParentheses;
 
 import java.util.HashMap;
 import java.util.LinkedList;

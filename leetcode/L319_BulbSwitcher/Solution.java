@@ -1,4 +1,4 @@
-package leetcode.again.L319_BulbSwitcher;
+package leetcode.L319_BulbSwitcher;
 
 /**
  * @author: deadend

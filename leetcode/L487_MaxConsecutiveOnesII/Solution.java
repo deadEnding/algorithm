@@ -1,4 +1,4 @@
-package leetcode.again.L487_MaxConsecutiveOnesII;
+package leetcode.L487_MaxConsecutiveOnesII;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

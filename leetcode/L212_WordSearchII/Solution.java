@@ -1,4 +1,4 @@
-package leetcode.again.L212_WordSearchII;
+package leetcode.L212_WordSearchII;
 
 import java.util.HashMap;
 import java.util.LinkedList;

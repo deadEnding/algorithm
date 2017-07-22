@@ -1,4 +1,4 @@
-package leetcode.again.L389_FindTheDifference;
+package leetcode.L389_FindTheDifference;
 
 import java.util.HashSet;
 

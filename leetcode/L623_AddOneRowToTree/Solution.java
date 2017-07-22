@@ -1,4 +1,4 @@
-package leetcode.again.L623_AddOneRowToTree;
+package leetcode.L623_AddOneRowToTree;
 
 import java.util.LinkedList;
 

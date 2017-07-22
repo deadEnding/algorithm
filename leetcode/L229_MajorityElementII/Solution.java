@@ -1,4 +1,4 @@
-package leetcode.again.L229_MajorityElementII;
+package leetcode.L229_MajorityElementII;
 
 import java.util.LinkedList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package leetcode.again.L066_PlusOne;
+package leetcode.L066_PlusOne;
 
 /**
  * @author: deadend

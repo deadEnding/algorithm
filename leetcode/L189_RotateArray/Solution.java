@@ -1,4 +1,4 @@
-package leetcode.again.L189_RotateArray;
+package leetcode.L189_RotateArray;
 
 
 public class Solution {

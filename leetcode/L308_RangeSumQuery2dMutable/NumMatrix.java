@@ -1,4 +1,4 @@
-package leetcode.again.L308_RangeSumQuery2dMutable;
+package leetcode.L308_RangeSumQuery2dMutable;
 
 /**
  * @author: deadend

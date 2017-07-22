@@ -1,4 +1,4 @@
-package leetcode.again.L029_DivideTwoIntegers;
+package leetcode.L029_DivideTwoIntegers;
 
 /**
  * @author: deadend

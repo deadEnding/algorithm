@@ -1,4 +1,4 @@
-package leetcode.again.L576_OutOfBoundaryPaths;
+package leetcode.L576_OutOfBoundaryPaths;
 
 
 public class Solution {

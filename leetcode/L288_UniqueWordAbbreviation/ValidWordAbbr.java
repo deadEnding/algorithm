@@ -1,4 +1,4 @@
-package leetcode.again.L288_UniqueWordAbbreviation;
+package leetcode.L288_UniqueWordAbbreviation;
 
 import java.util.HashMap;
 import java.util.HashSet;

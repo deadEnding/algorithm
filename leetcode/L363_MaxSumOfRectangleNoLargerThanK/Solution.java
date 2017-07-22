@@ -1,4 +1,4 @@
-package leetcode.again.L363_MaxSumOfRectangleNoLargerThanK;
+package leetcode.L363_MaxSumOfRectangleNoLargerThanK;
 
 import java.util.TreeSet;
 

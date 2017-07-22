@@ -1,4 +1,4 @@
-package leetcode.again.L513_FindBottomLeftTreeValue;
+package leetcode.L513_FindBottomLeftTreeValue;
 
 import java.util.LinkedList;
 import java.util.Queue;

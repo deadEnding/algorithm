@@ -1,4 +1,4 @@
-package leetcode.again.L370_RangeAddition;
+package leetcode.L370_RangeAddition;
 
 /**
  * @author: deadend

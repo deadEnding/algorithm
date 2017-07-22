@@ -1,4 +1,4 @@
-package leetcode.again.L538_ConvertBstToGreaterTree;
+package leetcode.L538_ConvertBstToGreaterTree;
 
 /**
  * @author: deadend

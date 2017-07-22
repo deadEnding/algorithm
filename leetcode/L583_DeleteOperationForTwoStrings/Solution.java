@@ -1,4 +1,4 @@
-package leetcode.again.L583_DeleteOperationForTwoStrings;
+package leetcode.L583_DeleteOperationForTwoStrings;
 
 
 public class Solution {

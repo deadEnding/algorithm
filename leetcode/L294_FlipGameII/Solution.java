@@ -1,4 +1,4 @@
-package leetcode.again.L294_FlipGameII;
+package leetcode.L294_FlipGameII;
 
 import java.util.HashMap;
 import java.util.LinkedList;

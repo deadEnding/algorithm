@@ -1,4 +1,4 @@
-package leetcode.again.L361_BombEnemy;
+package leetcode.L361_BombEnemy;
 
 /**
  * @author: deadend

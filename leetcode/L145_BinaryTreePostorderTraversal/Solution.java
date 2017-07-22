@@ -1,4 +1,4 @@
-package leetcode.again.L145_BinaryTreePostorderTraversal;
+package leetcode.L145_BinaryTreePostorderTraversal;
 
 import java.util.LinkedList;
 import java.util.List;

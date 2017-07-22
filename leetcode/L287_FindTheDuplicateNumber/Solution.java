@@ -1,4 +1,4 @@
-package leetcode.again.L287_FindTheDuplicateNumber;
+package leetcode.L287_FindTheDuplicateNumber;
 
 /**
  * @author: deadend

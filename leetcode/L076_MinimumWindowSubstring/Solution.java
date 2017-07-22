@@ -1,4 +1,4 @@
-package leetcode.again.L076_MinimumWindowSubstring;
+package leetcode.L076_MinimumWindowSubstring;
 
 import java.util.HashMap;
 

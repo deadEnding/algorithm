@@ -1,4 +1,4 @@
-package leetcode.again.L337_HouseRobberIII;
+package leetcode.L337_HouseRobberIII;
 
 
 class TreeNode {

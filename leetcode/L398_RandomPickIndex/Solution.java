@@ -1,4 +1,4 @@
-package leetcode.again.L398_RandomPickIndex;
+package leetcode.L398_RandomPickIndex;
 
 
 import java.util.Random;

@@ -1,4 +1,4 @@
-package leetcode.again.L251_Flatten2dVector;
+package leetcode.L251_Flatten2dVector;
 
 import java.util.Iterator;
 import java.util.List;

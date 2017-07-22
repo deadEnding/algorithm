@@ -1,4 +1,4 @@
-package leetcode.again.L567_PermutationInString;
+package leetcode.L567_PermutationInString;
 
 import java.util.HashMap;
 

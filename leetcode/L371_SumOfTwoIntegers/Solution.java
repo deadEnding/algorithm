@@ -1,4 +1,4 @@
-package leetcode.again.L371_SumOfTwoIntegers;
+package leetcode.L371_SumOfTwoIntegers;
 
 /**
  * @author: deadend

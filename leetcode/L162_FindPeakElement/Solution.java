@@ -1,4 +1,4 @@
-package leetcode.again.L162_FindPeakElement;
+package leetcode.L162_FindPeakElement;
 
 /**
  * @author: deadend

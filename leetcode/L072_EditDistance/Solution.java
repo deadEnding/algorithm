@@ -1,4 +1,4 @@
-package leetcode.again.L072_EditDistance;
+package leetcode.L072_EditDistance;
 
 /**
  * @author: deadend

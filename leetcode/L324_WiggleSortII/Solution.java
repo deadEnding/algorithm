@@ -1,4 +1,4 @@
-package leetcode.again.L324_WiggleSortII;
+package leetcode.L324_WiggleSortII;
 
 import java.util.Arrays;
 

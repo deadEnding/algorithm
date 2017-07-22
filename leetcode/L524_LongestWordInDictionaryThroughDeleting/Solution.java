@@ -1,4 +1,4 @@
-package leetcode.again.L524_LongestWordInDictionaryThroughDeleting;
+package leetcode.L524_LongestWordInDictionaryThroughDeleting;
 
 import java.util.List;
 

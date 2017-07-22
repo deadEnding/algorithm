@@ -1,4 +1,4 @@
-package leetcode.again.L054_SpiralMatrix;
+package leetcode.L054_SpiralMatrix;
 
 
 import java.util.LinkedList;

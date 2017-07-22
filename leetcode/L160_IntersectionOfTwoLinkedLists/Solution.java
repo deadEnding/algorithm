@@ -1,4 +1,4 @@
-package leetcode.again.L160_IntersectionOfTwoLinkedLists;
+package leetcode.L160_IntersectionOfTwoLinkedLists;
 
 
 class ListNode {

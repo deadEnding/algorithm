@@ -1,4 +1,4 @@
-package leetcode.again.L056_MergeIntervals;
+package leetcode.L056_MergeIntervals;
 
 import java.util.Collections;
 import java.util.LinkedList;

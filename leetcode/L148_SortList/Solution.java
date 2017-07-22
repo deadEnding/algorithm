@@ -1,4 +1,4 @@
-package leetcode.again.L148_SortList;
+package leetcode.L148_SortList;
 
 /**
  * @author: deadend

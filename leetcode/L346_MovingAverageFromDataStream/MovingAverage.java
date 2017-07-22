@@ -1,4 +1,4 @@
-package leetcode.again.L346_MovingAverageFromDataStream;
+package leetcode.L346_MovingAverageFromDataStream;
 
 /**
  * @author: deadend

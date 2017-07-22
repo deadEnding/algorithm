@@ -1,4 +1,4 @@
-package leetcode.again.L388_LongestAbsoluteFilePath;
+package leetcode.L388_LongestAbsoluteFilePath;
 
 import java.util.LinkedList;
 

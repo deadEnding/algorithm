@@ -1,4 +1,4 @@
-package leetcode.again.L283_MoveZeroes;
+package leetcode.L283_MoveZeroes;
 
 /**
  * @author: deadend

@@ -1,4 +1,4 @@
-package leetcode.again.L286_WallsAndGates;
+package leetcode.L286_WallsAndGates;
 
 /**
  * @author: deadend

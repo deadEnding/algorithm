@@ -1,4 +1,4 @@
-package leetcode.again.L380_InsertDeleteGetrandomO1;
+package leetcode.L380_InsertDeleteGetrandomO1;
 
 import java.util.ArrayList;
 import java.util.HashMap;

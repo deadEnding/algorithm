@@ -1,4 +1,4 @@
-package leetcode.again.L320_GeneralizedAbbreviation;
+package leetcode.L320_GeneralizedAbbreviation;
 
 import java.util.*;
 

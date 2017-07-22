@@ -1,4 +1,4 @@
-package leetcode.again.L231_PowerOfTwo;
+package leetcode.L231_PowerOfTwo;
 
 /**
  * @author: deadend

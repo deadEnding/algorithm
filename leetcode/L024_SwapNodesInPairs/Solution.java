@@ -1,4 +1,4 @@
-package leetcode.again.L024_SwapNodesInPairs;
+package leetcode.L024_SwapNodesInPairs;
 
 
 class ListNode {

@@ -1,4 +1,4 @@
-package leetcode.again.L544_OutputContestMatches;
+package leetcode.L544_OutputContestMatches;
 
 import java.util.ArrayList;
 

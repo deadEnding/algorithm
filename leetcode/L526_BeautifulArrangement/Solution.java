@@ -1,4 +1,4 @@
-package leetcode.again.L526_BeautifulArrangement;
+package leetcode.L526_BeautifulArrangement;
 
 /**
  * @author: deadend

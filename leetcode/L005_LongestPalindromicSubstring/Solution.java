@@ -1,4 +1,4 @@
-package leetcode.again.L005_LongestPalindromicSubstring;
+package leetcode.L005_LongestPalindromicSubstring;
 
 /**
  * @author: deadend

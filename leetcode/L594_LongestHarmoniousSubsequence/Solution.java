@@ -1,4 +1,4 @@
-package leetcode.again.L594_LongestHarmoniousSubsequence;
+package leetcode.L594_LongestHarmoniousSubsequence;
 
 
 import java.util.HashMap;

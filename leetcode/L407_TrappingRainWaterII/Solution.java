@@ -1,4 +1,4 @@
-package leetcode.again.L407_TrappingRainWaterII;
+package leetcode.L407_TrappingRainWaterII;
 
 import java.util.PriorityQueue;
 

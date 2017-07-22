@@ -1,4 +1,4 @@
-package leetcode.again.L556_NextGreaterElementIII;
+package leetcode.L556_NextGreaterElementIII;
 
 
 public class Solution {

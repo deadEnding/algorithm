@@ -1,4 +1,4 @@
-package leetcode.again.L253_MeetingRoomsII;
+package leetcode.L253_MeetingRoomsII;
 
 import java.util.ArrayList;
 import java.util.Arrays;

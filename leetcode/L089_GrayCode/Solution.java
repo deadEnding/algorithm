@@ -1,4 +1,4 @@
-package leetcode.again.L089_GrayCode;
+package leetcode.L089_GrayCode;
 
 import java.util.ArrayList;
 import java.util.List;

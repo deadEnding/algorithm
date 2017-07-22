@@ -1,4 +1,4 @@
-package leetcode.again.L444_SequenceReconstruction;
+package leetcode.L444_SequenceReconstruction;
 
 import java.util.HashMap;
 import java.util.HashSet;

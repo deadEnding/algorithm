@@ -1,4 +1,4 @@
-package leetcode.again.L259_3sumSmaller;
+package leetcode.L259_3sumSmaller;
 
 import java.util.Arrays;
 

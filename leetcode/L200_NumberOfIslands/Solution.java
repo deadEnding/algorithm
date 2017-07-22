@@ -1,4 +1,4 @@
-package leetcode.again.L200_NumberOfIslands;
+package leetcode.L200_NumberOfIslands;
 
 /**
  * @author: deadend

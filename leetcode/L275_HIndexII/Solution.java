@@ -1,4 +1,4 @@
-package leetcode.again.L275_HIndexII;
+package leetcode.L275_HIndexII;
 
 /**
  * @author: deadend

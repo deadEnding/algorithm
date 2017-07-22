@@ -1,4 +1,4 @@
-package leetcode.again.L527_WordAbbreviation;
+package leetcode.L527_WordAbbreviation;
 
 import java.util.*;
 

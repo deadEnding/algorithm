@@ -1,4 +1,4 @@
-package leetcode.again.L543_DiameterOfBinaryTree;
+package leetcode.L543_DiameterOfBinaryTree;
 
 /**
  * @author: deadend

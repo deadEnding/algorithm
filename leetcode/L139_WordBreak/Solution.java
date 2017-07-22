@@ -1,4 +1,4 @@
-package leetcode.again.L139_WordBreak;
+package leetcode.L139_WordBreak;
 
 import java.util.HashMap;
 import java.util.HashSet;

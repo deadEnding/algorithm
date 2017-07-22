@@ -1,4 +1,4 @@
-package leetcode.again.L553_OptimalDivision;
+package leetcode.L553_OptimalDivision;
 
 public class Solution {
     public String optimalDivision(int[] nums) {

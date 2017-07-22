@@ -1,4 +1,4 @@
-package leetcode.again.L128_LongestConsecutiveSequence;
+package leetcode.L128_LongestConsecutiveSequence;
 
 import java.util.HashMap;
 

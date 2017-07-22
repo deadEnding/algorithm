@@ -1,4 +1,4 @@
-package leetcode.again.L531_LonelyPixelI;
+package leetcode.L531_LonelyPixelI;
 
 /**
  * @author: deadend

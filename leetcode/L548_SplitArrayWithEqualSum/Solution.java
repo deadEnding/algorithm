@@ -1,4 +1,4 @@
-package leetcode.again.L548_SplitArrayWithEqualSum;
+package leetcode.L548_SplitArrayWithEqualSum;
 
 import java.util.HashSet;
 

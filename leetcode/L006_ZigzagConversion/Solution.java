@@ -1,4 +1,4 @@
-package leetcode.again.L006_ZigzagConversion;
+package leetcode.L006_ZigzagConversion;
 
 /**
  * @author: deadend

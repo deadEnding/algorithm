@@ -1,4 +1,4 @@
-package leetcode.again.L238_ProductOfArrayExceptSelf;
+package leetcode.L238_ProductOfArrayExceptSelf;
 
 
 public class Solution {

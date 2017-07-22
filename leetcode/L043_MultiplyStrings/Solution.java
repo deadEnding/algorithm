@@ -1,4 +1,4 @@
-package leetcode.again.L043_MultiplyStrings;
+package leetcode.L043_MultiplyStrings;
 
 /**
  * @author: deadend

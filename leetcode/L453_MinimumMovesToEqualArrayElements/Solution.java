@@ -1,4 +1,4 @@
-package leetcode.again.L453_MinimumMovesToEqualArrayElements;
+package leetcode.L453_MinimumMovesToEqualArrayElements;
 
 /**
  * @author: deadend

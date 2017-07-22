@@ -1,4 +1,4 @@
-package leetcode.again.L359_LoggerRateLimiter;
+package leetcode.L359_LoggerRateLimiter;
 
 import java.util.HashMap;
 

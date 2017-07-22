@@ -1,4 +1,4 @@
-package leetcode.again.L413_ArithmeticSlices;
+package leetcode.L413_ArithmeticSlices;
 
 /**
  * @author: deadend

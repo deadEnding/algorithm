@@ -1,4 +1,4 @@
-package leetcode.again.L239_SlidingWindowMaximum;
+package leetcode.L239_SlidingWindowMaximum;
 
 import java.util.Deque;
 import java.util.LinkedList;

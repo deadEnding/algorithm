@@ -1,4 +1,4 @@
-package leetcode.again.L305_NumberOfIslandsII;
+package leetcode.L305_NumberOfIslandsII;
 
 import java.util.LinkedList;
 import java.util.List;

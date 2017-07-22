@@ -1,4 +1,4 @@
-package leetcode.again.L393_Utf8Validation;
+package leetcode.L393_Utf8Validation;
 
 /**
  * @author: deadend

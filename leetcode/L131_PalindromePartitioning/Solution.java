@@ -1,4 +1,4 @@
-package leetcode.again.L131_PalindromePartitioning;
+package leetcode.L131_PalindromePartitioning;
 
 import java.util.LinkedList;
 import java.util.List;

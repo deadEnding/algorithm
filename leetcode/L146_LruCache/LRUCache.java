@@ -1,4 +1,4 @@
-package leetcode.again.L146_LRUCache;
+package leetcode.L146_LRUCache;
 
 
 import java.util.HashMap;

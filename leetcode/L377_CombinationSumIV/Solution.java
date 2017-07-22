@@ -1,4 +1,4 @@
-package leetcode.again.L377_CombinationSumIV;
+package leetcode.L377_CombinationSumIV;
 
 /**
  * @author: deadend

@@ -1,4 +1,4 @@
-package leetcode.again.L540_SingleElementInASortedArray;
+package leetcode.L540_SingleElementInASortedArray;
 
 
 public class Solution {

@@ -1,4 +1,4 @@
-package leetcode.again.L191_NumberOf1Bits;
+package leetcode.L191_NumberOf1Bits;
 
 
 public class Solution {

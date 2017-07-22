@@ -1,4 +1,4 @@
-package leetcode.again.L334_IncreasingTripletSubsequence;
+package leetcode.L334_IncreasingTripletSubsequence;
 
 import java.util.Arrays;
 

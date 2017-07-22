@@ -1,4 +1,4 @@
-package leetcode.again.L312_BurstBalloons;
+package leetcode.L312_BurstBalloons;
 
 
 public class Solution {

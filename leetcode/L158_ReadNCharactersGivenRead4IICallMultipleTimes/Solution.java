@@ -1,4 +1,4 @@
-package leetcode.again.L158_ReadNCharactersGivenRead4IICallMultipleTimes;
+package leetcode.L158_ReadNCharactersGivenRead4IICallMultipleTimes;
 
 /**
  * @author: deadend

@@ -1,4 +1,4 @@
-package leetcode.again.L173_BinarySearchTreeIterator;
+package leetcode.L173_BinarySearchTreeIterator;
 
 import java.util.LinkedList;
 

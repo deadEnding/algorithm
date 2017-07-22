@@ -1,4 +1,4 @@
-package leetcode.again.L207_CourseSchedule;
+package leetcode.L207_CourseSchedule;
 
 import java.util.ArrayList;
 import java.util.HashMap;

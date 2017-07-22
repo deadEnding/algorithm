@@ -1,4 +1,4 @@
-package leetcode.again.L295_FindMedianFromDataStream;
+package leetcode.L295_FindMedianFromDataStream;
 
 import java.util.PriorityQueue;
 

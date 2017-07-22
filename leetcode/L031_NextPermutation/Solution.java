@@ -1,4 +1,4 @@
-package leetcode.again.L031_NextPermutation;
+package leetcode.L031_NextPermutation;
 
 import java.util.Arrays;
 
@@ -26,6 +26,10 @@ public class Solution {
 
     public void nextPermutation(int[] nums) {
         final int n = nums.length;
+        if (n == 0) {
+            return;
+        }
+
         int i;
         for (i = n - 1; i > 0; i--) {
             if (nums[i - 1] < nums[i])
@@ -76,12 +80,5 @@ class FirstSolution {
             }
 
         }
-    }
-
-    public static void main(String[] args) {
-        int[] nums = {};
-        new Solution().nextPermutation(nums);
-        for (int n : nums)
-            System.out.print(n + " ");
     }
 }

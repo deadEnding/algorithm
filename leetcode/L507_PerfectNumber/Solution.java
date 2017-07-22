@@ -1,4 +1,4 @@
-package leetcode.again.L507_PerfectNumber;
+package leetcode.L507_PerfectNumber;
 
 /**
  * @author: deadend

@@ -1,4 +1,4 @@
-package leetcode.again.L276_PaintFence;
+package leetcode.L276_PaintFence;
 
 /**
  * @author: deadend

@@ -1,4 +1,4 @@
-package leetcode.again.L208_ImplementTrie_PrefixTree;
+package leetcode.L208_ImplementTrie_PrefixTree;
 
 
 import java.util.HashMap;

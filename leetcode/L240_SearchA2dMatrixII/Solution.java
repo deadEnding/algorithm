@@ -1,4 +1,4 @@
-package leetcode.again.L240_SearchA2dMatrixII;
+package leetcode.L240_SearchA2dMatrixII;
 
 /**
  * @author: deadend

@@ -1,4 +1,4 @@
-package leetcode.again.L436_FindRightInterval;
+package leetcode.L436_FindRightInterval;
 
 import java.util.TreeMap;
 

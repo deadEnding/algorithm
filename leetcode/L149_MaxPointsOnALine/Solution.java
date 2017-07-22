@@ -1,4 +1,4 @@
-package leetcode.again.L149_MaxPointsOnALine;
+package leetcode.L149_MaxPointsOnALine;
 
 
 import java.util.HashMap;

@@ -1,4 +1,4 @@
-package leetcode.again.L409_LongestPalindrome;
+package leetcode.L409_LongestPalindrome;
 
 import java.util.HashMap;
 

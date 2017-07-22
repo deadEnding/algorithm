@@ -1,4 +1,4 @@
-package leetcode.again.L379_DesignPhoneDirectory;
+package leetcode.L379_DesignPhoneDirectory;
 
 import java.util.HashSet;
 import java.util.LinkedList;

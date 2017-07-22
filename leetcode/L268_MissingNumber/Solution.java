@@ -1,4 +1,4 @@
-package leetcode.again.L268_MissingNumber;
+package leetcode.L268_MissingNumber;
 
 
 public class Solution {

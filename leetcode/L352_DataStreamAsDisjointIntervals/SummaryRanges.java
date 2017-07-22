@@ -1,4 +1,4 @@
-package leetcode.again.L352_DataStreamAsDisjointIntervals;
+package leetcode.L352_DataStreamAsDisjointIntervals;
 
 import java.util.LinkedList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package leetcode.again.L138_CopyListWithRandomPointer;
+package leetcode.L138_CopyListWithRandomPointer;
 
 import java.util.HashMap;
 

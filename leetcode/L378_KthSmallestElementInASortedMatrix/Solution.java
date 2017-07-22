@@ -1,4 +1,4 @@
-package leetcode.again.L378_KthSmallestElementInASortedMatrix;
+package leetcode.L378_KthSmallestElementInASortedMatrix;
 
 /**
  * @author: deadend

@@ -1,4 +1,4 @@
-package leetcode.again.L628_MaximumProductOfThreeNumbers;
+package leetcode.L628_MaximumProductOfThreeNumbers;
 
 
 public class Solution {

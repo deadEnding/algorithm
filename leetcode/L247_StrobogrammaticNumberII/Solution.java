@@ -1,4 +1,4 @@
-package leetcode.again.L247_StrobogrammaticNumberII;
+package leetcode.L247_StrobogrammaticNumberII;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -1,4 +1,4 @@
-package leetcode.again.L375_GuessNumberHigherOrLowerII;
+package leetcode.L375_GuessNumberHigherOrLowerII;
 
 /**
  * @author: deadend

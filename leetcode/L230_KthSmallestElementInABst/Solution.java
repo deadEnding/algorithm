@@ -1,4 +1,4 @@
-package leetcode.again.L230_KthSmallestElementInABst;
+package leetcode.L230_KthSmallestElementInABst;
 
 import java.util.LinkedList;
 

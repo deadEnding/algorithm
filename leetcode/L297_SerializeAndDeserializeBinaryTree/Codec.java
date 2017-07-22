@@ -1,4 +1,4 @@
-package leetcode.again.L297_SerializeAndDeserializeBinaryTree;
+package leetcode.L297_SerializeAndDeserializeBinaryTree;
 
 import java.util.Arrays;
 import java.util.LinkedList;

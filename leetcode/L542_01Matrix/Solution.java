@@ -1,4 +1,4 @@
-package leetcode.again.L542_01Matrix;
+package leetcode.L542_01Matrix;
 
 import java.util.LinkedList;
 import java.util.List;

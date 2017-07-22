@@ -1,4 +1,4 @@
-package leetcode.again.L483_SmallestGoodBase;
+package leetcode.L483_SmallestGoodBase;
 
 /**
  * @author: deadend

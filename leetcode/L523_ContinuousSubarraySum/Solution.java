@@ -1,4 +1,4 @@
-package leetcode.again.L523_ContinuousSubarraySum;
+package leetcode.L523_ContinuousSubarraySum;
 
 import java.util.HashMap;
 

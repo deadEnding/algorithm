@@ -1,4 +1,4 @@
-package leetcode.again.L035_SearchInsertPosition;
+package leetcode.L035_SearchInsertPosition;
 
 /**
  * @author: deadend

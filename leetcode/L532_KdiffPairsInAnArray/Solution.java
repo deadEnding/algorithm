@@ -1,4 +1,4 @@
-package leetcode.again.L532_KdiffPairsInAnArray;
+package leetcode.L532_KdiffPairsInAnArray;
 
 import java.util.HashMap;
 

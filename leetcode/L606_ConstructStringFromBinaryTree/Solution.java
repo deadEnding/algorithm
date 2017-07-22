@@ -1,4 +1,4 @@
-package leetcode.again.L606_ConstructStringFromBinaryTree;
+package leetcode.L606_ConstructStringFromBinaryTree;
 
 class TreeNode {
     int val;

@@ -1,4 +1,4 @@
-package leetcode.again.L112_PathSum;
+package leetcode.L112_PathSum;
 
 /**
  * @author: deadend

@@ -1,4 +1,4 @@
-package leetcode.again.L168_ExcelSheetColumnTitle;
+package leetcode.L168_ExcelSheetColumnTitle;
 
 
 public class Solution {

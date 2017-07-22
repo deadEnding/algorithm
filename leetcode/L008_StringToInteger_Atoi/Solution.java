@@ -1,4 +1,4 @@
-package leetcode.again.L008_StringToInteger_Atoi;
+package leetcode.L008_StringToInteger_Atoi;
 
 
 public class Solution {

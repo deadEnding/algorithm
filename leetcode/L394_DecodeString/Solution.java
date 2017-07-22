@@ -1,4 +1,4 @@
-package leetcode.again.L394_DecodeString;
+package leetcode.L394_DecodeString;
 
 import java.util.LinkedList;
 

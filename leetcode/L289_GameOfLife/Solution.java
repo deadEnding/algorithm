@@ -1,4 +1,4 @@
-package leetcode.again.L289_GameOfLife;
+package leetcode.L289_GameOfLife;
 
 /**
  * @author: deadend

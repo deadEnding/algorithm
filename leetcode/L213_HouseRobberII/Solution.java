@@ -1,4 +1,4 @@
-package leetcode.again.L213_HouseRobberII;
+package leetcode.L213_HouseRobberII;
 
 public class Solution {
     private int rob(int[] nums, int s, int e) {

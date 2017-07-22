@@ -1,4 +1,4 @@
-package leetcode.again.L416_PartitionEqualSubsetSum;
+package leetcode.L416_PartitionEqualSubsetSum;
 
 /**
  * @author: deadend

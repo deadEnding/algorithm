@@ -1,4 +1,4 @@
-package leetcode.again.L314_BinaryTreeVerticalOrderTraversal;
+package leetcode.L314_BinaryTreeVerticalOrderTraversal;
 
 import java.util.*;
 

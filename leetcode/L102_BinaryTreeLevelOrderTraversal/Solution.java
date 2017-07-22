@@ -1,4 +1,4 @@
-package leetcode.again.L102_BinaryTreeLevelOrderTraversal;
+package leetcode.L102_BinaryTreeLevelOrderTraversal;
 
 
 import java.util.LinkedList;

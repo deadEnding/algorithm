@@ -1,4 +1,4 @@
-package leetcode.again.L098_ValidateBinarySearchTree;
+package leetcode.L098_ValidateBinarySearchTree;
 
 
 class TreeNode {

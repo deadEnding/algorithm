@@ -1,4 +1,4 @@
-package leetcode.again.L504_Base7;
+package leetcode.L504_Base7;
 
 /**
  * @author: deadend

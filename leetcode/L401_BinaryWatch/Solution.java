@@ -1,4 +1,4 @@
-package leetcode.again.L401_BinaryWatch;
+package leetcode.L401_BinaryWatch;
 
 import java.util.LinkedList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package leetcode.again.L340_LongestSubstringWithAtMostKDistinctCharacters;
+package leetcode.L340_LongestSubstringWithAtMostKDistinctCharacters;
 
 import java.util.HashMap;
 

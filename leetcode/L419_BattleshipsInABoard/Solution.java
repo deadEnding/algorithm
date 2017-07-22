@@ -1,4 +1,4 @@
-package leetcode.again.L419_BattleshipsInABoard;
+package leetcode.L419_BattleshipsInABoard;
 
 
 public class Solution {

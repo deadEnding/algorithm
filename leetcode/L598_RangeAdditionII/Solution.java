@@ -1,4 +1,4 @@
-package leetcode.again.L598_RangeAdditionII;
+package leetcode.L598_RangeAdditionII;
 
 
 public class Solution {

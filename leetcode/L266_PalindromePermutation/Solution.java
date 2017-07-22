@@ -1,4 +1,4 @@
-package leetcode.again.L266_PalindromePermutation;
+package leetcode.L266_PalindromePermutation;
 
 import java.util.HashMap;
 import java.util.HashSet;

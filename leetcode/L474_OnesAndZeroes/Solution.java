@@ -1,4 +1,4 @@
-package leetcode.again.L474_OnesAndZeroes;
+package leetcode.L474_OnesAndZeroes;
 
 /**
  * @author: deadend

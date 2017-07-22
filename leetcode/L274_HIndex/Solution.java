@@ -1,4 +1,4 @@
-package leetcode.again.L274_HIndex;
+package leetcode.L274_HIndex;
 
 import java.util.Arrays;
 

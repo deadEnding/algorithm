@@ -1,4 +1,4 @@
-package leetcode.again.L047_PermutationsII;
+package leetcode.L047_PermutationsII;
 
 import java.util.*;
 

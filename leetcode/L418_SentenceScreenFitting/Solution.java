@@ -1,4 +1,4 @@
-package leetcode.again.L418_SentenceScreenFitting;
+package leetcode.L418_SentenceScreenFitting;
 
 /**
  * @author: deadend

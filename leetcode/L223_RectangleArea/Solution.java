@@ -1,4 +1,4 @@
-package leetcode.again.L223_RectangleArea;
+package leetcode.L223_RectangleArea;
 
 /**
  * @author: deadend

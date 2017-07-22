@@ -1,4 +1,4 @@
-package leetcode.again.L330_PatchingArray;
+package leetcode.L330_PatchingArray;
 
 /**
  * @author: deadend

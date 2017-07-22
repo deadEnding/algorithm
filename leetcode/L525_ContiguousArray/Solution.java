@@ -1,4 +1,4 @@
-package leetcode.again.L525_ContiguousArray;
+package leetcode.L525_ContiguousArray;
 
 import java.util.HashMap;
 

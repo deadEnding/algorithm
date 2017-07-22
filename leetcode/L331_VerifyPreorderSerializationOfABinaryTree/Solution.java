@@ -1,4 +1,4 @@
-package leetcode.again.L331_VerifyPreorderSerializationOfABinaryTree;
+package leetcode.L331_VerifyPreorderSerializationOfABinaryTree;
 
 import java.util.LinkedList;
 

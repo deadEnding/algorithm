@@ -1,4 +1,4 @@
-package leetcode.again.L482_LicenseKeyFormatting;
+package leetcode.L482_LicenseKeyFormatting;
 
 /**
  * @author: deadend

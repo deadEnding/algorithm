@@ -1,4 +1,4 @@
-package leetcode.again.L605_CanPlaceFlowers;
+package leetcode.L605_CanPlaceFlowers;
 
 
 public class Solution {

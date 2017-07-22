@@ -1,4 +1,4 @@
-package leetcode.again.L475_Heaters;
+package leetcode.L475_Heaters;
 
 import java.util.Arrays;
 

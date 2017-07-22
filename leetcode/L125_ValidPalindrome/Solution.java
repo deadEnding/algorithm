@@ -1,4 +1,4 @@
-package leetcode.again.L125_ValidPalindrome;
+package leetcode.L125_ValidPalindrome;
 
 
 public class Solution {

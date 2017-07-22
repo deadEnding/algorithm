@@ -1,4 +1,4 @@
-package leetcode.again.L226_InvertBinaryTree;
+package leetcode.L226_InvertBinaryTree;
 
 
 import java.util.LinkedList;

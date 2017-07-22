@@ -1,4 +1,4 @@
-package leetcode.again.L279_PerfectSquares;
+package leetcode.L279_PerfectSquares;
 
 /**
  * @author: deadend

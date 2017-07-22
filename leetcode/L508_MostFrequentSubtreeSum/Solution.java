@@ -1,4 +1,4 @@
-package leetcode.again.L508_MostFrequentSubtreeSum;
+package leetcode.L508_MostFrequentSubtreeSum;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -1,4 +1,4 @@
-package leetcode.again.L071_SimplifyPath;
+package leetcode.L071_SimplifyPath;
 
 import java.util.LinkedList;
 import java.util.Stack;

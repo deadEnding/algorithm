@@ -1,4 +1,4 @@
-package leetcode.again.L246_StrobogrammaticNumber;
+package leetcode.L246_StrobogrammaticNumber;
 
 import java.util.HashMap;
 

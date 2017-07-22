@@ -1,4 +1,4 @@
-package leetcode.again.L214_ShortestPalindrome;
+package leetcode.L214_ShortestPalindrome;
 
 /**
  * @author: deadend

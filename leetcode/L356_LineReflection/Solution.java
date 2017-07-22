@@ -1,4 +1,4 @@
-package leetcode.again.L356_LineReflection;
+package leetcode.L356_LineReflection;
 
 import java.util.HashSet;
 

@@ -1,4 +1,4 @@
-package leetcode.again.L260_SingleNumberIII;
+package leetcode.L260_SingleNumberIII;
 
 /**
  * @author: deadend

@@ -1,4 +1,4 @@
-package leetcode.again.L096_UniqueBinarySearchTrees;
+package leetcode.L096_UniqueBinarySearchTrees;
 
 
 public class Solution {

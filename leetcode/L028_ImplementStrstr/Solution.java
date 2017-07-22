@@ -1,4 +1,4 @@
-package leetcode.again.L028_ImplementStrstr;
+package leetcode.L028_ImplementStrstr;
 
 
 public class Solution {

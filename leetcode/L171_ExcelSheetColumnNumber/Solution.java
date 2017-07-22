@@ -1,4 +1,4 @@
-package leetcode.again.L171_ExcelSheetColumnNumber;
+package leetcode.L171_ExcelSheetColumnNumber;
 
 
 public class Solution {

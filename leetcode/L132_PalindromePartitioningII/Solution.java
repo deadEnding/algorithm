@@ -1,4 +1,4 @@
-package leetcode.again.L132_PalindromePartitioningII;
+package leetcode.L132_PalindromePartitioningII;
 
 /**
  * @author: deadend

@@ -1,4 +1,4 @@
-package leetcode.again.L249_GroupShiftedStrings;
+package leetcode.L249_GroupShiftedStrings;
 
 import java.util.HashMap;
 import java.util.LinkedList;

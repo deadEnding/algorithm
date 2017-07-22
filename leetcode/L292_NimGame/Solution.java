@@ -1,4 +1,4 @@
-package leetcode.again.L292_NimGame;
+package leetcode.L292_NimGame;
 
 /**
  * @author: deadend

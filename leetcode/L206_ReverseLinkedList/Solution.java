@@ -1,4 +1,4 @@
-package leetcode.again.L206_ReverseLinkedList;
+package leetcode.L206_ReverseLinkedList;
 
 class ListNode {
     int val;

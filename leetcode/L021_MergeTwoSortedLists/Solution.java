@@ -1,4 +1,4 @@
-package leetcode.again.L021_MergeTwoSortedLists;
+package leetcode.L021_MergeTwoSortedLists;
 
 class ListNode {
     int val;

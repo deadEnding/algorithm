@@ -1,4 +1,4 @@
-package leetcode.again.L541_ReverseStringII;
+package leetcode.L541_ReverseStringII;
 
 /**
  * @author: deadend

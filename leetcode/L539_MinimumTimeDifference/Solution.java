@@ -1,4 +1,4 @@
-package leetcode.again.L539_MinimumTimeDifference;
+package leetcode.L539_MinimumTimeDifference;
 
 
 import java.util.List;

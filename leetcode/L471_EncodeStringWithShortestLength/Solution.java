@@ -1,4 +1,4 @@
-package leetcode.again.L471_EncodeStringWithShortestLength;
+package leetcode.L471_EncodeStringWithShortestLength;
 
 import java.util.HashMap;
 

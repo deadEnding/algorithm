@@ -1,4 +1,4 @@
-package leetcode.again.L198_HouseRobber;
+package leetcode.L198_HouseRobber;
 
 
 public class Solution {

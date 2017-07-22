@@ -1,4 +1,4 @@
-package leetcode.again.L060_PermutationSequence;
+package leetcode.L060_PermutationSequence;
 
 /**
  * @author: deadend

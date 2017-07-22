@@ -1,4 +1,4 @@
-package leetcode.again.L348_DesignTicTacToe;
+package leetcode.L348_DesignTicTacToe;
 
 /**
  * @author: deadend

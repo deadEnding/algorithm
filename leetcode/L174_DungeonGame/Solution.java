@@ -1,4 +1,4 @@
-package leetcode.again.L174_DungeonGame;
+package leetcode.L174_DungeonGame;
 
 
 public class Solution {

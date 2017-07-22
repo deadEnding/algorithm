@@ -1,4 +1,4 @@
-package leetcode.again.L332_ReconstructItinerary;
+package leetcode.L332_ReconstructItinerary;
 
 import java.util.HashMap;
 import java.util.LinkedList;

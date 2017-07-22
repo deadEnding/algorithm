@@ -1,4 +1,4 @@
-package leetcode.again.L025_ReverseNodesInKGroup;
+package leetcode.L025_ReverseNodesInKGroup;
 
 
 class ListNode {

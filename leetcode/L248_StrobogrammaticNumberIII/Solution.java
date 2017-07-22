@@ -1,4 +1,4 @@
-package leetcode.again.L248_StrobogrammaticNumberIII;
+package leetcode.L248_StrobogrammaticNumberIII;
 
 /**
  * @author: deadend

@@ -1,4 +1,4 @@
-package leetcode.again.L503_NextGreaterElementII;
+package leetcode.L503_NextGreaterElementII;
 
 import java.util.LinkedList;
 

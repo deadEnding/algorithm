@@ -1,4 +1,4 @@
-package leetcode.again.L424_LongestRepeatingCharacterReplacement;
+package leetcode.L424_LongestRepeatingCharacterReplacement;
 
 /**
  * @author: deadend

@@ -1,4 +1,4 @@
-package leetcode.again.L163_MissingRanges;
+package leetcode.L163_MissingRanges;
 
 import java.util.LinkedList;
 import java.util.List;

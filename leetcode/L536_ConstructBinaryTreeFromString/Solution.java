@@ -1,4 +1,4 @@
-package leetcode.again.L536_ConstructBinaryTreeFromString;
+package leetcode.L536_ConstructBinaryTreeFromString;
 
 import java.util.LinkedList;
 

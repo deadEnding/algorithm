@@ -1,4 +1,4 @@
-package leetcode.again.L599_MinimumIndexSumOfTwoLists;
+package leetcode.L599_MinimumIndexSumOfTwoLists;
 
 
 import java.util.ArrayList;

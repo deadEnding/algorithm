@@ -1,4 +1,4 @@
-package leetcode.again.L563_BinaryTreeTilt;
+package leetcode.L563_BinaryTreeTilt;
 
 class TreeNode {
     int val;

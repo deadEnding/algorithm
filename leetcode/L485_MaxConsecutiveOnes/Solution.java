@@ -1,4 +1,4 @@
-package leetcode.again.L485_MaxConsecutiveOnes;
+package leetcode.L485_MaxConsecutiveOnes;
 
 /**
  * @author: deadend

@@ -1,4 +1,4 @@
-package leetcode.again.L530_MinimumAbsoluteDifferenceInBst;
+package leetcode.L530_MinimumAbsoluteDifferenceInBst;
 
 /**
  * @author: deadend

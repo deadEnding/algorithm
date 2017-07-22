@@ -1,4 +1,4 @@
-package leetcode.again.L354_RussianDollEnvelopes;
+package leetcode.L354_RussianDollEnvelopes;
 
 import java.util.Arrays;
 

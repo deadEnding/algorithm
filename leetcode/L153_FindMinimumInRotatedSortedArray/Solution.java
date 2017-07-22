@@ -1,4 +1,4 @@
-package leetcode.again.L153_FindMinimumInRotatedSortedArray;
+package leetcode.L153_FindMinimumInRotatedSortedArray;
 
 /**
  * @author: deadend

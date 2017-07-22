@@ -1,4 +1,4 @@
-package leetcode.again.L617_MergeTwoBinaryTrees;
+package leetcode.L617_MergeTwoBinaryTrees;
 
 class TreeNode {
     int val;

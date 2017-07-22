@@ -1,4 +1,4 @@
-package leetcode.again.L269_AlienDictionary;
+package leetcode.L269_AlienDictionary;
 
 
 import java.util.HashMap;

@@ -1,4 +1,4 @@
-package leetcode.again.L306_AdditiveNumber;
+package leetcode.L306_AdditiveNumber;
 
 /**
  * @author: deadend

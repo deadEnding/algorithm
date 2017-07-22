@@ -1,4 +1,4 @@
-package leetcode.again.L392_IsSubsequence;
+package leetcode.L392_IsSubsequence;
 
 /**
  * @author: deadend

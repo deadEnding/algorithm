@@ -1,4 +1,4 @@
-package leetcode.again.L045_JumpGameII;
+package leetcode.L045_JumpGameII;
 
 import java.util.LinkedList;
 

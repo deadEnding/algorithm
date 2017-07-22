@@ -1,4 +1,4 @@
-package leetcode.again.L376_WiggleSubsequence;
+package leetcode.L376_WiggleSubsequence;
 
 /**
  * @author: deadend

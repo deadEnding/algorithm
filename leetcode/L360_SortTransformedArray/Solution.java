@@ -1,4 +1,4 @@
-package leetcode.again.L360_SortTransformedArray;
+package leetcode.L360_SortTransformedArray;
 
 /**
  * @author: deadend

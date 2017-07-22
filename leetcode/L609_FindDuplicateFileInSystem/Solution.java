@@ -1,4 +1,4 @@
-package leetcode.again.L609_FindDuplicateFileInSystem;
+package leetcode.L609_FindDuplicateFileInSystem;
 
 
 import java.util.HashMap;

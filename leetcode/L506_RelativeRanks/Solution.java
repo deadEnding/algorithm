@@ -1,4 +1,4 @@
-package leetcode.again.L506_RelativeRanks;
+package leetcode.L506_RelativeRanks;
 
 import java.util.Arrays;
 

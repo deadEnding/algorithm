@@ -1,4 +1,4 @@
-package leetcode.again.L130_SurroundedRegions;
+package leetcode.L130_SurroundedRegions;
 
 /**
  * @author: deadend

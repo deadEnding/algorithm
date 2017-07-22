@@ -1,4 +1,4 @@
-package leetcode.again.L391_PerfectRectangle;
+package leetcode.L391_PerfectRectangle;
 
 import java.util.ArrayList;
 import java.util.HashSet;

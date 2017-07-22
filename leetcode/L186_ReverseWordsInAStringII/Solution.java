@@ -1,4 +1,4 @@
-package leetcode.again.L186_ReverseWordsInAStringII;
+package leetcode.L186_ReverseWordsInAStringII;
 
 public class Solution {
     private void reverse(char[] s, int l, int r) {

@@ -1,4 +1,4 @@
-package leetcode.again.L237_DeleteNodeInALinkedList;
+package leetcode.L237_DeleteNodeInALinkedList;
 
 
 class ListNode {

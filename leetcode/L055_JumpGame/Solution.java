@@ -1,4 +1,4 @@
-package leetcode.again.L055_JumpGame;
+package leetcode.L055_JumpGame;
 
 
 public class Solution {

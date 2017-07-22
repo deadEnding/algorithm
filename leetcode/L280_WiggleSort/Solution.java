@@ -1,4 +1,4 @@
-package leetcode.again.L280_WiggleSort;
+package leetcode.L280_WiggleSort;
 
 import java.util.Arrays;
 

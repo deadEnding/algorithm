@@ -1,4 +1,4 @@
-package leetcode.again.L281_ZigzagIterator;
+package leetcode.L281_ZigzagIterator;
 
 import java.util.Iterator;
 import java.util.List;

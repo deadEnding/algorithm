@@ -1,4 +1,4 @@
-package leetcode.again.L560_SubarraySumEqualsK;
+package leetcode.L560_SubarraySumEqualsK;
 
 import java.util.HashMap;
 

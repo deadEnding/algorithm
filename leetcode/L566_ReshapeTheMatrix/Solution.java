@@ -1,4 +1,4 @@
-package leetcode.again.L566_ReshapeTheMatrix;
+package leetcode.L566_ReshapeTheMatrix;
 
 
 public class Solution {

@@ -1,4 +1,4 @@
-package leetcode.again.L533_LonelyPixelII;
+package leetcode.L533_LonelyPixelII;
 
 import java.util.HashMap;
 

@@ -1,4 +1,4 @@
-package leetcode.again.L351_AndroidUnlockPatterns;
+package leetcode.L351_AndroidUnlockPatterns;
 
 /**
  * @author: deadend

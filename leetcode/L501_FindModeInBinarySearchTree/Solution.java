@@ -1,4 +1,4 @@
-package leetcode.again.L501_FindModeInBinarySearchTree;
+package leetcode.L501_FindModeInBinarySearchTree;
 
 import java.util.ArrayList;
 

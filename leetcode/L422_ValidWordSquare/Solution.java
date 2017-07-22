@@ -1,4 +1,4 @@
-package leetcode.again.L422_ValidWordSquare;
+package leetcode.L422_ValidWordSquare;
 
 import java.util.LinkedList;
 import java.util.List;

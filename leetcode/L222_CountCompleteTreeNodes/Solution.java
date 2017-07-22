@@ -1,4 +1,4 @@
-package leetcode.again.L222_CountCompleteTreeNodes;
+package leetcode.L222_CountCompleteTreeNodes;
 
 /**
  * @author: deadend

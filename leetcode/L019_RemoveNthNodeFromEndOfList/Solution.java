@@ -1,4 +1,4 @@
-package leetcode.again.L019_RemoveNthNodeFromEndOfList;
+package leetcode.L019_RemoveNthNodeFromEndOfList;
 
 class ListNode {
     int val;

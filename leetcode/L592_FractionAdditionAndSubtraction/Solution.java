@@ -1,4 +1,4 @@
-package leetcode.again.L592_FractionAdditionAndSubtraction;
+package leetcode.L592_FractionAdditionAndSubtraction;
 
 
 import java.util.ArrayList;

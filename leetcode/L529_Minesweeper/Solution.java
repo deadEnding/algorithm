@@ -1,4 +1,4 @@
-package leetcode.again.L529_Minesweeper;
+package leetcode.L529_Minesweeper;
 
 import java.util.LinkedList;
 import java.util.Queue;

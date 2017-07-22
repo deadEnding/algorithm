@@ -1,4 +1,4 @@
-package leetcode.again.L547_FriendCircles;
+package leetcode.L547_FriendCircles;
 
 /**
  * @author: deadend

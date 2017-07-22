@@ -1,4 +1,4 @@
-package leetcode.again.L317_ShortestDistanceFromAllBuildings;
+package leetcode.L317_ShortestDistanceFromAllBuildings;
 
 import java.util.LinkedList;
 import java.util.Queue;

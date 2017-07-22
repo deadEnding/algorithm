@@ -1,4 +1,4 @@
-package leetcode.again.L369_PlusOneLinkedList;
+package leetcode.L369_PlusOneLinkedList;
 
 /**
  * @author: deadend

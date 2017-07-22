@@ -1,4 +1,4 @@
-package leetcode.again.L026_RemoveDuplicatesFromSortedArray;
+package leetcode.L026_RemoveDuplicatesFromSortedArray;
 
 
 public class Solution {

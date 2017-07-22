@@ -1,4 +1,4 @@
-package leetcode.again.L152_MaximumProductSubarray;
+package leetcode.L152_MaximumProductSubarray;
 
 /**
  * @author: deadend

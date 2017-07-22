@@ -1,4 +1,4 @@
-package leetcode.again.L322_CoinChange;
+package leetcode.L322_CoinChange;
 
 /**
  * @author: deadend

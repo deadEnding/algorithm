@@ -1,4 +1,4 @@
-package leetcode.again.L070_ClimbingStairs;
+package leetcode.L070_ClimbingStairs;
 
 /**
  * @author: deadend

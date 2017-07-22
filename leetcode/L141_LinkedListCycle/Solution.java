@@ -1,4 +1,4 @@
-package leetcode.again.L141_LinkedListCycle;
+package leetcode.L141_LinkedListCycle;
 
 
 class ListNode {

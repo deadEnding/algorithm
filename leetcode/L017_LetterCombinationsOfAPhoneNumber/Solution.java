@@ -1,4 +1,4 @@
-package leetcode.again.L017_LetterCombinationsOfAPhoneNumber;
+package leetcode.L017_LetterCombinationsOfAPhoneNumber;
 
 import java.util.LinkedList;
 import java.util.List;

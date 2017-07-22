@@ -1,4 +1,4 @@
-package leetcode.again.L484_FindPermutation;
+package leetcode.L484_FindPermutation;
 
 /**
  * @author: deadend

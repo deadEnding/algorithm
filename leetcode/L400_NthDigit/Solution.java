@@ -1,4 +1,4 @@
-package leetcode.again.L400_NthDigit;
+package leetcode.L400_NthDigit;
 
 /**
  * @author: deadend

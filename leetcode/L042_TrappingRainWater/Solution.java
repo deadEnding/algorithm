@@ -1,4 +1,4 @@
-package leetcode.again.L042_TrappingRainWater;
+package leetcode.L042_TrappingRainWater;
 
 /**
  * @author: deadend

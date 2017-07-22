@@ -1,4 +1,4 @@
-package leetcode.again.L155_MinStack;
+package leetcode.L155_MinStack;
 
 import java.util.LinkedList;
 

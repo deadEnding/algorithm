@@ -1,4 +1,4 @@
-package leetcode.again.L271_EncodeAndDecodeStrings;
+package leetcode.L271_EncodeAndDecodeStrings;
 
 import com.sun.org.apache.bcel.internal.classfile.Code;
 

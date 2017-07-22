@@ -1,4 +1,4 @@
-package leetcode.again.L088_MergeSortedArray;
+package leetcode.L088_MergeSortedArray;
 
 
 public class Solution {

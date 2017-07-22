@@ -1,4 +1,4 @@
-package leetcode.again.L218_TheSkylineProblem;
+package leetcode.L218_TheSkylineProblem;
 
 import java.util.ArrayList;
 import java.util.Collections;

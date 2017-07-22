@@ -1,4 +1,4 @@
-package leetcode.again.L022_GenerateParentheses;
+package leetcode.L022_GenerateParentheses;
 
 
 import java.util.LinkedList;

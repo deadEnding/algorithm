@@ -1,4 +1,4 @@
-package leetcode.again.L365_WaterAndJugProblem;
+package leetcode.L365_WaterAndJugProblem;
 
 /**
  * @author: deadend

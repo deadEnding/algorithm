@@ -1,4 +1,4 @@
-package leetcode.again.L116_PopulatingNextRightPointersInEachNode;
+package leetcode.L116_PopulatingNextRightPointersInEachNode;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

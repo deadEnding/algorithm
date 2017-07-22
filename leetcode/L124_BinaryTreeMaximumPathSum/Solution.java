@@ -1,4 +1,4 @@
-package leetcode.again.L124_BinaryTreeMaximumPathSum;
+package leetcode.L124_BinaryTreeMaximumPathSum;
 
 /**
  * @author: deadend

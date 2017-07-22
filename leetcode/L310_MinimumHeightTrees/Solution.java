@@ -1,4 +1,4 @@
-package leetcode.again.L310_MinimumHeightTrees;
+package leetcode.L310_MinimumHeightTrees;
 
 import java.util.HashSet;
 import java.util.LinkedList;

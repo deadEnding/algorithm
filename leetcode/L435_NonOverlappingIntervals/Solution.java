@@ -1,4 +1,4 @@
-package leetcode.again.L435_NonOverlappingIntervals;
+package leetcode.L435_NonOverlappingIntervals;
 
 import java.util.Arrays;
 

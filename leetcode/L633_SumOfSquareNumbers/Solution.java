@@ -1,4 +1,4 @@
-package leetcode.again.L633_SumOfSquareNumbers;
+package leetcode.L633_SumOfSquareNumbers;
 
 
 import java.util.HashSet;

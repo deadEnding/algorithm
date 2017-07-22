@@ -1,4 +1,4 @@
-package leetcode.again.L373_FindKPairsWithSmallestSums;
+package leetcode.L373_FindKPairsWithSmallestSums;
 
 import java.util.LinkedList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package leetcode.again.L057_InsertInterval;
+package leetcode.L057_InsertInterval;
 
 import java.util.ArrayList;
 import java.util.Collections;

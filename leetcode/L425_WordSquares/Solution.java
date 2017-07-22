@@ -1,4 +1,4 @@
-package leetcode.again.L425_WordSquares;
+package leetcode.L425_WordSquares;
 
 import java.util.ArrayList;
 import java.util.HashMap;

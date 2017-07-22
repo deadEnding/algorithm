@@ -1,4 +1,4 @@
-package leetcode.again.L220_ContainsDuplicateIII;
+package leetcode.L220_ContainsDuplicateIII;
 
 import java.util.HashMap;
 import java.util.TreeMap;

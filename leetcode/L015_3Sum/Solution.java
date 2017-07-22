@@ -1,4 +1,4 @@
-package leetcode.again.L015_3sum;
+package leetcode.L015_3sum;
 
 
 import java.util.ArrayList;

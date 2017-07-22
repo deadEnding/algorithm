@@ -1,4 +1,4 @@
-package leetcode.again.L298_BinaryTreeLongestConsecutiveSequence;
+package leetcode.L298_BinaryTreeLongestConsecutiveSequence;
 
 /**
  * @author: deadend

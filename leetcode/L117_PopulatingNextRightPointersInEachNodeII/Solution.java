@@ -1,4 +1,4 @@
-package leetcode.again.L117_PopulatingNextRightPointersInEachNodeII;
+package leetcode.L117_PopulatingNextRightPointersInEachNodeII;
 
 
 class TreeLinkNode {

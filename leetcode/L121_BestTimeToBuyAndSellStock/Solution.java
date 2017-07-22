@@ -1,4 +1,4 @@
-package leetcode.again.L121_BestTimeToBuyAndSellStock;
+package leetcode.L121_BestTimeToBuyAndSellStock;
 
 
 public class Solution {

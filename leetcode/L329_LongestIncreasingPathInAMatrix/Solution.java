@@ -1,4 +1,4 @@
-package leetcode.again.L329_LongestIncreasingPathInAMatrix;
+package leetcode.L329_LongestIncreasingPathInAMatrix;
 
 /**
  * @author: deadend

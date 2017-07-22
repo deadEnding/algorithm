@@ -1,4 +1,4 @@
-package leetcode.again.L009_PalindromeNumber;
+package leetcode.L009_PalindromeNumber;
 
 
 public class Solution {

@@ -1,4 +1,4 @@
-package leetcode.again.L442_FindAllDuplicatesInAnArray;
+package leetcode.L442_FindAllDuplicatesInAnArray;
 
 import java.util.LinkedList;
 import java.util.List;
