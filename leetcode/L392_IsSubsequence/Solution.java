@@ -1,8 +1,8 @@
-package leetcode.L392_IsSubsequence;
+package leetcode.again.L392_IsSubsequence;
 
 /**
  * @author: deadend
- * @date: P10:36 PM 1/8/17
+ * @date: 4:54 PM 3/1/17
  * @version: 1.0
  * @description:
  */
@@ -10,21 +10,15 @@ package leetcode.L392_IsSubsequence;
 
 public class Solution {
     public boolean isSubsequence(String s, String t) {
-        int ix = 0;
+        int j = 0;
         for (int i = 0; i < t.length(); i++) {
-            if (ix == s.length()) {
-                return true;
+            if (j == s.length()) {
+                break;
             }
-            if (t.charAt(i) == s.charAt(ix)) {
-                ix++;
+            if (t.charAt(i) == s.charAt(j)) {
+                j++;
             }
         }
-        return ix == s.length();
-    }
-
-    public static void main(String[] args) {
-        String s = "abc";
-        String t = "aaabc";
-        System.out.println(new Solution().isSubsequence(s, t));
+        return j == s.length();
     }
 }

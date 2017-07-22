@@ -1,52 +1,51 @@
-package leetcode.L501_FindModeInBinarySearchTree;
+package leetcode.again.L501_FindModeInBinarySearchTree;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  * @author: deadend
- * @date: 11:36 AM 2/5/17
- * @version: 1.0
- * @description:
+ * @date: 3:12 PM 28/03/2017
  */
 
+
 class TreeNode {
-    int val;
-    TreeNode left;
+    int val;TreeNode left;
     TreeNode right;
     TreeNode(int x) { val = x; }
 }
 
-
 public class Solution {
-    private void preorder(TreeNode root, HashMap<Integer, Integer> counter) {
-        if (root != null) {
-            counter.put(root.val, counter.containsKey(root.val) ? counter.get(root.val) + 1 : 1);
-            preorder(root.left, counter);
-            preorder(root.right, counter);
+    private ArrayList<Integer> values = new ArrayList<>();
+    private int max = 0;
+    private int cur = 0;
+    private TreeNode last;
+
+    private void inorder(TreeNode root) {
+        if (root == null) {
+            return;
         }
+
+        inorder(root.left);
+        if (last != null && last.val != root.val) {
+            cur = 0;
+        }
+        cur++;
+        if (cur >= max) {
+            if (cur > max) {
+                values.clear();
+                max = cur;
+            }
+            values.add(root.val);
+        }
+        last = root;
+        inorder(root.right);
     }
 
     public int[] findMode(TreeNode root) {
-        HashMap<Integer, Integer> counter = new HashMap<>();
-        preorder(root, counter);
-        int max = 0;
-        List<Integer> modes = new ArrayList<>();
-        for (int key : counter.keySet()) {
-            if (counter.get(key) > max) {
-                max = counter.get(key);
-                modes.clear();
-                modes.add(key);
-            } else if (counter.get(key) == max) {
-                modes.add(key);
-            }
-        }
-
-        int[] result = new int[modes.size()];
-        for (int i = 0; i < result.length; i++) {
-            result[i] = modes.get(i);
+        inorder(root);
+        int[] result = new int[values.size()];
+        for (int i = 0; i < values.size(); i++) {
+            result[i] = values.get(i);
         }
         return result;
     }

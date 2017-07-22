@@ -1,4 +1,4 @@
-package leetcode.L368_LargestDivisibleSubset;
+package leetcode.again.L368_LargestDivisibleSubset;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -6,7 +6,7 @@ import java.util.List;
 
 /**
  * @author: deadend
- * @date: 8:37 PM 12/16/16
+ * @date: 1:12 PM 3/1/17
  * @version: 1.0
  * @description:
  */
@@ -14,16 +14,16 @@ import java.util.List;
 
 public class Solution {
     public List<Integer> largestDivisibleSubset(int[] nums) {
-        LinkedList<Integer> result = new LinkedList<>();
+        LinkedList<Integer> set = new LinkedList<>();
         final int n = nums.length;
         if (n == 0) {
-            return result;
+            return set;
         }
 
         Arrays.sort(nums);
-        int[] dp = new int[n];      // dp[i] = dp[j] + 1
-        int[] prev = new int[n];    // prev[i] = j
-        int max = 0;                // 记录dp中最大值索引
+        int[] dp = new int[n];
+        int[] prev = new int[n];
+        int max = 0;
         for (int i = 0; i < n; i++) {
             dp[i] = 1;
             prev[i] = -1;
@@ -37,8 +37,8 @@ public class Solution {
         }
 
         for (int i = max; i != -1; i = prev[i]) {
-            result.addFirst(nums[i]);
+            set.addFirst(nums[i]);
         }
-        return result;
+        return set;
     }
 }

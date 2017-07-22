@@ -1,23 +1,31 @@
-package leetcode.L151_ReverseWordsInAString;
-
-/**
- * @author: deadend
- * @date: 3:24 PM 12/7/16
- * @version: 1.0
- * @description:
- */
+package leetcode.again.L151_ReverseWordsInAString;
 
 
 public class Solution {
     public String reverseWords(String s) {
-        String[] words = s.split("\\s+");
-        StringBuffer sb = new StringBuffer();
-        for (String w : words) {
-            if (sb.length() != 0) {
-                sb.insert(0, " ");
-            }
-            sb.insert(0, w);
+        if (s.equals("")) {
+            return "";
         }
-        return sb.toString();
+
+        s = s.trim();
+        int i = 0, j = s.length() - 1;
+        while (i <= j && s.charAt(i) != ' ') {
+            i++;
+        }
+
+        while (i <= j && s.charAt(j) != ' ') {
+            j--;
+        }
+
+        if (i > j) {
+            return s;
+        } else {
+            String ss = i == j ? "" : reverseWords(s.substring(i + 1, j).trim());
+            if (ss.equals("")) {
+                return  s.substring(j + 1) + " " + s.substring(0, i);
+            } else {
+                return s.substring(j + 1) + " " + ss + " " + s.substring(0, i);
+            }
+        }
     }
 }

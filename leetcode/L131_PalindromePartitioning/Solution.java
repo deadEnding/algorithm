@@ -1,30 +1,29 @@
-package leetcode.L131_PalindromePartitioning;
+package leetcode.again.L131_PalindromePartitioning;
 
 import java.util.LinkedList;
 import java.util.List;
 
 /**
  * @author: deadend
- * @date: 8:18 PM 12/5/16
+ * @date: 2:16 PM 2/28/17
  * @version: 1.0
  * @description:
  */
 
 
 public class Solution {
-    private List<List<String>> result = new LinkedList<>();
 
-    private void helper(String s, boolean[][] isPali, int ix, LinkedList<String> path) {
-        if (ix == isPali.length) {
-            result.add(new LinkedList(path));
+    private void backtrace(String s, int ix, boolean[][] isPali, LinkedList<String> path, List<List<String>> result) {
+        if (ix == s.length()) {
+            result.add(new LinkedList<>(path));
             return;
         }
 
-        for (int i = ix; i < isPali.length; i++) {
+        for (int i = ix; i < s.length(); i++) {
             if (isPali[ix][i]) {
-                path.addLast(s.substring(ix, i + 1));
-                helper(s, isPali, i + 1, path);
-                path.removeLast();
+                path.add(s.substring(ix, i + 1));
+                backtrace(s, i + 1, isPali, path, result);
+                path.remove(path.size() - 1);
             }
         }
     }
@@ -35,19 +34,16 @@ public class Solution {
 
         for (int i = n - 1; i >= 0; i--) {
             for (int j = i; j < n; j++) {
-                isPali[i][j] = s.charAt(i) == s.charAt(j) && (j - i <= 1 || isPali[i + 1][j - 1]);
+                isPali[i][j] = s.charAt(i) == s.charAt(j) && (i + 1 >= j || isPali[i + 1][j - 1]);
             }
         }
-
-        helper(s, isPali, 0, new LinkedList<String>());
+        List<List<String>> result = new LinkedList<>();
+        backtrace(s, 0, isPali, new LinkedList<>(), result);
         return result;
     }
 
     public static void main(String[] args) {
         String s = "efe";
-        List<List<String>> result = new Solution().partition(s);
-        for (List<String> list : result) {
-            System.out.println(list.toString());
-        }
+        System.out.println(new Solution().partition(s));
     }
 }

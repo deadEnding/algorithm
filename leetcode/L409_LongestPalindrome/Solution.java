@@ -1,10 +1,10 @@
-package leetcode.L409_LongestPalindrome;
+package leetcode.again.L409_LongestPalindrome;
 
 import java.util.HashMap;
 
 /**
  * @author: deadend
- * @date: P10:39 PM 11/25/16
+ * @date: 7:51 PM 3/17/17
  * @version: 1.0
  * @description:
  */
@@ -12,16 +12,37 @@ import java.util.HashMap;
 
 public class Solution {
     public int longestPalindrome(String s) {
-        HashMap<Character, Integer> map = new HashMap<>();
         int count = 0;
-        for (int i = 0; i < s.length(); i++) {
-            char c = s.charAt(i);
-            map.put(c, map.containsKey(c) ? map.get(c) + 1 : 1);
-            if (map.get(c) % 2 == 0) {
+        HashMap<Character, Integer> counter = new HashMap<>();
+
+        for (char c : s.toCharArray()) {
+            counter.put(c, counter.getOrDefault(c, 0) + 1);
+            if (counter.get(c) % 2 == 0) {
                 count += 2;
             }
         }
 
         return count == s.length() ? count : count + 1;
+    }
+}
+
+class BasicSolution {
+    public int longestPalindrome(String s) {
+        HashMap<Character, Integer> counter = new HashMap<>();
+        for (char c : s.toCharArray()) {
+            counter.put(c, counter.getOrDefault(c, 0) + 1);
+        }
+
+        int count = 0;
+        boolean hasOdd = false;
+        for (int val : counter.values()) {
+            if (val % 2 == 0) {
+                count += val;
+            } else {
+                count += val - 1;
+                hasOdd = true;
+            }
+        }
+        return count + (hasOdd ? 1 : 0);
     }
 }

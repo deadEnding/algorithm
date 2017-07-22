@@ -1,25 +1,16 @@
-package leetcode.L088_MergeSortedArray;
-
-/**
- * @author: deadend
- * @date: 2:27 PM 11/21/16
- * @version: 1.0
- * @description:
- */
+package leetcode.again.L088_MergeSortedArray;
 
 
 public class Solution {
     public void merge(int[] nums1, int m, int[] nums2, int n) {
-        int i = m - 1;
-        int j = n - 1;
-        for (int ix = m + n - 1; ix >= 0; ix--) {
-            if (i >= 0 && j >= 0) {
-                nums1[ix] = nums1[i] >= nums2[j] ? nums1[i--] : nums2[j--];
-            } else if (i >= 0) {
-                nums1[ix] = nums1[i--];
-            } else {
-                nums1[ix] = nums2[j--];
-            }
+        final int len = m + n;
+        for (int k = len - 1, i = m - 1, j = n - 1; k >= 0; k--) {
+            long a = i >= 0 ? nums1[i] : Integer.MIN_VALUE - 1L;
+            long b = j >= 0 ? nums2[j] : Integer.MIN_VALUE - 1L;
+            nums1[k] = a > b ? nums1[i--] : nums2[j--];
+
+            if (j < 0)
+                break;
         }
     }
 }

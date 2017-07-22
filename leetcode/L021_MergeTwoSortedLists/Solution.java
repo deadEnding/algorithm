@@ -1,11 +1,4 @@
-package leetcode.L021_MergeTwoSortedLists;
-
-/**
- * @author: deadend
- * @date: 9:38 AM 11/29/16
- * @version: 1.0
- * @description:
- */
+package leetcode.again.L021_MergeTwoSortedLists;
 
 class ListNode {
     int val;
@@ -13,23 +6,31 @@ class ListNode {
     ListNode(int x) { val = x; }
 }
 
+
 public class Solution {
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
         ListNode dummy = new ListNode(-1);
-        ListNode curr = dummy;
+        ListNode p = l1, q = l2, r = dummy;
 
-        while (l1 != null || l2 != null) {
-            int x1 = l1 != null ? l1.val : Integer.MAX_VALUE;
-            int x2 = l2 != null ? l2.val : Integer.MAX_VALUE;
-            if (x1 < x2) {
-                curr.next = l1;
-                l1 = l1.next;
+        while (p != null && q != null) {
+            if (p.val < q.val) {
+                r.next = p;
+                p = p.next;
             } else {
-                curr.next = l2;
-                l2 = l2.next;
+                r.next = q;
+                q = q.next;
             }
-            curr = curr.next;
+            r = r.next;
         }
+
+        if (p != null) {
+            r.next = p;
+        }
+
+        if (q != null) {
+            r.next = q;
+        }
+
         return dummy.next;
     }
 }

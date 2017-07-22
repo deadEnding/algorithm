@@ -1,8 +1,8 @@
-package leetcode.L162_FindPeakElement;
+package leetcode.again.L162_FindPeakElement;
 
 /**
  * @author: deadend
- * @date: 4:37 PM 11/22/16
+ * @date: 3:46 PM 3/17/17
  * @version: 1.0
  * @description:
  */
@@ -10,26 +10,25 @@ package leetcode.L162_FindPeakElement;
 
 public class Solution {
     public int findPeakElement(int[] nums) {
-        int left = 0;
-        int right = nums.length - 1;
-
-        while (left <= right) {
-            int mid = left + (right - left) / 2;
-            int lv = mid - 1 >= 0 ? nums[mid - 1] : Integer.MIN_VALUE;
-            int rv = mid + 1 < nums.length ? nums[mid + 1] : Integer.MIN_VALUE;
-            if (nums[mid] >= lv && nums[mid] >= rv) {
-                return mid;
-            } else if (nums[mid] < lv) {
-                right = mid - 1;
+        final int n = nums.length;
+        int l = 0, r = n - 1;
+        while (l < r) {
+            int m = l + (r - l) / 2;
+            int left = m == 0 ? Integer.MIN_VALUE : nums[m - 1];
+            int right = m == n - 1 ? Integer.MIN_VALUE : nums[m + 1];
+            if (left < nums[m] && nums[m] > right) {
+                return m;
+            } else if (left > nums[m]) {
+                r = m - 1;
             } else {
-                left = mid + 1;
+                l = m + 1;
             }
         }
-        return -1;
+        return l;
     }
 
     public static void main(String[] args) {
-        int[] nums = {Integer.MIN_VALUE};
+        int[] nums = {1};
         System.out.println(new Solution().findPeakElement(nums));
     }
 }

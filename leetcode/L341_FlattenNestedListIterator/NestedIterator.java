@@ -1,31 +1,20 @@
-package leetcode.L341_FlattenNestedListIterator;
+package leetcode.again.L341_FlattenNestedListIterator;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
 /**
  * @author: deadend
- * @date: 9:48 AM 12/19/16
+ * @date: 9:07 PM 3/11/17
  * @version: 1.0
  * @description:
  */
 
 interface NestedInteger {
-    // @return true if this NestedInteger holds TrieMain single integer, rather than TrieMain nested list.
     public boolean isInteger();
-
-    // @return the single integer that this NestedInteger holds, if it holds A single integer
-    // Return null if this NestedInteger holds A nested list
     public Integer getInteger();
-
-    // @return the nested list that this NestedInteger holds, if it holds A nested list
-    // Return null if this NestedInteger holds A single integer
     public List<NestedInteger> getList();
-}
-
-interface Iterator<T> {
-    public Integer next();
-    public boolean hasNext();
 }
 
 public class NestedIterator implements Iterator<Integer> {
@@ -34,6 +23,10 @@ public class NestedIterator implements Iterator<Integer> {
 
     public NestedIterator(List<NestedInteger> nestedList) {
         stack = new LinkedList<>();
+        push(nestedList);
+    }
+
+    private void push(List<NestedInteger> nestedList) {
         for (int i = nestedList.size() - 1; i >= 0; i--) {
             stack.push(nestedList.get(i));
         }
@@ -47,10 +40,7 @@ public class NestedIterator implements Iterator<Integer> {
     @Override
     public boolean hasNext() {
         while (!stack.isEmpty() && !stack.peek().isInteger()) {
-            List<NestedInteger> nestedList = stack.pop().getList();
-            for (int i = nestedList.size() - 1; i >= 0; i--) {
-                stack.push(nestedList.get(i));
-            }
+            push(stack.pop().getList());
         }
         return !stack.isEmpty();
     }

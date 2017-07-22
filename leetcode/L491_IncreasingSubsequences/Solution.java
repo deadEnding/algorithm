@@ -1,35 +1,38 @@
-package leetcode.L491_IncreasingSubsequences;
+package leetcode.again.L491_IncreasingSubsequences;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * @author: deadend
- * @date: 9:33 PM 2/4/17
+ * @date: 7:39 PM 3/2/17
  * @version: 1.0
  * @description:
  */
 
+
+
 public class Solution {
-    public List<List<Integer>> findSubsequences(int[] nums) {
-        List<List<Integer>> result = new LinkedList<>();
-        helper(result, new ArrayList<>(), nums, 0);
-        return result;
-    }
+    private void dfs(int ix, int[] nums, LinkedList<Integer> path, List<List<Integer>> result) {
+        if (path.size() >= 2)
+            result.add(new LinkedList<>(path));
 
-    private void helper(List<List<Integer>> result, List<Integer> path, int[] nums, int ix) {
-        if (path.size() > 1) {
-            result.add(new ArrayList<>(path));
-        }
-
-        Set<Integer> uniq = new HashSet<>();
+        HashSet<Integer> visited = new HashSet<>();
         for (int i = ix; i < nums.length; i++) {
-            if ((ix > 0 && nums[i] < nums[ix - 1]) || uniq.contains(nums[i])) {
+            if ((ix - 1 >= 0 && nums[i] < nums[ix - 1]) || visited.contains(nums[i])) {
                 continue;
             }
-            uniq.add(nums[i]);
-            path.add(nums[i]);
-            helper(result, path, nums, i + 1);
-            path.remove(path.size() - 1);
+            visited.add(nums[i]);
+            path.addLast(nums[i]);
+            dfs(i + 1, nums, path, result);
+            path.removeLast();
         }
+    }
+
+    public List<List<Integer>> findSubsequences(int[] nums) {
+        List<List<Integer>> result = new LinkedList<>();
+        dfs(0, nums, new LinkedList<>(), result);
+        return result;
     }
 }

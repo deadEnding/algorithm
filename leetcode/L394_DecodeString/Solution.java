@@ -1,46 +1,51 @@
-package leetcode.L394_DecodeString;
+package leetcode.again.L394_DecodeString;
 
 import java.util.LinkedList;
 
 /**
  * @author: deadend
- * @date: 9:47 PM 12/19/16
+ * @date: P10:37 PM 3/9/17
  * @version: 1.0
  * @description:
  */
 
 
 public class Solution {
-    public String decodeString(String s) {
-        LinkedList<String> stack = new LinkedList<>();
-        stack.push("");
+    private String ntimes(String t, int n) {
+        StringBuffer buffer = new StringBuffer();
+        while (n-- > 0) {
+            buffer.append(t);
+        }
+        return buffer.toString();
+    }
 
-        for (int i = 0, count = 0; i < s.length(); i++) {
+    public String decodeString(String s) {
+        LinkedList<Integer> numStack = new LinkedList<>();
+        LinkedList<StringBuffer> stack = new LinkedList<>();
+        stack.push(new StringBuffer());
+
+        for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
             if (Character.isDigit(c)) {
-                for (count = c - '0'; i + 1 < s.length() && Character.isDigit(s.charAt(i + 1)); i++) {
-                    count = count * 10 + s.charAt(i + 1) - '0';
+                int val = c - '0';
+                while (i + 1 < s.length() && Character.isDigit(s.charAt(i + 1))) {
+                    val = val * 10 + s.charAt(++i) - '0';
                 }
-                stack.push(String.valueOf(count));
+                numStack.push(val);
             } else if (c == '[') {
-                stack.push("");
+                stack.push(new StringBuffer());
             } else if (c == ']') {
-                StringBuffer tmp = new StringBuffer();
-                String top = stack.pop();
-                count = Integer.valueOf(stack.pop());
-                while (count-- > 0) {
-                    tmp.append(top);
-                }
-                stack.push(stack.pop() + tmp.toString());
+                StringBuffer t = stack.pop();
+                stack.peek().append(ntimes(t.toString(), numStack.pop()));
             } else {
-                stack.push(stack.pop() + c);
+                stack.peek().append(c);
             }
         }
         return stack.peek().toString();
     }
 
     public static void main(String[] args) {
-        String s = "3[a2[c]]";
+        String s = "100[leetcode]";
         System.out.println(new Solution().decodeString(s));
     }
 }

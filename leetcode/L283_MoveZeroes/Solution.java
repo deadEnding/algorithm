@@ -1,8 +1,8 @@
-package leetcode.L283_MoveZeroes;
+package leetcode.again.L283_MoveZeroes;
 
 /**
  * @author: deadend
- * @date: P10:17 AM 11/23/16
+ * @date: 3:17 PM 3/18/17
  * @version: 1.0
  * @description:
  */
@@ -11,24 +11,16 @@ package leetcode.L283_MoveZeroes;
 public class Solution {
     public void moveZeroes(int[] nums) {
         int ix = 0;
-        boolean moved = false;
         for (int i = 0; i < nums.length; i++) {
             if (nums[i] != 0) {
-                nums[ix++] = nums[i];
-                moved = true;
+                while (ix < i && nums[ix] != 0) {
+                    ix++;
+                }
+                if (ix < i) {
+                    nums[ix] = nums[i];
+                    nums[i] = 0;
+                }
             }
-        }
-
-        while (moved && ix < nums.length) {
-            nums[ix++] = 0;
-        }
-    }
-
-    public static void main(String[] args) {
-        int[] nums = {1};
-        new Solution().moveZeroes(nums);
-        for (int n : nums) {
-            System.out.print(n + " ");
         }
     }
 }

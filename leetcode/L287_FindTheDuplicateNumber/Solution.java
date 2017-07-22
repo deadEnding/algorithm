@@ -1,58 +1,59 @@
-package leetcode.L287_FindTheDuplicateNumber;
+package leetcode.again.L287_FindTheDuplicateNumber;
 
 /**
  * @author: deadend
- * @date: 11:14 AM 11/23/16
+ * @date: 8:12 PM 2/28/17
  * @version: 1.0
  * @description:
  */
 
 
-
 public class Solution {
-    // 可看做链表，寻找环的起点
     public int findDuplicate(int[] nums) {
-        int oneStep = nums.length;
-        int twoStep = nums.length;
-
+        int fast = 0, slow = 0;
         do {
-            oneStep = nums[oneStep - 1];
-            twoStep = nums[nums[twoStep - 1] - 1];
-        } while (oneStep != twoStep);
+            slow = nums[slow];
+            fast = nums[nums[fast]];
+        } while (fast != slow);
 
-        twoStep = nums.length;
-        while (oneStep != twoStep) {
-            oneStep = nums[oneStep - 1];
-            twoStep = nums[twoStep - 1];
+        fast = 0;
+        while (fast != slow) {
+            slow = nums[slow];
+            fast = nums[fast];
         }
-        return oneStep;
+        return fast;
     }
 
     public static void main(String[] args) {
-        int[] nums = {1,2,2,3};
+        int[] nums = {1,2,2};
         System.out.println(new Solution().findDuplicate(nums));
     }
 }
 
 class BinarySearchSolution {
-    public int findDuplicate(int[] nums) {
-        final int n = nums.length;
-        int left = 1;
-        int right = n - 1;
-
-        while (left < right) {
-            int mid = left + (right - left) / 2;
-            int count = 0;
-            for (int i = 0; i < n; i++) {
-                count += nums[i] <= mid ? 1 : 0;
-            }
-
-            if (count > mid) {
-                right = mid;
-            } else {
-                left = mid + 1;
+    private int count(int[] nums, int target) {
+        int cnt = 0;
+        for (int num : nums) {
+            if (num <= target) {
+                cnt++;
             }
         }
-        return left;
+        return cnt;
+    }
+
+    public int findDuplicate(int[] nums) {
+        final int n = nums.length;
+        int l = 1;
+        int r = n;
+        while (l < r) {
+            int m = l + (r - l) / 2;
+            int cnt = count(nums, m);
+            if (cnt > m) {
+                r = m;
+            } else {
+                l = m + 1;
+            }
+        }
+        return l;
     }
 }

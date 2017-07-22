@@ -1,89 +1,30 @@
-package leetcode.L322_CoinChange;
-
-import java.util.Arrays;
-import java.util.HashMap;
+package leetcode.again.L322_CoinChange;
 
 /**
  * @author: deadend
- * @date: 8:47 PM 12/15/16
+ * @date: 9:57 AM 3/1/17
  * @version: 1.0
  * @description:
  */
 
+
 public class Solution {
     public int coinChange(int[] coins, int amount) {
         int[] dp = new int[amount + 1];
-
         for (int i = 1; i <= amount; i++) {
             dp[i] = -1;
-            for (int coin : coins) {
-                if (coin <= i && dp[i - coin] != -1) {
-                    dp[i] = dp[i] == -1 ? dp[i - coin] + 1 : Math.min(dp[i], dp[i - coin] + 1);
+            for (int c : coins) {
+                int j = i - c;
+                if (j >= 0 && dp[j] != -1) {
+                    dp[i] = Math.min(dp[i] == -1 ? Integer.MAX_VALUE : dp[i], dp[j] + 1);
                 }
             }
         }
         return dp[amount];
     }
-}
-
-
-class DPSolution {
-    private int coinChange(int[] coins, int amount, HashMap<Integer, Integer> map) {
-        if (amount <= 0) {
-            return amount == 0 ? 0 : -1;
-        }
-
-        if (!map.containsKey(amount)) {
-            int min = -1;
-            for (int i = coins.length - 1; i >= 0; i--) {
-                if (amount >= coins[i]) {
-                    int m = coinChange(coins, amount - coins[i], map);
-                    if (m != -1) {
-                        min = min == -1 ? m + 1 : Math.min(min, m + 1);
-                    }
-                }
-            }
-            map.put(amount, min);
-        }
-        return map.get(amount);
-    }
-
-    public int coinChange(int[] coins, int amount) {
-        HashMap<Integer, Integer> map = new HashMap<>();
-        return coinChange(coins, amount, map);
-    }
-}
-
-// 错误解法，去掉参数ix即正确，为啥？
-class WrongSolution {
-    private int coinChange(int[] coins, int ix,int amount, HashMap<Integer, Integer> map) {
-        if (amount <= 0) {
-            return amount == 0 ? 0 : -1;
-        }
-
-        if (!map.containsKey(amount)) {
-            int min = -1;
-            for (int i = ix; i >= 0; i--) {
-                if (amount >= coins[i]) {
-                    int m = coinChange(coins, i, amount - coins[i], map);
-                    if (m != -1) {
-                        min = min == - 1 ? m + 1 : Math.min(min, m + 1);
-                    }
-                }
-            }
-            map.put(amount, min);
-        }
-        return map.get(amount);
-    }
-
-    public int coinChange(int[] coins, int amount) {
-        HashMap<Integer, Integer> map = new HashMap<>();
-        return coinChange(coins, coins.length - 1, amount, map);
-    }
 
     public static void main(String[] args) {
-        int[] coins = {3,7,405,436};
-        int amount = 8839;
-        System.out.println(new WrongSolution().coinChange(coins, amount));
+        int[] coins = {12};
+        System.out.println(new Solution().coinChange(coins, 11));
     }
 }

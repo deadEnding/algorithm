@@ -1,11 +1,4 @@
-package leetcode.L235_LowestCommonAncestorOfABinarySearchTree;
-
-/**
- * @author: deadend
- * @date: 8:42 PM 12/P10/16
- * @version: 1.0
- * @description:
- */
+package leetcode.again.L235_LowestCommonAncestorOfABinarySearchTree;
 
 class TreeNode {
     int val;
@@ -14,19 +7,22 @@ class TreeNode {
     TreeNode(int x) { val = x; }
 }
 
+
 public class Solution {
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         if ((p.val - root.val) * (q.val - root.val) <= 0) {
             return root;
         }
-        return lowestCommonAncestor(p.val < root.val ? root.left : root.right, p, q);
+
+        return p.val > root.val ? lowestCommonAncestor(root.right, p, q) : lowestCommonAncestor(root.left, p, q);
     }
 }
 
-class RecusiveSolution {
+
+class IterativeSolution {
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         while ((p.val - root.val) * (q.val - root.val) > 0) {
-            root = p.val < root.val ? root.left : root.right;
+            root = p.val > root.val ? root.right : root.left;
         }
         return root;
     }

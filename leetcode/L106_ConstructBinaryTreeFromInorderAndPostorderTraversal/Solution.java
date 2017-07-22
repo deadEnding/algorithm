@@ -1,11 +1,5 @@
-package leetcode.L106_ConstructBinaryTreeFromInorderAndPostorderTraversal;
+package leetcode.again.L106_ConstructBinaryTreeFromInorderAndPostorderTraversal;
 
-/**
- * @author: deadend
- * @date: 8:49 PM 12/3/16
- * @version: 1.0
- * @description:
- */
 
 class TreeNode {
     int val;
@@ -14,31 +8,32 @@ class TreeNode {
     TreeNode(int x) { val = x; }
 }
 
+
 public class Solution {
-    private int findPosition(int[] inorder, int i, int j, int target) {
-        for (int k = i; k < j; k++) {
-            if (inorder[k] == target) {
-                return k;
-            }
+
+    private int findIndex(int[] order, int s, int e, int target) {
+        for (int i = s; i <= e; i++) {
+            if (target == order[i])
+                return i;
         }
         return -1;
     }
 
-    private TreeNode build(int[] inorder, int ini, int inj, int[] postorder, int posti, int postj) {
-        if (ini == inj) {
+    private TreeNode buildTree(int[] inorder, int is, int ie, int[] postorder, int ps, int pe) {
+        if (is > ie) {
             return null;
         }
 
-        TreeNode root = new TreeNode(postorder[postj - 1]);
-        int inRootPos = findPosition(inorder, ini, inj, postorder[postj - 1]);
-        int leftSize = inRootPos - ini;
-
-        root.left = build(inorder, ini, inRootPos, postorder, posti, posti + leftSize);
-        root.right = build(inorder, inRootPos + 1, inj, postorder, posti + leftSize, postj - 1);
+        TreeNode root = new TreeNode(postorder[pe]);
+        int im = findIndex(inorder, is, ie, postorder[pe]);
+        int lcount = im - is;
+        root.left = buildTree(inorder, is, im - 1, postorder, ps, ps + lcount - 1);
+        root.right = buildTree(inorder, im + 1, ie, postorder, ps + lcount, pe - 1);
         return root;
     }
 
     public TreeNode buildTree(int[] inorder, int[] postorder) {
-        return build(inorder, 0, inorder.length, postorder, 0, postorder.length);
+        final int n = inorder.length;
+        return buildTree(inorder, 0, n - 1, postorder, 0, n - 1);
     }
 }

@@ -1,32 +1,57 @@
-package leetcode.L020_ValidParentheses;
+package leetcode.again.L020_ValidParentheses;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 
 /**
  * @author: deadend
- * @date: 5:40 PM 11/27/16
+ * @date: 9:37 AM 3/17/17
  * @version: 1.0
  * @description:
  */
 
 
+
 public class Solution {
+
     public boolean isValid(String s) {
+        HashMap<Character, Character> map = new HashMap();
+        map.put(')', '(');
+        map.put(']', '[');
+        map.put('}', '{');
+
         LinkedList<Character> stack = new LinkedList<>();
-        stack.push('#');
-        for (int i = 0; i < s.length(); i++) {
-            char c = s.charAt(i);
+        for (char c : s.toCharArray()) {
             if (c == '(' || c == '[' || c == '{') {
                 stack.push(c);
             } else {
-                if ((c == ')' && stack.peek() == '(') || (c == ']' && stack.peek() == '[') 
-                    || (c == '}' && stack.peek() == '{')) {
-                    stack.pop();
-                } else {
+                if (!(!stack.isEmpty() && stack.pop() == map.get(c))) {
                     return false;
                 }
             }
         }
-        return stack.size() == 1;
+
+        return stack.isEmpty();
+    }
+}
+
+class FirstSolution {
+    public boolean isValid(String s) {
+        LinkedList<Character> stack = new LinkedList<>();
+        for (char c : s.toCharArray()) {
+            if (c == '(' || c == '[' || c == '{') {
+                stack.push(c);
+            } else if (stack.isEmpty()) {
+                return false;
+            } else {
+                char sc = stack.peek();
+                if (c == ')' && sc != '(' || c == ']' && sc != '[' || c == '}' && sc != '{') {
+                    return false;
+                }
+                stack.pop();
+            }
+        }
+
+        return stack.isEmpty();
     }
 }

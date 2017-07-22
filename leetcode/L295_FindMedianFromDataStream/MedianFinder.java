@@ -1,31 +1,35 @@
-package leetcode.L295_FindMedianFromDataStream;
+package leetcode.again.L295_FindMedianFromDataStream;
 
-import java.util.LinkedList;
 import java.util.PriorityQueue;
 
 /**
  * @author: deadend
- * @date: P10:19 AM 12/12/16
+ * @date: 4:56 PM 3/14/17
  * @version: 1.0
  * @description:
  */
 
 
 public class MedianFinder {
-    private PriorityQueue<Integer> smallMinHeap = new PriorityQueue<>();
-    private PriorityQueue<Integer> largeMinHeap = new PriorityQueue<>();
 
-    // Adds A number into the data structure.
+    private PriorityQueue<Integer> smallNums;
+    private PriorityQueue<Integer> largeNums;
+
+    /** initialize your data structure here. */
+    public MedianFinder() {
+        smallNums = new PriorityQueue<>((i1, i2) -> (i2 - i1));
+        largeNums = new PriorityQueue<>();
+    }
+
     public void addNum(int num) {
-        largeMinHeap.add(num);
-        smallMinHeap.add(-largeMinHeap.poll());
-        if (largeMinHeap.size() < smallMinHeap.size()) {
-            largeMinHeap.add(-smallMinHeap.poll());
+        smallNums.offer(num);
+        largeNums.offer(smallNums.poll());
+        if (smallNums.size() < largeNums.size()) {
+            smallNums.offer(largeNums.poll());
         }
     }
 
-    // Returns the median of current data stream
     public double findMedian() {
-        return largeMinHeap.size() > smallMinHeap.size() ? largeMinHeap.peek() : (largeMinHeap.peek() - smallMinHeap.peek()) / 2.0;
+        return smallNums.size() > largeNums.size() ? smallNums.peek() : ((smallNums.peek() + largeNums.peek()) / 2.0);
     }
 }

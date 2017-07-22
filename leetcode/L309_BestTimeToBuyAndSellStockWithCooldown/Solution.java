@@ -1,8 +1,8 @@
-package leetcode.L309_BestTimeToBuyAndSellStockWithCooldown;
+package leetcode.again.L309_BestTimeToBuyAndSellStockWithCooldown;
 
 /**
  * @author: deadend
- * @date: 7:26 PM 12/13/16
+ * @date: 8:44 AM 3/1/17
  * @version: 1.0
  * @description:
  */
@@ -10,16 +10,23 @@ package leetcode.L309_BestTimeToBuyAndSellStockWithCooldown;
 
 public class Solution {
     public int maxProfit(int[] prices) {
-        int s0 = Integer.MIN_VALUE;
-        int s1 = 0;
-        int s2 = 0;
-
-        for (int price : prices) {
-            int cps2 = s2;
-            s2 = Math.max(s1, s2);
-            s1 = s0 + price;
-            s0 = Math.max(s0, cps2 - price);
+        final int n = prices.length;
+        if (n <= 1) {
+            return 0;
         }
-        return Math.max(s1, s2);
+        int[][] f = new int[n][3];
+        f[0][0] = -prices[0];
+        for (int i = 1; i < n; i++) {
+            f[i][0] = Math.max(f[i - 1][2] - prices[i], f[i - 1][0]);
+            f[i][1] = f[i - 1][0] + prices[i];
+            f[i][2] = Math.max(f[i - 1][1], f[i - 1][2]);
+        }
+
+        return Math.max(f[n - 1][1], f[n - 1][2]);
+    }
+
+    public static void main(String[] args) {
+        int[] prices = {};
+        System.out.println(new Solution().maxProfit(prices));
     }
 }

@@ -1,23 +1,27 @@
-package leetcode.L047_PermutationsII;
+package leetcode.again.L047_PermutationsII;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author: deadend
- * @date: 8:11 PM 11/30/16
+ * @date: 8:57 AM 2/28/17
  * @version: 1.0
  * @description:
  */
 
 
 public class Solution {
-    private List<List<Integer>> result = new LinkedList<>();
 
+    private void swap(int[] nums, int i, int j) {
+        if (i != j) {
+            int tmp = nums[i];
+            nums[i] = nums[j];
+            nums[j] = tmp;
+        }
+    }
 
-    private void permuteUnique(int[] nums, LinkedList<Integer> path, HashMap<Integer, Integer> map) {
-        if (path.size() == nums.length) {
+    private void helper(HashMap<Integer, Integer> map, LinkedList<Integer> path, List<List<Integer>> result, int n) {
+        if (path.size() == n) {
             result.add(new LinkedList<>(path));
             return;
         }
@@ -25,11 +29,11 @@ public class Solution {
         for (int key : map.keySet()) {
             int val = map.get(key);
             if (val > 0) {
-                path.addLast(key);
                 map.put(key, val - 1);
-                permuteUnique(nums, path, map);
+                path.add(key);
+                helper(map, path, result, n);
+                path.remove(path.size() - 1);
                 map.put(key, val);
-                path.removeLast();
             }
         }
     }
@@ -37,20 +41,60 @@ public class Solution {
     public List<List<Integer>> permuteUnique(int[] nums) {
         HashMap<Integer, Integer> map = new HashMap<>();
         for (int n : nums) {
-            map.put(n, map.containsKey(n) ? map.get(n) + 1 : 1);
+            map.put(n, map.getOrDefault(n, 0) + 1);
         }
-        permuteUnique(nums, new LinkedList<Integer>(), map);
+        List<List<Integer>> result = new LinkedList<>();
+        helper(map, new LinkedList<>(), result, nums.length);
         return result;
     }
 
     public static void main(String[] args) {
-        int[] nums = {1,1,2};
-        List<List<Integer>> result = new Solution().permuteUnique(nums);
-        for (List<Integer> list : result) {
-            for (int i : list) {
-                System.out.print(i + " ");
-            }
-            System.out.println();
+        int[] nums = {1,1,1,2,2};
+        System.out.println(new Solution().permuteUnique(nums));
+    }
+}
+
+class OtherSolution {
+
+    private void swap(int[] nums, int i, int j) {
+        if (i != j) {
+            int tmp = nums[i];
+            nums[i] = nums[j];
+            nums[j] = tmp;
         }
+    }
+
+    private void helper(int ix, int[] nums, List<List<Integer>> result) {
+        if (ix == nums.length) {
+            ArrayList<Integer> tmp = new ArrayList<>();
+            for (int n : nums) {
+                tmp.add(n);
+            }
+            result.add(tmp);
+            return;
+        }
+
+        HashSet<Integer> set = new HashSet<>();
+        for (int i = ix; i < nums.length; i++) {
+            if (set.contains(nums[i])) {
+                continue;
+            }
+
+            set.add(nums[i]);
+            swap(nums, ix, i);
+            helper(ix + 1, nums, result);
+            swap(nums, ix, i);
+        }
+    }
+
+    public List<List<Integer>> permuteUnique(int[] nums) {
+        List<List<Integer>> result = new LinkedList<>();
+        helper(0, nums, result);
+        return result;
+    }
+
+    public static void main(String[] args) {
+        int[] nums = {1,1,2,2};
+        System.out.println(new OtherSolution().permuteUnique(nums));
     }
 }

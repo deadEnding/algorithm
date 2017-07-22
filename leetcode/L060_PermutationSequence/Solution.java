@@ -1,8 +1,8 @@
-package leetcode.L060_PermutationSequence;
+package leetcode.again.L060_PermutationSequence;
 
 /**
  * @author: deadend
- * @date: P10:42 AM 12/1/16
+ * @date: 9:26 AM 2/28/17
  * @version: 1.0
  * @description:
  */
@@ -10,42 +10,98 @@ package leetcode.L060_PermutationSequence;
 
 public class Solution {
     private int factorial(int x) {
+        return x <= 1 ? 1 : factorial(x - 1) * x;
+    }
+
+
+    private int findKth(boolean[] used, int k) {
+        for (int i = 0; i < used.length; i++) {
+            if (!used[i] && k-- == 0) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public String getPermutation(int n, int k) {
+        StringBuilder builder = new StringBuilder();
+        boolean[] used = new boolean[n];
+        k--;
+        for (int i = n - 1; i >= 0; i--) {
+            int f = factorial(i);
+            int kth = k / f;
+            int ix = findKth(used, kth);
+            builder.append(ix + 1);
+            used[ix] = true;
+            k %= f;
+        }
+        return builder.toString();
+    }
+
+    public static void main(String[] args) {
+        System.out.println(new Solution().getPermutation(2, 1));
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+class FirstSolution {
+
+    private int findKth(boolean[] used, int k) {
+        for (int i = 0; i < used.length; i++) {
+            if (!used[i]) {
+                if (k-- == 0) {
+                    used[i] = true;
+                    return i;
+                }
+            }
+        }
+        return Integer.MIN_VALUE;
+    }
+
+    private int factorial(int x) {
         int f = 1;
-        while (x > 1) {
-            f *= x;
-            x--;
+        while (x > 0) {
+            f *= x--;
         }
         return f;
     }
 
-    private String helper(int n, int k, boolean[] used) {
-        if (n == 1 || k == 0) {
-            StringBuffer sb = new StringBuffer();
-            for (int i = 0; i < used.length; i++) {
-                if (!used[i]) {
-                    sb.append(i + 1);
-                }
-            }
-            return sb.toString();
-        }
-
-        int f = factorial(n - 1);
-        int start = 0;
-        for (int d = k / f, i = 0; d >= 0; i++) {
-            if (!used[i]) {
-                d--;
-                start = i;
-            }
-        }
-        used[start] = true;
-        return (start + 1) + helper(n - 1, k % f, used);
-    }
-
     public String getPermutation(int n, int k) {
-        return helper(n, k - 1, new boolean[n]);
-    }
-
-    public static void main(String[] args) {
-        System.out.println(new Solution().getPermutation(3, 6));
+        k--;
+        boolean[] used = new boolean[n];
+        StringBuffer buffer = new StringBuffer();
+        for (int i = n; i >= 1; i--) {
+            if (i == 1) {
+                buffer.append(findKth(used, 0) + 1);
+            } else {
+                int base = factorial(i - 1);
+                int kth = findKth(used, k / base);
+                k %= base;
+                buffer.append(kth + 1);
+            }
+        }
+        return buffer.toString();
     }
 }

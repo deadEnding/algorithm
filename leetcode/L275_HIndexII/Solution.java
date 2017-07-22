@@ -1,8 +1,8 @@
-package leetcode.L275_HIndexII;
+package leetcode.again.L275_HIndexII;
 
 /**
  * @author: deadend
- * @date: 2:58 PM 11/25/16
+ * @date: 3:14 PM 3/15/17
  * @version: 1.0
  * @description:
  */
@@ -10,16 +10,35 @@ package leetcode.L275_HIndexII;
 
 public class Solution {
     public int hIndex(int[] citations) {
-        for (int i = 0; i < citations.length; i++) {
-            if (citations[i] >= citations.length - i) {
-                return citations.length - i;
+        final int n = citations.length;
+        int l = 0, r = n - 1;
+        while (l <= r) {
+            int m = l + (r - l) / 2;
+            if (citations[m] >= n - m) {
+                r = m - 1;
+            } else {
+                l = m + 1;
             }
         }
-        return 0;
-    }
-
-    public static void main(String[] args) {
-        int[] citations = {0,1,3,5,6};
-        System.out.println(new Solution().hIndex(citations));
+        return n - l;
     }
 }
+
+class BasicSolution {
+    public int hIndex(int[] citations) {
+        final int n = citations.length;
+        int l = 0, r = n - 1;
+        while (l <= r) {
+            int m = l + (r - l) / 2;
+            if (citations[m] == n - m) {
+                return n - m;
+            } else if (citations[m] > n - m) {
+                r = m - 1;
+            } else {
+                l = m + 1;
+            }
+        }
+        return n - l;
+    }
+}
+

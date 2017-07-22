@@ -1,13 +1,15 @@
-package leetcode.L116_PopulatingNextRightPointersInEachNode;
+package leetcode.again.L116_PopulatingNextRightPointersInEachNode;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 /**
  * @author: deadend
- * @date: P10:18 AM 12/5/16
+ * @date: 1:51 PM 2/28/17
  * @version: 1.0
  * @description:
  */
+
 
 class TreeLinkNode {
     int val;
@@ -15,74 +17,122 @@ class TreeLinkNode {
     TreeLinkNode(int x) { val = x; }
 }
 
+
 public class Solution {
     public void connect(TreeLinkNode root) {
-        if (root == null) {
+        if (root == null)
             return;
-        }
 
-        TreeLinkNode head = root, curr = null;
-        while (head.left != null) {
-            curr = head;
-            while (curr != null) {
-                curr.left.next = curr.right;
-                if (curr.next != null) {
-                    curr.right.next = curr.next.left;
-                }
-                curr = curr.next;
+        for (TreeLinkNode head = root; head.left != null; head = head.left) {
+            for (TreeLinkNode p = head, last = new TreeLinkNode(-1); p != null; p = p.next) {
+                last.next = p.left;
+                p.left.next = p.right;
+                last = p.right;
             }
-            head = head.left;
         }
-
     }
 }
 
-class RecusiveSolution {
+class RecursiveSolution {
+    private void preorder(TreeLinkNode root, int h, ArrayList<TreeLinkNode> lasts) {
+        if (root == null)
+            return;
+
+        if (h >= lasts.size()) {
+            lasts.add(new TreeLinkNode(-1));
+        }
+        lasts.get(h).next = root;
+        lasts.set(h, root);
+        preorder(root.left, h + 1, lasts);
+        preorder(root.right, h + 1, lasts);
+    }
+
     public void connect(TreeLinkNode root) {
-        if (root == null || root.left == null || root.right == null) {
-            return;
-        }
-
-        TreeLinkNode prev = null, curr = root;
-        while (curr != null) {
-            curr.left.next = curr.right;
-            if (prev != null) {
-                prev.right.next = curr.left;
-            }
-            prev = curr;
-            curr = curr.next;
-        }
-        connect(root.left);
+        preorder(root, 0, new ArrayList<>());
     }
 }
 
-class BasicSolution {
+class BFSSolution {
     public void connect(TreeLinkNode root) {
         if (root == null) {
             return;
         }
+
         LinkedList<TreeLinkNode> queue = new LinkedList<>();
         queue.offer(root);
         queue.offer(null);
-        TreeLinkNode last = null;
+        TreeLinkNode dummy = new TreeLinkNode(-1);
+        TreeLinkNode last = dummy;
         while (!queue.isEmpty()) {
-            TreeLinkNode node = queue.poll();
-            if (node != null) {
-                if (node.left != null) {
-                    queue.offer(node.left);
-                }
-                if (node.right != null) {
-                    queue.offer(node.right);
-                }
-            } else {
+            TreeLinkNode p = queue.poll();
+            last.next = p;
+            last = p;
+            if (p == null) {
                 if (!queue.isEmpty()) {
                     queue.offer(null);
+                    last = dummy;
+                }
+            } else {
+                if (p.left != null) {
+                    queue.offer(p.left);
+                }
+
+                if (p.right != null) {
+                    queue.offer(p.right);
                 }
             }
-            if (last != null) {
-                last.next = node;
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+class FirstSolution {
+    public void connect(TreeLinkNode root) {
+        if (root == null) {
+            return;
+        }
+
+        TreeLinkNode dummy = new TreeLinkNode(-1);
+        TreeLinkNode head = root;
+        while (head.left != null) {
+            TreeLinkNode prev = dummy;
+            for (TreeLinkNode p = head; p != null; p = p.next) {
+                if (p.left != null) {
+                    prev.next = p.left;
+                    p.left.next = p.right;
+                    prev = p.right;
+                } else {
+                    break;
+                }
             }
-            last = node;
+            head = head.left;
         }
     }
 }

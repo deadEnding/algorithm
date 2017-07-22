@@ -1,24 +1,18 @@
-package leetcode.L520_DetectCapital;
+package leetcode.again.L520_DetectCapital;
 
 /**
  * @author: deadend
- * @date: 4:48 PM 2/20/17
- * @version: 1.0
- * @description:
+ * @date: 10:30 PM 28/03/2017
  */
 
 
 public class Solution {
     public boolean detectCapitalUse(String word) {
-        if (word.toUpperCase().equals(word) || word.toLowerCase().equals(word)) {
+        if (word.toLowerCase().equals(word) || word.toUpperCase().equals(word)) {
             return true;
         }
 
-        if (word.length() > 1 && Character.isUpperCase(word.charAt(0))) {
-            String s = word.substring(1);
-            return s.toLowerCase().equals(s);
-        }
-
-        return false;
+        String t = word.substring(1);
+        return Character.isUpperCase(word.charAt(0)) && t.toLowerCase().equals(t);
     }
 }

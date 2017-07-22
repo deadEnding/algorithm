@@ -1,8 +1,8 @@
-package leetcode.L070_ClimbingStairs;
+package leetcode.again.L070_ClimbingStairs;
 
 /**
  * @author: deadend
- * @date: 2:59 PM 12/1/16
+ * @date: 12:48 PM 3/3/17
  * @version: 1.0
  * @description:
  */
@@ -10,16 +10,11 @@ package leetcode.L070_ClimbingStairs;
 
 public class Solution {
     public int climbStairs(int n) {
-        int prev = 0, curr = 1;
-        while (n-- > 0) {
-            int tmp = curr;
-            curr += prev;
-            prev = tmp;
+        int[] f = new int[2];
+        f[0] = 1;
+        for (int i = 1; i <= n; i++) {
+            f[i % 2] += f[1 - i % 2];
         }
-        return curr;
-    }
-
-    public static void main(String[] args) {
-        System.out.println(new Solution().climbStairs(4));
+        return f[n % 2];
     }
 }

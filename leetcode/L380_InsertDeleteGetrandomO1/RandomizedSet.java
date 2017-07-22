@@ -1,4 +1,4 @@
-package leetcode.L380_InsertDeleteGetrandomO1;
+package leetcode.again.L380_InsertDeleteGetrandomO1;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -6,7 +6,7 @@ import java.util.Random;
 
 /**
  * @author: deadend
- * @date: 2:25 PM 11/23/16
+ * @date: 8:35 PM 3/16/17
  * @version: 1.0
  * @description:
  */
@@ -14,57 +14,45 @@ import java.util.Random;
 
 public class RandomizedSet {
 
-    private int size;
-    private ArrayList<Integer> list;
     private HashMap<Integer, Integer> map;
+    private ArrayList<Integer> arr;
     private Random random;
 
     /** Initialize your data structure here. */
     public RandomizedSet() {
-        size = 0;
-        list =  new ArrayList<>();
         map = new HashMap<>();
+        arr = new ArrayList<>();
         random = new Random();
     }
 
-    /** Inserts A value to the set. Returns true if the set did not already contain the specified element. */
+    /** Inserts a value to the set. Returns true if the set did not already contain the specified element. */
     public boolean insert(int val) {
         if (map.containsKey(val)) {
             return false;
         }
-        map.put(val, size);
-        list.add(size++, val);
+        map.put(val, arr.size());
+        arr.add(val);
         return true;
     }
 
-    /** Removes A value from the set. Returns true if the set contained the specified element. */
+    /** Removes a value from the set. Returns true if the set contained the specified element. */
     public boolean remove(int val) {
         if (!map.containsKey(val)) {
             return false;
         }
-        int ix = map.get(val);
-        map.remove(val);
-        if (ix < size - 1) {
-            list.set(ix, list.get(size - 1));
-            map.put(list.get(size - 1), ix);
+
+        int ix = map.remove(val);
+        int lastIx = arr.size() - 1;
+        if (ix != lastIx) {
+            map.put(arr.get(lastIx), ix);
+            arr.set(ix, arr.get(lastIx));
         }
-        size--;
+        arr.remove(lastIx);
         return true;
     }
 
-    /** Get A random element from the set. */
+    /** Get a random element from the set. */
     public int getRandom() {
-        return list.get(random.nextInt(size));
-    }
-
-    public static void main(String[] args) {
-        RandomizedSet set = new RandomizedSet();
-        System.out.println(set.insert(1));
-        System.out.println(set.remove(2));
-        System.out.println(set.insert(2));
-        System.out.println(set.getRandom());
-        System.out.println(set.remove(1));
-        System.out.println(set.insert(2));
-        System.out.println(set.getRandom());
+        return arr.get(random.nextInt(arr.size()));
     }
 }

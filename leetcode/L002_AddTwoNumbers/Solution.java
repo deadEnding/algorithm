@@ -1,11 +1,5 @@
-package leetcode.L002_AddTwoNumbers;
+package leetcode.again.L002_AddTwoNumbers;
 
-/**
- * @author: deadend
- * @date: P10:16 AM 11/27/16
- * @version: 1.0
- * @description:
- */
 
 class ListNode {
     int val;
@@ -17,26 +11,25 @@ class ListNode {
 public class Solution {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         ListNode dummy = new ListNode(-1);
+        ListNode r = dummy;
+
         int c = 0;
-        ListNode curr = dummy;
-        while (l1 != null || l2 != null) {
-            if (l1 != null) {
-                c += l1.val;
-                l1 = l1.next;
-            }
+        for (ListNode p = l1, q = l2; p != null || q != null;) {
+            int a = p == null ? 0 : p.val;
+            p = p == null ? null : p.next;
+            int b = q == null ? 0 : q.val;
+            q = q == null ? null : q.next;
 
-            if (l2 != null) {
-                c += l2.val;
-                l2 = l2.next;
-            }
+            int s = a + b + c;
+            c = s / 10;
+            r.next = new ListNode(s % 10);
+            r = r.next;
+        }
 
-            curr.next = new ListNode(c % 10);
-            c /= 10;
-            curr = curr.next;
+        if (c != 0) {
+            r.next = new ListNode(c);
         }
-        if (c == 1) {
-            curr.next = new ListNode(c);
-        }
+
         return dummy.next;
     }
 }

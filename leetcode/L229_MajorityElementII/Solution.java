@@ -1,11 +1,11 @@
-package leetcode.L229_MajorityElementII;
+package leetcode.again.L229_MajorityElementII;
 
 import java.util.LinkedList;
 import java.util.List;
 
 /**
  * @author: deadend
- * @date: 9:16 AM 11/23/16
+ * @date: 6:46 PM 2/28/17
  * @version: 1.0
  * @description:
  */
@@ -13,41 +13,40 @@ import java.util.List;
 
 public class Solution {
     public List<Integer> majorityElement(int[] nums) {
-        int candidate1 = 0, count1 = 0;
-        int candidate2 = 0, count2 = 0;
-
-        for (int n : nums) {
-            if (n == candidate1) {
-                count1++;
-            } else if (n == candidate2) {
-                count2++;
-            } else if (count1 == 0) {
-                candidate1 = n;
-                count1++;
-            } else if (count2 == 0) {
-                candidate2 = n;
-                count2++;
+        int p1 = 0, p2 = 0;
+        int c1 = 0, c2 = 0;
+        for (int num : nums) {
+            if (c1 > 0 && p1 == num) {
+                c1++;
+            } else if (c2 > 0 && p2 == num) {
+                c2++;
+            } else if (c1 == 0) {
+                p1 = num;
+                c1++;
+            } else if (c2 == 0) {
+                p2 = num;
+                c2++;
             } else {
-                count1--;
-                count2--;
+                c1--;
+                c2--;
             }
         }
 
-        count1 = count2 = 0;
-        for (int n : nums) {
-            if (n == candidate1) {
-                count1++;
-            } else if (n == candidate2) {
-                count2++;
+        c1 = c2 = 0;
+        for (int num : nums) {
+            if (p1 == num) {
+                c1++;
+            } else if (p2 == num) {
+                c2++;
             }
         }
 
         List<Integer> result = new LinkedList<>();
-        if (count1 > nums.length / 3) {
-            result.add(candidate1);
+        if (c1 > nums.length / 3) {
+            result.add(p1);
         }
-        if (count2 > nums.length / 3) {
-            result.add(candidate2);
+        if (c2 > nums.length / 3) {
+            result.add(p2);
         }
         return result;
     }

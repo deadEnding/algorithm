@@ -1,11 +1,4 @@
-package leetcode.L206_ReverseLinkedList;
-
-/**
- * @author: deadend
- * @date: 7:48 PM 12/8/16
- * @version: 1.0
- * @description:
- */
+package leetcode.again.L206_ReverseLinkedList;
 
 class ListNode {
     int val;
@@ -13,16 +6,15 @@ class ListNode {
     ListNode(int x) { val = x; }
 }
 
+
 public class Solution {
     public ListNode reverseList(ListNode head) {
         ListNode dummy = new ListNode(-1);
-        dummy.next = head;
-        ListNode tail = head, tmp = null;
-        while (tail != null && tail.next != null) {
-            tmp = tail.next;
-            tail.next = tail.next.next;
-            tmp.next = dummy.next;
-            dummy.next = tmp;
+        while (head != null) {
+            ListNode p = head.next;
+            head.next = dummy.next;
+            dummy.next = head;
+            head = p;
         }
         return dummy.next;
     }

@@ -1,26 +1,14 @@
-package leetcode.L121_BestTimeToBuyAndSellStock;
-
-/**
- * @author: deadend
- * @date: P10:19 AM 11/22/16
- * @version: 1.0
- * @description:
- */
+package leetcode.again.L121_BestTimeToBuyAndSellStock;
 
 
 public class Solution {
     public int maxProfit(int[] prices) {
-        int min = Integer.MAX_VALUE;
-        int profit = 0;
-        for (int price : prices) {
-            min = Math.min(min, price);
-            profit = Math.max(profit, price - min);
+        int max = 0;
+        for (int i = 0, min = Integer.MAX_VALUE; i < prices.length; i++) {
+            max = Math.max(max, prices[i] - min);
+            min = Math.min(min, prices[i]);
         }
-        return profit;
-    }
 
-    public static void main(String[] args) {
-        int[] prices = {7,6,5,3};
-        System.out.println(new Solution().maxProfit(prices));
+        return max;
     }
 }

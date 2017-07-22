@@ -1,47 +1,56 @@
-package leetcode.L391_PerfectRectangle;
+package leetcode.again.L391_PerfectRectangle;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 /**
  * @author: deadend
- * @date: 7:09 PM 12/19/16
+ * @date: 1:43 PM 3/14/17
  * @version: 1.0
  * @description:
  */
 
+
 public class Solution {
+    private String hash(int x, int y) {
+        return x + "|" + y;
+    }
+    private List<String> getPoints(int[] r) {
+        List<String> ps = new ArrayList<>(4);
+        ps.add(hash(r[0], r[1]));
+        ps.add(hash(r[0], r[3]));
+        ps.add(hash(r[2], r[3]));
+        ps.add(hash(r[2], r[1]));
+        return ps;
+    }
+
     public boolean isRectangleCover(int[][] rectangles) {
-        int x1, x2, y1, y2;
-        int area = 0;
-        x1 = y1 = Integer.MAX_VALUE;
-        x2 = y2 = Integer.MIN_VALUE;
+        long area = 0;
+        int top = Integer.MIN_VALUE, bottom = Integer.MAX_VALUE;
+        int left = Integer.MAX_VALUE, right = Integer.MIN_VALUE;
 
         HashSet<String> set = new HashSet<>();
-
-        for (int[] p : rectangles) {
-            x1 = Math.min(x1, p[0]);
-            y1 = Math.min(y1, p[1]);
-            x2 = Math.max(x2, p[2]);
-            y2 = Math.max(y2, p[3]);
-
-            area += (p[2] - p[0]) * (p[3] - p[1]);
-
-            String s1 = p[0] + " " + p[1];
-            String s2 = p[0] + " " + p[3];
-            String s3 = p[2] + " " + p[3];
-            String s4 = p[2] + " " + p[1];
-
-            if (!set.add(s1)) { set.remove(s1); }
-            if (!set.add(s2)) { set.remove(s2); }
-            if (!set.add(s3)) { set.remove(s3); }
-            if (!set.add(s4)) { set.remove(s4); }
+        for (int[] r : rectangles) {
+            top = Math.max(top, r[3]);
+            right = Math.max(right, r[2]);
+            bottom = Math.min(bottom, r[1]);
+            left = Math.min(left, r[0]);
+            area += ((long) r[3] - r[1]) * (r[2] - r[0]);
+            for (String s : getPoints(r)) {
+                if (set.contains(s)) {
+                    set.remove(s);
+                } else {
+                    set.add(s);
+                }
+            }
         }
 
-        if (!set.contains(x1 + " " + y1) || !set.contains(x1 + " " + y2) || !set.contains(x2 + " " + y1)
-                || !set.contains(x2 + " " + y2) || set.size() != 4) {
+        if (set.size() != 4 || ((long) top - bottom) * (right - left) != area) {
             return false;
         }
 
-        return area == (x2 - x1) * (y2 - y1);
+        return set.contains(hash(left, bottom)) && set.contains(hash(left,top)) &&
+                set.contains(hash(right, bottom)) && set.contains(hash(right, top));
     }
 }

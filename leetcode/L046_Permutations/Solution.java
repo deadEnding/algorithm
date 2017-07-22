@@ -1,56 +1,54 @@
-package leetcode.L046_Permutations;
+package leetcode.again.L046_Permutations;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 /**
  * @author: deadend
- * @date: 5:21 PM 11/30/16
+ * @date: 11:18 AM 3/3/17
  * @version: 1.0
  * @description:
  */
 
 
 public class Solution {
-    private List<List<Integer>> result = new LinkedList<>();
-
-    private void swap(int[] nums, int i, int j) {
-        int tmp = nums[i];
-        nums[i] = nums[j];
-        nums[j] = tmp;
+    private List<Integer> array2list(int[] nums) {
+        List<Integer> list = new LinkedList<>();
+        for (int n : nums) {
+            list.add(n);
+        }
+        return list;
     }
 
-    // nums[k..n-1]的全排列
-    private void permute(int[] nums, int k) {
-        if (k == nums.length) {
-            List<Integer> tmp = new ArrayList<>(nums.length);
-            for (int n : nums) {
-                tmp.add(n);
-            }
-            result.add(tmp);
+    private void swap(int[] nums, int i, int j) {
+        if (i != j) {
+            int t = nums[i];
+            nums[i] = nums[j];
+            nums[j] = t;
+        }
+    }
+
+    private void permute(int ix, int[] nums, List<List<Integer>> result) {
+        if (ix == nums.length) {
+            result.add(array2list(nums));
             return;
         }
 
-        for (int i = k; i < nums.length; i++) {
-            swap(nums, i, k);
-            permute(nums, k + 1);
-            swap(nums, i, k);
+        for (int i = ix; i < nums.length; i++) {
+            swap(nums, i, ix);
+            permute(ix + 1, nums, result);
+            swap(nums, i, ix);
         }
     }
+
     public List<List<Integer>> permute(int[] nums) {
-        permute(nums, 0);
+        List<List<Integer>> result = new LinkedList<>();
+        permute(0, nums, result);
         return result;
     }
 
     public static void main(String[] args) {
-        int[] nums = {1,2,3,4};
-        List<List<Integer>> result = new Solution().permute(nums);
-        for (List<Integer> list : result) {
-            for (int i : list) {
-                System.out.print(i + " ");
-            }
-            System.out.println();
-        }
+        int[] nums = {1,2,3};
+        System.out.println(new Solution().permute(nums));
     }
 }

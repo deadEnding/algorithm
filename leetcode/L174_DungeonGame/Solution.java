@@ -1,60 +1,56 @@
-package leetcode.L174_DungeonGame;
+package leetcode.again.L174_DungeonGame;
 
-/**
- * @author: deadend
- * @date: 9:27 AM 12/8/16
- * @version: 1.0
- * @description:
- */
 
 public class Solution {
     public int calculateMinimumHP(int[][] dungeon) {
         final int m = dungeon.length;
         final int n = dungeon[0].length;
 
-        int[] min = new int[n + 1];
-        min[n] = Integer.MAX_VALUE;
-
+        int[] dp = new int[n + 1];
+        dp[n] = Integer.MIN_VALUE;
         for (int i = m - 1; i >= 0; i--) {
             for (int j = n - 1; j >= 0; j--) {
                 if (i == m - 1 && j == n - 1) {
-                    min[j] = Math.max(0, -dungeon[i][j]);
+                    dp[j] = Math.min(0, dungeon[i][j]);
                 } else if (i == m - 1) {
-                    min[j] = Math.max(0, min[j + 1] - dungeon[i][j]);
+                    dp[j] = Math.min(0, dp[j + 1] + dungeon[i][j]);
                 } else {
-                    min[j] = Math.max(0, Math.min(min[j], min[j + 1]) - dungeon[i][j]);
+                    dp[j] = Math.min(0, Math.max(dp[j], dp[j + 1]) + dungeon[i][j]);
                 }
             }
         }
-        return min[0] + 1;
+
+        return -dp[0] + 1;
     }
 
     public static void main(String[] args) {
-        int[][] dungeon = {{-2, -3 , 3}, {-5, -10, 1}, {10, 30, -5}};
-        System.out.println(new Solution().calculateMinimumHP(dungeon));
+        int[][] d = {{0,-3}};
+        System.out.println(new Solution().calculateMinimumHP(d));
     }
 }
+
 
 class BasicSolution {
     public int calculateMinimumHP(int[][] dungeon) {
         final int m = dungeon.length;
         final int n = dungeon[0].length;
 
-        int[][] min = new int[m][n];
-        for (int i = m - 1; i >= 0; i--) {
-            for (int j = n - 1; j >= 0; j--) {
-                if (i == m - 1 && j == n - 1) {
-                    min[i][j] = Math.max(0, -dungeon[i][j]);
-                } else if (i == m - 1) {
-                    min[i][j] = Math.max(0, min[i][j + 1] - dungeon[i][j]);
-                } else if (j == n - 1) {
-                    min[i][j] = Math.max(0, min[i + 1][j] - dungeon[i][j]);
-                } else {
-                    min[i][j] = Math.max(0, Math.min(min[i][j + 1], min[i + 1][j]) - dungeon[i][j]);
-                }
+        int[][] dp = new int[m][n];
+        dp[m - 1][n - 1] = Math.min(0, dungeon[m - 1][n - 1]);
+        for (int i = m - 2; i >= 0; i--) {
+            dp[i][n - 1] = Math.min(0, dp[i + 1][n - 1] + dungeon[i][n - 1]);
+        }
+
+        for (int j = n - 2; j >= 0; j--) {
+            dp[m - 1][j] = Math.min(0, dp[m - 1][j + 1] + dungeon[m - 1][j]);
+        }
+
+        for (int i = m - 2; i >= 0; i--) {
+            for (int j = n - 2; j >= 0; j--) {
+                dp[i][j] = Math.min(0, Math.max(dp[i + 1][j], dp[i][j + 1]) + dungeon[i][j]);
             }
         }
 
-        return min[0][0] + 1;
+        return -dp[0][0] + 1;
     }
 }

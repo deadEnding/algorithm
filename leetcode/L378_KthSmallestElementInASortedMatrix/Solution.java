@@ -1,12 +1,8 @@
-package leetcode.L378_KthSmallestElementInASortedMatrix;
-
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.PriorityQueue;
+package leetcode.again.L378_KthSmallestElementInASortedMatrix;
 
 /**
  * @author: deadend
- * @date: 9:31 PM 12/18/16
+ * @date: 4:20 PM 3/1/17
  * @version: 1.0
  * @description:
  */
@@ -14,48 +10,30 @@ import java.util.PriorityQueue;
 
 public class Solution {
     public int kthSmallest(int[][] matrix, int k) {
-        final int n = matrix.length;
-        PriorityQueue<int[]> heap = new PriorityQueue<>(k, new Comparator<int[]>() {
-            @Override
-            public int compare(int[] o1, int[] o2) {
-                return o1[0] - o2[0];
-            }
-        });
-
-        for (int i = 0; i < Math.min(n, k); i++) {
-            heap.offer(new int[]{matrix[i][0], i, 0});
+        if (matrix == null || matrix.length == 0) {
+            return -1;
         }
 
-        int kth = 0;
-        while (k-- > 0) {
-            int[] curr = heap.poll();
-            kth = curr[0];
-            if (curr[2] + 1 < n) {
-                heap.offer(new int[]{matrix[curr[1]][curr[2] + 1], curr[1], curr[2] + 1});
-            }
-        }
-        return kth;
-    }
-}
-
-class BinarySearchSolution {
-    public int kthSmallest(int[][] matrix, int k) {
         final int n = matrix.length;
 
         int l = matrix[0][0];
         int r = matrix[n - 1][n - 1];
-
         while (l < r) {
-            int mid = l + (r - l) / 2;
-            int count = 0;
+            int m = l + (r - l) / 2;
+            int cnt = 0;
             for (int i = 0; i < n; i++) {
-                int pos = Arrays.binarySearch(matrix[i], mid + 1);  // 注意Arrays.binarySearch在有重复元素的数组时返回重复元素第二次出现的下标
-                count += pos >= 0 ? pos : -pos - 1;
+                int j = 0;
+                while ( j < n) {
+                    if (matrix[i][j] > m)
+                        break;
+                    j++;
+                }
+                cnt += j;
             }
-            if (count < k) {
-                l = mid + 1;
+            if (cnt < k) {
+                l = m + 1;
             } else {
-                r = mid;
+                r = m;
             }
         }
         return l;

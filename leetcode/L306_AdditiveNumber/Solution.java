@@ -1,36 +1,34 @@
-package leetcode.L306_AdditiveNumber;
+package leetcode.again.L306_AdditiveNumber;
 
 /**
  * @author: deadend
- * @date: 9:49 AM 12/13/16
+ * @date: 8:04 PM 3/5/17
  * @version: 1.0
  * @description:
  */
 
 
 public class Solution {
-    private boolean isAdditiveNumber(String num, int i, int j) {
-        int h = 0;
-        while (j < num.length()) {
-            long x = Long.valueOf(num.substring(h, i));
-            long y = Long.valueOf(num.substring(i, j));
-            String sz = String.valueOf(x + y);
-            if (j + sz.length() > num.length() || !num.substring(j, j + sz.length()).equals(sz)) {
+    private boolean isAdditive(String num, long prev, long curr, int i) {
+        while (i < num.length()) {
+            long next = prev + curr;
+            String snext = String.valueOf(next);
+            if (!num.substring(i).startsWith(snext)) {
                 return false;
             }
-            h = i;
-            i = j;
-            j = j + sz.length();
+            prev = curr;
+            curr = next;
+            i += snext.length();
         }
         return true;
     }
 
     public boolean isAdditiveNumber(String num) {
-        final int n = num.length();
-
-        for (int i = 1; i <= n / 2; i++) {
-            for (int j = i + 1; j < n; j++) {
-                if (isAdditiveNumber(num, i, j)) {
+        for (int i = 1; i < num.length(); i++) {
+            String sprev = num.substring(0, i);
+            for (int j = i + 1; j < num.length(); j++) {
+                String scurr = num.substring(i, j);
+                if (isAdditive(num, Long.valueOf(sprev), Long.valueOf(scurr), j)) {
                     return true;
                 }
                 if (num.charAt(i) == '0') {
@@ -41,12 +39,11 @@ public class Solution {
                 break;
             }
         }
-
         return false;
     }
 
     public static void main(String[] args) {
-        String num = "198019823962";
-        System.out.println(new Solution().isAdditiveNumber(num));
+        String s = "112";
+        System.out.println(new Solution().isAdditiveNumber(s));
     }
 }

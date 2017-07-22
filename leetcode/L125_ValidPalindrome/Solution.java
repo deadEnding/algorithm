@@ -1,27 +1,23 @@
-package leetcode.L125_ValidPalindrome;
+package leetcode.again.L125_ValidPalindrome;
 
-/**
- * @author: deadend
- * @date: 1:46 PM 12/5/16
- * @version: 1.0
- * @description:
- */
 
 public class Solution {
     public boolean isPalindrome(String s) {
-        for (int i = 0, j = s.length() - 1; i < j; i++, j--) {
-            while (i < j && !Character.isAlphabetic(s.charAt(i)) && !Character.isDigit(s.charAt(i))) {
-                i++;
+        int l = 0, r = s.length() - 1;
+        while (l < r) {
+            while (l < r && !Character.isDigit(s.charAt(l)) && !Character.isLetter(s.charAt(l))) {
+                l++;
             }
 
-            while (i < j && !Character.isAlphabetic(s.charAt(j)) && !Character.isDigit(s.charAt(j))) {
-                j--;
+            while (l < r && !Character.isDigit(s.charAt(r)) && !Character.isLetter(s.charAt(r))) {
+                r--;
             }
 
-            if (Character.toLowerCase(s.charAt(i)) != Character.toLowerCase(s.charAt(j))) {
+            if (Character.toLowerCase(s.charAt(l++)) != Character.toLowerCase(s.charAt(r--))) {
                 return false;
             }
         }
+
         return true;
     }
 }

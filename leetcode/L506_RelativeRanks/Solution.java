@@ -1,56 +1,36 @@
-package leetcode.L506_RelativeRanks;
+package leetcode.again.L506_RelativeRanks;
 
 import java.util.Arrays;
-import java.util.Comparator;
 
 /**
  * @author: deadend
- * @date: 2:08 PM 2/11/17
- * @version: 1.0
- * @description:
+ * @date: 6:36 PM 28/03/2017
  */
 
 
 public class Solution {
     public String[] findRelativeRanks(int[] nums) {
         final int n = nums.length;
-        String[] rank = new String[n];
-        int[][] list = new int[n][2];
+        int[][] tmp = new int[n][2];
         for (int i = 0; i < n; i++) {
-            list[i][0] = i;
-            list[i][1] = nums[i];
+            tmp[i][0] = nums[i];
+            tmp[i][1] = i;
         }
 
-        Arrays.sort(list, new Comparator<int[]>() {
-            @Override
-            public int compare(int[] o1, int[] o2) {
-                return Integer.compare(o2[1], o1[1]);
-            }
-        });
+        Arrays.sort(tmp, (i1, i2) -> (i2[0] - i1[0]));
 
+        String[] result = new String[n];
         for (int i = 0; i < n; i++) {
-            switch (i) {
-                case 0:
-                    rank[list[i][0]] = "Gold Medal";
-                    break;
-                case 1:
-                    rank[list[i][0]] = "Silver Medal";
-                    break;
-                case 2:
-                    rank[list[i][0]] = "Bronze Medal";
-                    break;
-                default:
-                    rank[list[i][0]] = String.valueOf(i + 1);
+            if (i == 0) {
+                result[tmp[i][1]] = "Gold Medal";
+            } else if (i == 1) {
+                result[tmp[i][1]] = "Silver Medal";
+            } else if (i == 2) {
+                result[tmp[i][1]] = "Bronze Medal";
+            } else {
+                result[tmp[i][1]] = String.valueOf(i + 1);
             }
         }
-        return rank;
-    }
-
-    public static void main(String[] args) {
-        int[] nums = {3,4,5,2,1};
-        String[] rank = new Solution().findRelativeRanks(nums);
-        for (String r : rank) {
-            System.out.print(r + ",");
-        }
+        return result;
     }
 }

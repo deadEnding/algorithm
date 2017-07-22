@@ -1,31 +1,31 @@
-package leetcode.L525_ContiguousArray;
+package leetcode.again.L525_ContiguousArray;
 
 import java.util.HashMap;
 
 /**
  * @author: deadend
- * @date: 5:35 PM 2/20/17
- * @version: 1.0
- * @description:
+ * @date: 10:57 AM 29/03/2017
  */
 
 
 public class Solution {
     public int findMaxLength(int[] nums) {
         final int n = nums.length;
+
         for (int i = 0; i < n; i++) {
-            nums[i] = nums[i] == 1 ? 1 : -1;
+            nums[i] = nums[i] == 0 ? -1 : 1;
         }
 
         int max = 0;
-        HashMap<Integer, Integer> sumIndex = new HashMap<>();
-        sumIndex.put(0, -1);
-        for (int i = 0, sum = 0; i < n; i++) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        map.put(0, -1);
+        int sum = 0;
+        for (int i = 0; i < n; i++) {
             sum += nums[i];
-            if (sumIndex.containsKey(sum)) {
-                max = Math.max(max, i - sumIndex.get(sum));
+            if (map.containsKey(sum)) {
+                max = Math.max(max, i - map.get(sum));
             } else {
-                sumIndex.put(sum, i);
+                map.put(sum, i);
             }
         }
         return max;

@@ -1,71 +1,66 @@
-package leetcode.L399_EvaluateDivision;
+package leetcode.again.L399_EvaluateDivision;
 
 import java.util.HashMap;
+import java.util.HashSet;
 
 /**
  * @author: deadend
- * @date: 9:33 PM 12/20/16
+ * @date: 2:15 PM 3/14/17
  * @version: 1.0
  * @description:
  */
 
 
 public class Solution {
-    private double query(String from, String to, HashMap<String, HashMap<String, Double>> m) {
-        if (!m.containsKey(from) || !m.containsKey(to)) {
-            return -1.0;
-        }
-
-        if (from.equals(to)) {
+    private Double dfs(String curr, String target, HashMap<String, HashMap<String, Double>> adj, HashSet<String> visited) {
+        if (curr.equals(target)) {
             return 1.0;
         }
 
-        double d;
-        for (String fm : m.get(from).keySet()) {
-            if (m.get(from).get(fm) < 0.000001) {
-                continue;
-            }
-
-            double tmp = m.get(from).get(fm);
-            m.get(from).put(fm, 0.0);
-            if ((d = query(fm, to, m)) + 1.0 > 0.000001) {
-                m.get(from).put(fm, tmp);
-                return tmp * d;
-            }
-            m.get(from).put(fm, tmp);
+        if (visited.contains(curr)) {
+            return null;
         }
-        return -1.0;
+
+        visited.add(curr);
+        HashMap<String, Double> neighs = adj.get(curr);
+        Double sub;
+        for (String ng : neighs.keySet()) {
+            if ((sub = dfs(ng, target, adj, visited)) != null) {
+                visited.remove(curr);
+                return sub * neighs.get(ng);
+            }
+        }
+
+        visited.remove(curr);
+        return null;
     }
 
     public double[] calcEquation(String[][] equations, double[] values, String[][] queries) {
-        HashMap<String, HashMap<String, Double>> m = new HashMap<>();
+        HashMap<String, HashMap<String, Double>> adj = new HashMap<>();
 
         for (int i = 0; i < equations.length; i++) {
-            if (!m.containsKey(equations[i][0])) {
-                m.put(equations[i][0], new HashMap<String, Double>());
+            String[] e = equations[i];
+            if (!adj.containsKey(e[0])) {
+                adj.put(e[0], new HashMap<>());
             }
-            m.get(equations[i][0]).put(equations[i][1], values[i]);
 
-            if (!m.containsKey(equations[i][1])) {
-                m.put(equations[i][1], new HashMap<String, Double>());
+            if (!adj.containsKey(e[1])) {
+                adj.put(e[1], new HashMap<>());
             }
-            m.get(equations[i][1]).put(equations[i][0], 1 / values[i]);
+            adj.get(e[0]).put(e[1], values[i]);
+            adj.get(e[1]).put(e[0], 1 / values[i]);
         }
 
         double[] result = new double[queries.length];
+        HashSet<String> visited = new HashSet<>();
         for (int i = 0; i < queries.length; i++) {
-            result[i] = query(queries[i][0], queries[i][1], m);
+            if (!adj.containsKey(queries[i][0]) || !adj.containsKey(queries[i][1])) {
+                result[i] = -1.0;
+            } else {
+                Double r = dfs(queries[i][0], queries[i][1], adj, visited);
+                result[i] = r == null ? -1.0 : r;
+            }
         }
         return result;
-    }
-
-    public static void main(String[] args) {
-        String[][] eq = {{"A", "b"}, {"b", "c"}};
-        double[] values = {2.0, 3.0};
-        String[][] queries = {{"A", "c"}, {"b", "c"}, {"A", "e"}, {"A", "A"}, {"x", "x"}};
-        double[] result = new Solution().calcEquation(eq, values, queries);
-        for (double d : result) {
-            System.out.println(d);
-        }
     }
 }

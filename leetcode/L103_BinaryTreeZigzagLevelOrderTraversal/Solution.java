@@ -1,15 +1,10 @@
-package leetcode.L103_BinaryTreeZigzagLevelOrderTraversal;
+package leetcode.again.L103_BinaryTreeZigzagLevelOrderTraversal;
+
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-
-/**
- * @author: deadend
- * @date: 1:11 PM 12/3/16
- * @version: 1.0
- * @description:
- */
 
 class TreeNode {
     int val;
@@ -18,60 +13,65 @@ class TreeNode {
     TreeNode(int x) { val = x; }
 }
 
+
+
 public class Solution {
     public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
-        List<List<Integer>> result = new LinkedList<>();
+        List<List<Integer>> result = new ArrayList<>();
         if (root == null) {
             return result;
         }
 
-        LinkedList<TreeNode> queue = new LinkedList<>();
-        List<Integer> level = new LinkedList<>();
-        queue.offer(root);
-        queue.offer(null);
-        while (!queue.isEmpty()) {
-            TreeNode node = queue.poll();
-            if (node != null) {
-                int pos = result.size() % 2 == 0 ? level.size() : 0;
-                level.add(pos, node.val);
-                if (node.left != null) {
-                    queue.offer(node.left);
-                }
+        int depth = 0;
+        LinkedList<TreeNode> level = new LinkedList<>();
+        level.add(root);
+        while (!level.isEmpty()) {
+            LinkedList<Integer> nums = new LinkedList<>();
+            LinkedList<TreeNode> nextLevel = new LinkedList<>();
 
-                if (node.right != null) {
-                    queue.offer(node.right);
-                }
-            } else {
-                result.add(level);
-                if (!queue.isEmpty()) {
-                    queue.offer(null);
-                    level = new LinkedList<>();
-                }
+            for (TreeNode node : level) {
+                nums.add(node.val);
+                if (node.left != null)
+                    nextLevel.add(node.left);
+                if (node.right != null)
+                    nextLevel.add(node.right);
             }
+
+            if (depth++ % 2 == 1)
+                Collections.reverse(nums);
+            result.add(nums);
+
+            level = nextLevel;
         }
+
         return result;
     }
 }
 
-class RecusiveSolution {
-    private List<List<Integer>> result = new ArrayList<>();
 
-    private void traverse(TreeNode root, int depth) {
+
+
+
+class FirstSolution {
+
+    private void preorder(TreeNode root, int depth, List<List<Integer>> result) {
         if (root == null) {
             return;
         }
 
-        if (result.size() <= depth || result.get(depth) == null) {
-            result.add(depth, new LinkedList<Integer>());
+        if (depth >= result.size()) {
+            result.add(new LinkedList<>());
         }
+
         int pos = depth % 2 == 0 ? result.get(depth).size() : 0;
         result.get(depth).add(pos, root.val);
-        traverse(root.left, depth + 1);
-        traverse(root.right, depth + 1);
+        preorder(root.left, depth + 1, result);
+        preorder(root.right, depth + 1, result);
     }
 
     public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
-        traverse(root, 0);
+        List<List<Integer>> result = new ArrayList<>();
+        preorder(root, 0, result);
         return result;
     }
 }

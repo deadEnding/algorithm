@@ -1,19 +1,18 @@
-package leetcode.L413_ArithmeticSlices;
-
-import java.util.HashMap;
+package leetcode.again.L413_ArithmeticSlices;
 
 /**
  * @author: deadend
- * @date: 5:01 PM 12/21/16
+ * @date: 5:26 PM 3/3/17
  * @version: 1.0
  * @description:
  */
 
 public class Solution {
     public int numberOfArithmeticSlices(int[] A) {
+        final int n = A.length;
         int sum = 0;
-        for (int i = 2, curr = 0; i < A.length; i++) {
-            if (2 * A[i - 1] == A[i - 2] + A[i]) {
+        for (int i = 2, curr = 0; i < n; i++) {
+            if ((long)A[i] + A[i - 2] == (long)A[i - 1] * 2) {
                 curr++;
                 sum += curr;
             } else {
@@ -25,37 +24,33 @@ public class Solution {
 }
 
 class BasicSolution {
-    private int getNumber(HashMap<Integer, Integer> mem, int target) {
-        if (target <= 3) {
-            return target == 3 ? 1 : 0;
-        }
-
-        if (!mem.containsKey(target)) {
-            mem.put(target, getNumber(mem, target - 1) + target - 2);
-        }
-        return mem.get(target);
-    }
-
     public int numberOfArithmeticSlices(int[] A) {
-        if (A.length < 3) {
+        final int n = A.length;
+        if (n < 3) {
             return 0;
         }
 
-        int sum = 0;
-        HashMap<Integer, Integer> mem = new HashMap<>();
-        for (int i = 1; i < A.length - 1; i++) {
-            int count = 0;
-            while (i < A.length - 1 && 2 * A[i] == A[i - 1] + A[i + 1]) {
-                count++;
-                i++;
+        int count = 0;
+        int[][] f = new int[n][2];
+        for (int i = 2; i < n; i++) {
+            if (f[i - 1][0] == 0) {
+                if ((long)A[i] + A[i - 2] == (long)A[i - 1] * 2) {
+                    f[i][0] = 1;
+                    f[i][1] = A[i] - A[i - 1];
+                }
+            } else {
+                if ((long)A[i] - A[i - 1] == f[i - 1][1]) {
+                    f[i][0] = f[i - 1][0] + 1;
+                    f[i][1] = A[i] - A[i - 1];
+                }
             }
-            sum += getNumber(mem, count + 2);
+            count += f[i][0];
         }
-        return sum;
+        return count;
     }
 
     public static void main(String[] args) {
-        int[] A = {1,2, 3,4};
+        int[] A = {1,2,3,4,5};
         System.out.println(new Solution().numberOfArithmeticSlices(A));
     }
 }

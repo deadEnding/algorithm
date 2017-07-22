@@ -1,8 +1,8 @@
-package leetcode.L044_WildcardMatching;
+package leetcode.again.L044_WildcardMatching;
 
 /**
  * @author: deadend
- * @date: 3:07 PM 11/30/16
+ * @date: 11:09 AM 3/18/17
  * @version: 1.0
  * @description:
  */
@@ -10,34 +10,31 @@ package leetcode.L044_WildcardMatching;
 
 public class Solution {
     public boolean isMatch(String s, String p) {
-        int match = 0;     // 遇到过*后匹配失败时回溯到match重新匹配
-        int starIx = -1;   // 最近的*的下标
+        final int m = s.length(), n = p.length();
+        boolean[][] match = new boolean[m + 1][n + 1];
 
-        int i = 0, j = 0;
-        while (i < s.length()) {
-            if (j < p.length() && (p.charAt(j) == '?' || s.charAt(i) == p.charAt(j))) {
-                i++;
-                j++;
-            } else if (j < p.length() && p.charAt(j) == '*') {
-                match = i;
-                starIx = j++;
-            } else if (starIx != -1){
-                j = starIx + 1;
-                i = match++;
-            } else {
-                return false;
+        match[0][0] = true;
+        for (int j = 1; j <= n; j++) {
+            match[0][j] = match[0][j - 1] && p.charAt(j - 1) == '*';
+        }
+
+        for (int i = 1; i <= m; i++) {
+            for (int j = 1; j <= n; j++) {
+                if (p.charAt(j - 1) == '?' || s.charAt(i - 1) == p.charAt(j - 1)) {
+                    match[i][j] = match[i - 1][j - 1];
+                } else if (p.charAt(j - 1) == '*') {
+                    match[i][j] = match[i][j - 1] | match[i - 1][j];
+                } else {
+                    match[i][j] = false;
+                }
             }
         }
-
-        while (j < p.length() && p.charAt(j) == '*') {
-            j++;
-        }
-        return j == p.length();
+        return match[m][n];
     }
 
     public static void main(String[] args) {
-        String s = "alibaba";
-        String p = "**A";
+        String s = "";
+        String p = "*";
         System.out.println(new Solution().isMatch(s, p));
     }
 }

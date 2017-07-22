@@ -1,11 +1,11 @@
-package leetcode.L089_GrayCode;
+package leetcode.again.L089_GrayCode;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * @author: deadend
- * @date: P10:38 PM 12/1/16
+ * @date: 12:48 PM 2/28/17
  * @version: 1.0
  * @description:
  */
@@ -13,22 +13,7 @@ import java.util.List;
 
 public class Solution {
     public List<Integer> grayCode(int n) {
-        final int size = 1 << n;
-        List<Integer> result = new ArrayList<>(n);
-        for (int i = 0; i < size; i++) {
-            result.add(i ^ (i >> 1));
-        }
-        return result;
-    }
-
-    public static void main(String[] args) {
-        System.out.println(new BasicSolution().grayCode(3).toString());
-    }
-}
-
-class BasicSolution {
-    public List<Integer> grayCode(int n) {
-        List<Integer> result = new ArrayList<>(1 << n);
+        List<Integer> result = new ArrayList<>();
         result.add(0);
         for (int i = 0; i < n; i++) {
             int inc = 1 << i;
@@ -38,5 +23,8 @@ class BasicSolution {
         }
         return result;
     }
-}
 
+    public static void main(String[] args) {
+        System.out.println(new Solution().grayCode(0));
+    }
+}

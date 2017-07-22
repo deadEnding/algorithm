@@ -1,79 +1,76 @@
-package leetcode.L032_LongestValidParentheses;
+package leetcode.again.L032_LongestValidParentheses;
 
 import java.util.LinkedList;
 
 /**
  * @author: deadend
- * @date: 12:46 PM 11/30/16
+ * @date: 9:58 AM 2/27/17
  * @version: 1.0
  * @description:
  */
 
+
 public class Solution {
+    class Item {
+        int ix;
+        char c;
+
+        public Item(int ix, char c) {
+            this.ix = ix;
+            this.c = c;
+        }
+    }
+
     public int longestValidParentheses(String s) {
+        final int n = s.length();
+
         int max = 0;
-        int last = -1;
-        LinkedList<Integer> stack = new LinkedList<>();
+        LinkedList<Item> stack = new LinkedList<>();
+        stack.push(new Item(-1, ')'));
 
         for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
-            if (c == '(') {
-                stack.push(i);
+            if (c == ')' && stack.peek().c == '(') {
+                stack.pop();
+                max = Math.max(max, i - stack.peek().ix);
             } else {
-                if (stack.isEmpty()) {      // 匹配中断
-                    last = i;
-                } else {
-                    stack.pop();
-                    if (stack.isEmpty()) {  // 上一次中断到现在全部匹配成功
-                        max = Math.max(max, i - last);
-                    } else {                // 上一次中断到现在部分匹配成功
-                        max = Math.max(max, i - stack.peek());
-                    }
-                }
+                stack.push(new Item(i, c));
             }
         }
-        return max;
-    }
 
-    public static void main(String[] args) {
-        String s = "((";
-        System.out.println(new Solution().longestValidParentheses(s));
+        return max;
     }
 }
 
-class BasicSolution {
-    public int longestValidParentheses(String s) {
-        int max = 0;
-        LinkedList<Integer> stack = new LinkedList<>();
+class OldSolution {
 
+    public int longestValidParentheses(String s) {
+        LinkedList<Integer> stack = new LinkedList<>();
+        int max = 0;
         for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
             if (c == '(') {
                 stack.push(i);
             } else {
-                if (!stack.isEmpty()) {
-                    int start = stack.pop();
-                    if (start == -1) {
-                        stack.pop();
-                        if (!stack.isEmpty()) {
-                            start = stack.pop();
-                        } else {
-                            continue;
-                        }
+                if (!stack.isEmpty() && stack.peek() >= 0) {
+                    stack.pop();
+                    if (stack.isEmpty()) {
+                        max = Math.max(max, i + 1);
+                    } else {
+                        int t = stack.peek();
+                        max = Math.max(max, i - (t >= 0 ? t : -(t + 1)));
                     }
-
-                    int len = i - start + 1;
-                    while (!stack.isEmpty() && stack.peek() == -1) {
-                        stack.pop();
-                        int l = stack.pop();
-                        len += l;
-                    }
-                    max = Math.max(max, len);
-                    stack.push(len);
-                    stack.push(-1);
+                } else {
+                    stack.push(-i - 1);
                 }
             }
         }
         return max;
+    }
+
+
+    public static void main(String[] args) {
+        String s = ")()())()()(";
+        System.out.println(new Solution().longestValidParentheses(s));
     }
 }

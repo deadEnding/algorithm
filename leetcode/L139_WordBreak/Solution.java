@@ -1,24 +1,82 @@
-package leetcode.L139_WordBreak;
+package leetcode.again.L139_WordBreak;
 
-import java.util.Set;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
 
 /**
  * @author: deadend
- * @date: 3:30 PM 12/6/16
+ * @date: 9:51 AM 3/17/17
  * @version: 1.0
  * @description:
  */
 
-// can[i] = contain(i, j) && can[j]
 public class Solution {
-    public boolean wordBreak(String s, Set<String> wordDict) {
+    private boolean helper(int ix, String s, HashSet<String> dict, int[] can) {
+        if (can[ix] == 0) {
+            if (dict.contains(s.substring(ix))) {
+                can[ix] = 1;
+            } else {
+                can[ix] = -1;
+                for (int i = ix + 1; i < s.length(); i++) {
+                    if (dict.contains(s.substring(ix, i)) && helper(i, s, dict, can)) {
+                        can[ix] = 1;
+                        break;
+                    }
+                }
+            }
+        }
+        return can[ix] == 1;
+    }
+
+    public boolean wordBreak(String s, List<String> wordDict) {
         final int n = s.length();
+        HashSet<String> set = new HashSet<>();
+        set.addAll(wordDict);
+        return helper(0, s, set, new int[n]);
+    }
+}
+
+
+class DPUpDownSolution {
+
+    private boolean helper(int ix, String s, HashSet<String> dict, HashMap<Integer, Boolean> cache) {
+        if (ix == s.length()) {
+            return true;
+        }
+
+        if (cache.containsKey(ix)) {
+            return cache.get(ix);
+        }
+
+        for (int i = ix + 1; i <= s.length(); i++) {
+            if (dict.contains(s.substring(ix, i)) && helper(i, s, dict, cache)) {
+                cache.put(ix, true);
+                return true;
+            }
+        }
+        cache.put(ix, false);
+        return false;
+    }
+
+    public boolean wordBreak(String s, List<String> wordDict) {
+        HashSet<String> set = new HashSet<>();
+        set.addAll(wordDict);
+        return helper(0, s, set, new HashMap<>());
+    }
+}
+
+class DPSolution {
+    public boolean wordBreak(String s, List<String> wordDict) {
+        final int n = s.length();
+        HashSet<String> set = new HashSet<>();
+        set.addAll(wordDict);
         boolean[] can = new boolean[n + 1];
         can[n] = true;
 
         for (int i = n - 1; i >= 0; i--) {
-            for (int j = n; j > i; j--) {
-                if (wordDict.contains(s.substring(i, j)) && can[j]) {
+            for (int j = i + 1; j <= n; j++) {
+                if (set.contains(s.substring(i, j)) && can[j]) {
                     can[i] = true;
                     break;
                 }
@@ -28,28 +86,30 @@ public class Solution {
     }
 }
 
-// 备忘录
-class RecusiveSolution {
-    private boolean wordBreak(String s, int from, Set<String> dict, int[] can) {
-        if (can[from] == 0) {
-            if (dict.contains(s.substring(from))) {
-                can[from] = 1;
-            } else {
-                can[from] = -1;
-                for (int i = from + 1; i < s.length(); i++) {
-                    if (dict.contains(s.substring(from, i)) && wordBreak(s, i, dict, can)) {
-                        can[from] = 1;
-                        break;
-                    }
-                }
+
+class TimeoutSolution {
+    private boolean wordBreak(String s, HashSet<String> wordDict, HashMap<String, Boolean> cache) {
+        if (wordDict.contains(s)) {
+            return true;
+        }
+
+        if (cache.containsKey(s)) {
+            return cache.get(s);
+        }
+
+        for (int i = 1; i < s.length(); i++) {
+            if (wordBreak(s.substring(0, i), wordDict, cache) && wordBreak(s.substring(i), wordDict, cache)) {
+                cache.put(s, true);
+                return true;
             }
         }
-        return can[from] == 1 ? true : false;
+        cache.put(s, false);
+        return false;
     }
 
-    public boolean wordBreak(String s, Set<String> wordDict) {
-        final int n = s.length();
-        int[] can = new int[n];
-        return wordBreak(s, 0, wordDict, can);
+    public boolean wordBreak(String s, List<String> wordDict) {
+        HashSet<String> dict = new HashSet<>();
+        dict.addAll(wordDict);
+        return wordBreak(s, dict, new HashMap<>());
     }
 }

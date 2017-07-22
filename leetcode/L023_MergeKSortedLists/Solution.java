@@ -1,11 +1,10 @@
-package leetcode.L023_MergeKSortedLists;
+package leetcode.again.L023_MergeKSortedLists;
 
-import java.util.Comparator;
 import java.util.PriorityQueue;
 
 /**
  * @author: deadend
- * @date: 9:16 AM 11/30/16
+ * @date: 9:01 PM 3/17/17
  * @version: 1.0
  * @description:
  */
@@ -16,35 +15,25 @@ class ListNode {
     ListNode(int x) { val = x; }
 }
 
+
 public class Solution {
     public ListNode mergeKLists(ListNode[] lists) {
-        final int n = lists.length;
-        if (n == 0) {
-            return null;
-        }
-
-        PriorityQueue<ListNode> heap = new PriorityQueue<>(n, new Comparator<ListNode>() {
-
-            public int compare(ListNode n1, ListNode n2) {
-                return n1.val - n2.val;
-            }
-        });
-
-        for (int i = 0; i < n; i++) {
-            if (lists[i] != null) {
-                heap.offer(lists[i]);
+        PriorityQueue<ListNode> heap = new PriorityQueue<>((l1, l2) -> (l1.val - l2.val));
+        for (ListNode list : lists) {
+            if (list != null) {
+                heap.offer(list);
             }
         }
 
         ListNode dummy = new ListNode(-1);
-        ListNode curr = dummy;
+        ListNode p = dummy;
         while (!heap.isEmpty()) {
-            ListNode min = heap.poll();
-            if (min.next != null) {
-                heap.offer(min.next);
+            ListNode node = heap.poll();
+            p.next = node;
+            p = node;
+            if (node.next != null) {
+                heap.offer(node.next);
             }
-            curr.next = min;
-            curr = curr.next;
         }
         return dummy.next;
     }

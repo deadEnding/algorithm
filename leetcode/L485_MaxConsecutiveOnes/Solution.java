@@ -1,8 +1,8 @@
-package leetcode.L485_MaxConsecutiveOnes;
+package leetcode.again.L485_MaxConsecutiveOnes;
 
 /**
  * @author: deadend
- * @date: 8:37 PM 2/4/17
+ * @date: 9:33 PM 3/14/17
  * @version: 1.0
  * @description:
  */
@@ -10,14 +10,14 @@ package leetcode.L485_MaxConsecutiveOnes;
 
 public class Solution {
     public int findMaxConsecutiveOnes(int[] nums) {
-        int max = 0, tmp = 0;
-        for (int n : nums) {
-            if (n == 0) {
-                tmp = 0;
+        int max = 0;
+        for (int i = 0, cnt = 0; i < nums.length; i++) {
+            if (nums[i] == 1) {
+                cnt++;
             } else {
-                tmp++;
+                cnt = 0;
             }
-            max = Math.max(max, tmp);
+            max = Math.max(max, cnt);
         }
         return max;
     }

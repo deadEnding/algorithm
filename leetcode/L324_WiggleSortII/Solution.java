@@ -1,10 +1,10 @@
-package leetcode.L324_WiggleSortII;
+package leetcode.again.L324_WiggleSortII;
 
 import java.util.Arrays;
 
 /**
  * @author: deadend
- * @date: P10:18 PM 12/15/16
+ * @date: 9:08 PM 3/P10/17
  * @version: 1.0
  * @description:
  */
@@ -16,16 +16,17 @@ public class Solution {
 
         Arrays.sort(nums);
         int[] arr = Arrays.copyOf(nums, n);
-        int i, ix;
 
-        // 从右向左偶数索引放小数
-        for (i = 0, ix = (n % 2 == 1 ? n - 1 : n - 2); ix >= 0; i++, ix -= 2) {
-            nums[ix] = arr[i];
+        int ix = 0;
+
+        // 从右向左偶数位置放前一半小数
+        for (int i = (n % 2 == 1 ? n - 1 : n - 2); i >= 0; i -= 2) {
+            nums[i] = arr[ix++];
         }
 
-        // 从右向左奇数索引放大数
-        for (ix = (n % 2 == 0 ? n - 1 : n - 2); ix >= 0; i++, ix -= 2) {
-            nums[ix] = arr[i];
+        // 从右向左奇数位置放后一半大数
+        for (int i = (n % 2 == 1 ? n - 2 : n - 1); i >= 1; i -= 2) {
+            nums[i] = arr[ix++];
         }
     }
 }

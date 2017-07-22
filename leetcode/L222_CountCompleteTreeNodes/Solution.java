@@ -1,8 +1,8 @@
-package leetcode.L222_CountCompleteTreeNodes;
+package leetcode.again.L222_CountCompleteTreeNodes;
 
 /**
  * @author: deadend
- * @date: 11:15 PM 12/9/16
+ * @date: 5:11 PM 2/28/17
  * @version: 1.0
  * @description:
  */
@@ -16,13 +16,13 @@ class TreeNode {
 
 
 public class Solution {
-    private int aleftHeight(TreeNode root) {
-        int height = 0;
+    private int getHeight(TreeNode root) {
+        int h = 0;
         while (root != null) {
-            height++;
+            h++;
             root = root.left;
         }
-        return height;
+        return h;
     }
 
     public int countNodes(TreeNode root) {
@@ -30,12 +30,12 @@ public class Solution {
             return 0;
         }
 
-        int lh = aleftHeight(root.left);
-        int rh = aleftHeight(root.right);
-
+        int lh = getHeight(root.left);
+        int rh = getHeight(root.right);
         if (lh == rh) {
             return (1 << lh) + countNodes(root.right);
+        } else {
+            return (1 << rh) + countNodes(root.left);
         }
-        return countNodes(root.left) + (1 << rh);
     }
 }

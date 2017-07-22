@@ -1,13 +1,7 @@
-package leetcode.L149_MaxPointsOnALine;
+package leetcode.again.L149_MaxPointsOnALine;
+
 
 import java.util.HashMap;
-
-/**
- * @author: deadend
- * @date: 12:36 PM 2/15/17
- * @version: 1.0
- * @description:
- */
 
 class Point {
     int x;
@@ -19,17 +13,12 @@ class Point {
 public class Solution {
 
     private long gcd(long a, long b) {
-        while (b != 0) {
-            long t = a % b;
-            a = b;
-            b = t;
-        }
-        return a;
+        return b == 0 ? a : gcd(b, a % b);
     }
 
     private String simplify(long a, long b) {
-        long g = gcd(a, b);
-        return a / g + "/" + b / g;
+        long c = gcd(a, b);
+        return (a / c) + "/" + (b / c);
     }
 
     public int maxPoints(Point[] points) {
@@ -38,29 +27,28 @@ public class Solution {
             return n;
         }
 
-        int max = 1;
+        int max = 0;
         for (int i = 0; i < n; i++) {
+            int inf = 1;
+            int dup = 0;
             HashMap<String, Integer> map = new HashMap<>();
-            int kmax = 0;
-            int infiniteCount = 0;
-            int dump = 1;
+            int tmax = 0;
             for (int j = i + 1; j < n; j++) {
-                if (points[i].x == points[j].x && points[i].y == points[j].y) {
-                    dump++;
-                    continue;
-                }
-
                 if (points[i].x == points[j].x) {
-                    infiniteCount++;
+                    if (points[i].y == points[j].y)
+                        dup++;
+                    else
+                        inf++;
                 } else {
-                    String k = simplify((long) points[i].y - points[j].y, (long) points[i].x - points[j].x);
-                    map.put(k, map.getOrDefault(k, 0) + 1);
-                    kmax = Math.max(kmax, map.get(k));
+                    String k = simplify((long) points[j].y - points[i].y, (long) points[j].x - points[i].x);
+                    map.put(k, map.getOrDefault(k, 1) + 1);
+                    tmax = Math.max(tmax, map.get(k));
                 }
             }
-            max = Math.max(max, Math.max(kmax, infiniteCount) + dump);
+
+            max = Math.max(max, Math.max(inf, tmax) + dup);
         }
+
         return max;
     }
 }
-

@@ -1,52 +1,33 @@
-package leetcode.L502_IPO;
+package leetcode.again.L502_IPO;
 
-import java.util.Comparator;
 import java.util.PriorityQueue;
 
 /**
  * @author: deadend
- * @date: 2:16 PM 2/12/17
- * @version: 1.0
- * @description:
+ * @date: 3:33 PM 28/03/2017
  */
 
 
 public class Solution {
     public int findMaximizedCapital(int k, int W, int[] Profits, int[] Capital) {
         final int n = Capital.length;
-        PriorityQueue<int[]> profitsMaxHeap = new PriorityQueue<>(new Comparator<int[]>() {
-            @Override
-            public int compare(int[] o1, int[] o2) {
-                return Integer.compare(o2[0], o1[0]);
-            }
-        });
-        PriorityQueue<int[]> capitalMinHeap = new PriorityQueue<>(new Comparator<int[]>() {
-            @Override
-            public int compare(int[] o1, int[] o2) {
-                return Integer.compare(o1[1], o2[1]);
-            }
-        });
-
+        PriorityQueue<int[]> cheap = new PriorityQueue<>((i1, i2) -> (i1[0] - i2[0]));
         for (int i = 0; i < n; i++) {
-            capitalMinHeap.add(new int[]{Profits[i], Capital[i]});
+            cheap.offer(new int[] {Capital[i], Profits[i]});
         }
 
-        for (int ix = 0; ix < k; ix++) {
-            while (!capitalMinHeap.isEmpty() && capitalMinHeap.peek()[1] <= W) {
-                profitsMaxHeap.add(capitalMinHeap.poll());
+        PriorityQueue<int[]> pheap = new PriorityQueue<>((i1, i2) -> (i2[1] - i1[1]));
+        while (k-- > 0) {
+            while (!cheap.isEmpty() && cheap.peek()[0] <= W) {
+                pheap.offer(cheap.poll());
             }
-            if (profitsMaxHeap.isEmpty()) {
+
+            if (pheap.isEmpty()) {
                 break;
             }
-            W += profitsMaxHeap.poll()[0];
+
+            W += pheap.poll()[1];
         }
         return W;
-    }
-
-    public static void main(String[] args) {
-        int k = 2, W = 0;
-        int[] Profits = {1,2,3};
-        int[] Captial = {1,1,1};
-        System.out.println(new Solution().findMaximizedCapital(k, W, Profits, Captial));
     }
 }

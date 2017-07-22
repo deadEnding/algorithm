@@ -1,8 +1,8 @@
-package leetcode.L365_WaterAndJugProblem;
+package leetcode.again.L365_WaterAndJugProblem;
 
 /**
  * @author: deadend
- * @date: 5:38 PM 12/16/16
+ * @date: 1:05 PM 3/1/17
  * @version: 1.0
  * @description:
  */
@@ -10,12 +10,10 @@ package leetcode.L365_WaterAndJugProblem;
 
 public class Solution {
     private int gcd(int x, int y) {
-        return y == 0 ? x : gcd(y, x % y);
+        return x % y == 0 ? y : gcd(y, x % y);
     }
 
     public boolean canMeasureWater(int x, int y, int z) {
-        if (z == 0)
-            return true;
-        return x + y < z ? false : z % gcd(x, y) == 0;
+        return z == 0 || z == x + y || (0 < z && z < x + y && z % gcd(x, y) == 0);
     }
 }

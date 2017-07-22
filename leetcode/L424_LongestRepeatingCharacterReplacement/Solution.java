@@ -1,8 +1,8 @@
-package leetcode.L424_LongestRepeatingCharacterReplacement;
+package leetcode.again.L424_LongestRepeatingCharacterReplacement;
 
 /**
  * @author: deadend
- * @date: 1:46 PM 12/22/16
+ * @date: 5:22 PM 3/1/17
  * @version: 1.0
  * @description:
  */
@@ -13,13 +13,14 @@ public class Solution {
         int max = 0;
         int maxCount = 0;
         int[] counter = new int[26];
-        for (int start = 0, end = 0; end < s.length(); end++) {
-            maxCount = Math.max(maxCount, ++counter[s.charAt(end) - 'A']);
-            if (end - start + 1 - maxCount > k) {
+        for (int i = 0, start = 0; i < s.length(); i++) {
+            maxCount = Math.max(maxCount, ++counter[s.charAt(i) - 'A']);
+            if (i - start + 1 - maxCount > k) {
                 counter[s.charAt(start++) - 'A']--;
             }
-            max = Math.max(max, end - start + 1);
+            max = Math.max(max, i - start + 1);
         }
         return max;
     }
 }
+

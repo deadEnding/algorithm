@@ -1,39 +1,31 @@
-package leetcode.L503_NextGreaterElementII;
+package leetcode.again.L503_NextGreaterElementII;
 
-import java.util.Arrays;
 import java.util.LinkedList;
 
 /**
  * @author: deadend
- * @date: 1:43 PM 2/11/17
- * @version: 1.0
- * @description:
+ * @date: 4:15 PM 28/03/2017
  */
 
 
 public class Solution {
     public int[] nextGreaterElements(int[] nums) {
         final int n = nums.length;
-        int[] result = new int[n];
-        Arrays.fill(result, -1);
-
         LinkedList<Integer> stack = new LinkedList<>();
-        for (int k = 0; k < 2; k++) {
-            for (int i = 0; i < n; i++) {
-                while (!stack.isEmpty() && nums[stack.peek()] < nums[i]) {
-                    result[stack.pop()] = nums[i];
-                }
-                stack.push(i);
-            }
-        }
-        return result;
-    }
 
-    public static void main(String[] args) {
-        int[] nums = {1};
-        int[] result = new Solution().nextGreaterElements(nums);
-        for (int r : result) {
-            System.out.print(r + ",");
+        for (int i = n - 1; i >= 0; i--) {
+            stack.push(nums[i]);
         }
+
+        int[] nexts = new int[n];
+        for (int i = n - 1; i >= 0; i--) {
+            while (!stack.isEmpty() && stack.peek() <= nums[i]) {
+                stack.pop();
+            }
+
+            nexts[i] = stack.isEmpty() ? -1 : stack.peek();
+            stack.push(nums[i]);
+        }
+        return nexts;
     }
 }

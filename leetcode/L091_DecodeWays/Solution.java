@@ -1,8 +1,8 @@
-package leetcode.L091_DecodeWays;
+package leetcode.again.L091_DecodeWays;
 
 /**
  * @author: deadend
- * @date: 9:39 AM 12/2/16
+ * @date: 1:11 PM 2/28/17
  * @version: 1.0
  * @description:
  */
@@ -11,31 +11,50 @@ package leetcode.L091_DecodeWays;
 public class Solution {
     public int numDecodings(String s) {
         final int n = s.length();
-        if (n == 0 || s.charAt(0) == '0') {
+        if (n == 0) {
             return 0;
         }
 
-        int prev = 1, curr = 1;
-        for (int i = 1; i < n; i++) {
-            int cv = Integer.valueOf(s.substring(i, i + 1));
-            if (cv == 0) {
-                curr = 0;
+        int[] f = new int[2];
+        f[n % 2] = 1;
+        for (int i = n - 1; i >= 0; i--) {
+            char c = s.charAt(i);
+            if (c == '0') {
+                f[i % 2] = 0;
+            } else if (c == '1' || (c == '2' && i + 1 < n && s.charAt(i + 1) <= '6')) {
+                f[i % 2] += f[(i + 1) % 2];
+            } else {
+                f[i % 2] = f[(i + 1) % 2];
             }
-
-            int bv = Integer.valueOf(s.substring(i - 1, i + 1));
-            if (bv < 10 || bv > 26) {
-                prev = 0;
-            }
-
-            int tmp = curr;
-            curr += prev;
-            prev = tmp;
         }
-        return curr;
+
+        return f[0];
+    }
+}
+
+
+class BasicSolution {
+    public int numDecodings(String s) {
+        if (s.equals("")) {
+            return 0;
+        }
+
+        final int n = s.length();
+        int count = 1, preCount = 0;
+        for (int i = n - 1; i >= 0; i--) {
+            int tmp = count;
+            char c = s.charAt(i);
+            if (c == '0') {
+                count = 0;
+            } else if (c == '1' || (c == '2' && i + 1 < n && s.charAt(i + 1) <= '6')) {
+                count += preCount;
+            }
+            preCount = tmp;
+        }
+        return count;
     }
 
-
     public static void main(String[] args) {
-        System.out.println(new Solution().numDecodings("12"));
+        System.out.println(new Solution().numDecodings(""));
     }
 }

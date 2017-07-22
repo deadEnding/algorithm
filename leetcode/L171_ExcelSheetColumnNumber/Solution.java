@@ -1,19 +1,12 @@
-package leetcode.L171_ExcelSheetColumnNumber;
-
-/**
- * @author: deadend
- * @date: 9:08 PM 12/7/16
- * @version: 1.0
- * @description:
- */
+package leetcode.again.L171_ExcelSheetColumnNumber;
 
 
 public class Solution {
     public int titleToNumber(String s) {
-        int n = 0;
-        for (int i = 0; i < s.length(); i++) {
-            n = (s.charAt(i) - 'A' + 1) + 26 * n;
+        int x = 0;
+        for (char c : s.toCharArray()) {
+            x = x * 26 + c - 'A' + 1;
         }
-        return n;
+        return x;
     }
 }

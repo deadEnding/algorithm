@@ -1,11 +1,5 @@
-package leetcode.L024_SwapNodesInPairs;
+package leetcode.again.L024_SwapNodesInPairs;
 
-/**
- * @author: deadend
- * @date: 9:39 AM 11/30/16
- * @version: 1.0
- * @description:
- */
 
 class ListNode {
     int val;
@@ -13,23 +7,40 @@ class ListNode {
     ListNode(int x) { val = x; }
 }
 
+
 public class Solution {
     public ListNode swapPairs(ListNode head) {
-        if (head == null || head.next == null) {
-            return head;
-        }
-
         ListNode dummy = new ListNode(-1);
         dummy.next = head;
 
-        ListNode d = dummy;
-        while (d.next != null && d.next.next != null) {
-            ListNode p = d.next.next;
-            d.next.next = p.next;
-            p.next = d.next;
-            d.next = p;
-            d = p.next;
+        ListNode p = dummy;
+        while (p.next != null && p.next.next != null) {
+            ListNode tmp = p.next.next;
+            p.next.next = tmp.next;
+            tmp.next = p.next;
+            p.next = tmp;
+            p = p.next.next;
         }
+
+        return dummy.next;
+    }
+}
+
+
+class OldSolution {
+    public ListNode swapPairs(ListNode head) {
+        ListNode dummy = new ListNode(-1);
+        dummy.next = head;
+
+        ListNode prev = dummy;
+        while (prev.next != null && prev.next.next != null) {
+            ListNode t = prev.next;
+            prev.next = t.next;
+            t.next = prev.next.next;
+            prev.next.next = t;
+            prev = t;
+        }
+
         return dummy.next;
     }
 }

@@ -1,11 +1,10 @@
-package leetcode.L076_MinimumWindowSubstring;
+package leetcode.again.L076_MinimumWindowSubstring;
 
 import java.util.HashMap;
-import java.util.HashSet;
 
 /**
  * @author: deadend
- * @date: 5:01 PM 11/24/16
+ * @date: 1:01 PM 3/4/17
  * @version: 1.0
  * @description:
  */
@@ -13,39 +12,46 @@ import java.util.HashSet;
 
 public class Solution {
     public String minWindow(String s, String t) {
-        HashMap<Character, Integer> tmap = new HashMap<>();
-        for (int i = 0; i < t.length(); i++) {
-            char c = t.charAt(i);
-            tmap.put(c, tmap.containsKey(c) ? tmap.get(c) + 1 : 1);
+        if (s.equals("") || t.equals("")) {
+            return "";
         }
 
-        String result = "";
-        for (int r = 0, l = 0, count = 0; r < s.length(); r++) {
-            char c = s.charAt(r);
-            if (tmap.containsKey(c)) {
-                tmap.put(c, tmap.get(c) - 1);
-                count += tmap.get(c) >= 0 ? 1 : 0;
+        HashMap<Character, Integer> map = new HashMap<>();
+        for (char c : t.toCharArray()) {
+            map.put(c, map.getOrDefault(c, 0) + 1);
+        }
 
-                while (count == t.length()) {
-                    if (result.equals("") || result.length() > r - l + 1) {
-                        result = s.substring(l, r + 1);
-                    }
+        String result = null;
+        int count = t.length();
+        for (int i = 0, start = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if (map.containsKey(c)) {
+                map.put(c, map.get(c) - 1);
+                if (map.get(c) >= 0) {
+                    count--;
+                }
+            }
 
-                    char lc = s.charAt(l);
-                    if (tmap.containsKey(lc)) {
-                        tmap.put(lc, tmap.get(lc) + 1);
-                        count -= tmap.get(lc) > 0 ? 1 : 0;
+            while (count == 0) {
+                if (result == null || result.length() > i - start + 1) {
+                    result = s.substring(start, i + 1);
+                }
+
+                char bc = s.charAt(start++);
+                if (map.containsKey(bc)) {
+                    map.put(bc, map.get(bc) + 1);
+                    if (map.get(bc) > 0) {
+                        count++;
                     }
-                    l++;
                 }
             }
         }
-        return result;
+        return result == null ? "" : result;
     }
 
     public static void main(String[] args) {
         String s = "ADOBECODEBANC";
-        String t = "ABC";
-        System.out.println(new Solution().minWindow(s,t));
+        String t = "";
+        System.out.println(new Solution().minWindow(s, t));
     }
 }

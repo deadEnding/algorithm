@@ -1,48 +1,55 @@
-package leetcode.L164_MaximumGap;
+package leetcode.again.L164_MaximumGap;
 
-import java.util.LinkedList;
+import java.util.Arrays;
 
-/**
- * @author: deadend
- * @date: 5:02 PM 12/7/16
- * @version: 1.0
- * @description:
- */
-
-// 基数排序
 public class Solution {
     public int maximumGap(int[] nums) {
-        if (nums.length < 2) {
+        if (nums == null || nums.length <= 1) {
             return 0;
         }
 
-        LinkedList<Integer>[] buckets = new LinkedList[10];
-        for (int i = 0; i < buckets.length; i++) {
-            buckets[i] = new LinkedList<>();
+        final int n = nums.length;
+
+        int min = Integer.MAX_VALUE, max = Integer.MIN_VALUE;
+        for (int num : nums) {
+            min = Math.min(min, num);
+            max = Math.max(max, num);
         }
 
-        for (int i = 0, exp = 1; i < 10; i++, exp *= 10) {
+        int gap = (int)Math.ceil((double)(max - min) / (n - 1)) + 1;
+        int[] bucketMin = new int[n];
+        int[] bucketMax = new int[n];
+        Arrays.fill(bucketMin, Integer.MAX_VALUE);
+        Arrays.fill(bucketMax, Integer.MIN_VALUE);
 
-            for (int n : nums) {
-                buckets[n / exp % 10].offer(n);
+        for (int num : nums) {
+            int bid = (num - min) / gap;
+            bucketMin[bid] = Math.min(bucketMin[bid], num);
+            bucketMax[bid] = Math.max(bucketMax[bid], num);
+        }
+
+        int maxGap = 0;
+        int last = min;
+        for (int i = 0; i < n; i++) {
+            if (bucketMin[i] == Integer.MAX_VALUE && bucketMax[i] == Integer.MIN_VALUE) {
+                continue;
             }
 
-            for (int j = 0, k = 0; j < buckets.length; j++) {
-                while (!buckets[j].isEmpty()) {
-                    nums[k++] = buckets[j].poll();
-                }
+            if (bucketMin[i] != Integer.MAX_VALUE) {
+                maxGap = Math.max(maxGap, bucketMin[i] - last);
+                last = bucketMin[i];
+            }
+
+            if (bucketMin[i] != Integer.MIN_VALUE) {
+                maxGap = Math.max(maxGap, bucketMax[i] - bucketMin[i]);
+                last = bucketMax[i];
             }
         }
-
-        int max = 0;
-        for (int i = 1; i < nums.length; i++) {
-            max = Math.max(max, nums[i] - nums[i - 1]);
-        }
-        return max;
+        return maxGap;
     }
 
     public static void main(String[] args) {
-        int[] nums = {3, 5, 2, 9};
+        int[] nums = {1,1,1,1};
         System.out.println(new Solution().maximumGap(nums));
     }
 }

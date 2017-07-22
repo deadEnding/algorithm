@@ -1,11 +1,4 @@
-package leetcode.L014_LongestCommonPrefix;
-
-/**
- * @author: deadend
- * @date: 4:26 PM 11/27/16
- * @version: 1.0
- * @description:
- */
+package leetcode.again.L014_LongestCommonPrefix;
 
 
 public class Solution {
@@ -21,6 +14,7 @@ public class Solution {
                 }
             }
         }
+
         return strs[0];
     }
 }

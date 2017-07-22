@@ -1,49 +1,39 @@
-package leetcode.L090_SubsetsII;
+package leetcode.again.L090_SubsetsII;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 
 /**
  * @author: deadend
- * @date: 2:49 PM 11/21/16
+ * @date: P10:00 PM 3/2/17
  * @version: 1.0
  * @description:
  */
 
 
 public class Solution {
-
-    private List<List<Integer>> result = new LinkedList<>();
-
-    private void dfs(int[] nums, int ix, LinkedList<Integer> path) {
+    private void backtrace(int ix, int[] nums, LinkedList<Integer> path, List<List<Integer>> result) {
         result.add(new LinkedList<>(path));
 
+        HashSet<Integer> set = new HashSet<>();
         for (int i = ix; i < nums.length; i++) {
-            path.addLast(nums[i]);
-            dfs(nums, i + 1, path);
-            path.removeLast();
-
-            while (i + 1 < nums.length && nums[i] == nums[i + 1]) {
-                i++;
+            if (set.contains(nums[i])) {
+                continue;
             }
+
+            set.add(nums[i]);
+            path.addLast(nums[i]);
+            backtrace(i + 1, nums, path, result);
+            path.removeLast();
         }
     }
 
     public List<List<Integer>> subsetsWithDup(int[] nums) {
         Arrays.sort(nums);
-        dfs(nums, 0, new LinkedList<Integer>());
+        List<List<Integer>> result = new LinkedList<>();
+        backtrace(0, nums, new LinkedList<>(), result);
         return result;
-    }
-
-    public static void main(String[] args) {
-        int[] nums = {1,2,2};
-        List<List<Integer>> result = new Solution().subsetsWithDup(nums);
-        for (List<Integer> list : result) {
-            for (int i : list) {
-                System.out.print(i + " ");
-            }
-            System.out.println();
-        }
     }
 }

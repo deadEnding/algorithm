@@ -1,8 +1,10 @@
-package leetcode.L334_IncreasingTripletSubsequence;
+package leetcode.again.L334_IncreasingTripletSubsequence;
+
+import java.util.Arrays;
 
 /**
  * @author: deadend
- * @date: 2:37 PM 12/16/16
+ * @date: 12:03 PM 3/1/17
  * @version: 1.0
  * @description:
  */
@@ -10,16 +12,40 @@ package leetcode.L334_IncreasingTripletSubsequence;
 
 public class Solution {
     public boolean increasingTriplet(int[] nums) {
-        int min = Integer.MAX_VALUE;
+        int firstMin = Integer.MAX_VALUE;
         int secondMin = Integer.MAX_VALUE;
 
-        for (int n : nums) {
-            if (n <= min) {
-                min = n;
-            } else if (n <= secondMin) {
-                secondMin = n;
+        for (int num : nums) {
+            if (num <= firstMin) {
+                firstMin = num;
+            } else if (num <= secondMin) {
+                secondMin = num;
             } else {
                 return true;
+            }
+        }
+        return false;
+    }
+}
+
+class BasicSolution {
+    public boolean increasingTriplet(int[] nums) {
+        if (nums.length < 3) {
+            return false;
+        }
+
+        int ix = 0;
+        int[] subSeqMax = new int[2];
+        for (int num : nums) {
+            int i = Arrays.binarySearch(subSeqMax, 0, ix, num);
+            i = i >= 0 ? i : -(i + 1);
+            if (i == 2) {
+                return true;
+            }
+
+            subSeqMax[i] = num;
+            if (i == ix) {
+                ix++;
             }
         }
         return false;

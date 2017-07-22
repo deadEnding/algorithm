@@ -1,44 +1,13 @@
-package leetcode.L081_SearchInRotatedSortedArrayII;
+package leetcode.again.L081_SearchInRotatedSortedArrayII;
 
 /**
  * @author: deadend
- * @date: 8:45 PM 11/20/16
+ * @date: 11:17 AM 2/28/17
  * @version: 1.0
  * @description:
  */
 
-
-
 public class Solution {
-    public boolean search(int[] nums, int target) {
-        int l = 0, r = nums.length - 1;
-
-        while (l <= r) {
-            int m = l + (r - l) / 2;
-            if (nums[m] == target) {
-                return true;
-            } else if (nums[m] < nums[r]) {
-                if (nums[m] < target && target <= nums[r]) {
-                    l = m + 1;
-                } else {
-                    r = m - 1;
-                }
-            } else if (nums[m] > nums[r]) {
-                if (nums[l] <= target && target < nums[m]) {
-                    r = m - 1;
-                } else {
-                    l = m + 1;
-                }
-            } else {  // nums[m] == nums[r]
-                r--;     // 必须是r--, 而不能是l++, 因为此时是 nums[m] == nums[r], 因此删除nums[r]不影响结果
-            }
-        }
-
-        return false;
-    }
-}
-
-class SecondSolution {
     public boolean search(int[] nums, int target) {
         int l = 0;
         int r = nums.length - 1;
@@ -48,60 +17,58 @@ class SecondSolution {
             if (nums[m] == target) {
                 return true;
             } else if (nums[m] < nums[r]) {
-                if (nums[m] < target && target <= nums[r]) {
+                if (target > nums[m] && target <= nums[r]) {
                     l = m + 1;
                 } else {
                     r = m - 1;
                 }
             } else if (nums[m] > nums[r]) {
-                if (nums[l] <= target && target < nums[m]) {
-                    r  = m - 1;
+                if (target >= nums[l] && target < nums[m]) {
+                    r = m - 1;
                 } else {
                     l = m + 1;
                 }
             } else {
-                r--;
+                if (nums[l] == nums[m]) {
+                    l++;
+                } else {
+                    r = m - 1;
+                }
             }
         }
         return false;
     }
 }
 
-class FirstSolution {
+class RegularSolution {
     public boolean search(int[] nums, int target) {
-        int left = 0;
-        int right = nums.length - 1;
+        int l = 0;
+        int r = nums.length - 1;
 
-        while (left <= right) {
-            int mid = left + (right - left) / 2;
-            if (nums[mid] == target) {
+        while (l <= r) {
+            int m = l + (r - l) / 2;
+            if (nums[m] == target) {
                 return true;
-            }
-
-            if (nums[mid] > nums[left]) {
-                if (nums[left] <= target && target < nums[mid]) {
-                    right = mid - 1;
+            } else if (nums[l] < nums[m]) {
+                if (target >= nums[l] && target < nums[m]) {
+                    r = m - 1;
                 } else {
-                    left = mid + 1;
+                    l = m + 1;
                 }
-            } else if (nums[mid] < nums[right]){
-                if (nums[mid] < target && target <= nums[right]) {
-                    left = mid + 1;
+            } else if (nums[l] > nums[m]) {
+                if (target > nums[m] && target <= nums[r]) {
+                    l = m + 1;
                 } else {
-                    right = mid - 1;
+                    r = m - 1;
                 }
-            } else if (nums[left] == nums[mid]) {
-                left++;
-            } else {  // nums[mid] == nums[right]
-                right--;
+            } else {
+                if (nums[m] < nums[r]) {
+                    l = m + 1;
+                } else {
+                    l++;
+                }
             }
         }
-
         return false;
-    }
-
-    public static void main(String[] args) {
-        int[] nums = {1,3};
-        System.out.println(new Solution().search(nums, 3));
     }
 }

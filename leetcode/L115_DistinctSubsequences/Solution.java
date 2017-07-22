@@ -1,8 +1,8 @@
-package leetcode.L115_DistinctSubsequences;
+package leetcode.again.L115_DistinctSubsequences;
 
 /**
  * @author: deadend
- * @date: 5:P10 PM 12/4/16
+ * @date: 4:41 PM 3/4/17
  * @version: 1.0
  * @description:
  */
@@ -10,27 +10,22 @@ package leetcode.L115_DistinctSubsequences;
 
 public class Solution {
     public int numDistinct(String s, String t) {
-        int m = t.length();
-        int n = s.length();
-        if (m > n) {
-            return 0;
-        }
+        final int m = s.length();
+        final int n = t.length();
 
-        int[] dp = new int[m + 1];
+        int[] dp = new int[n + 1];
         dp[0] = 1;
-
-        for (int j = 0; j < n; j++) {
-            for (int i = m - 1; i >= 0; i--) {
-                dp[i + 1] += (t.charAt(i) == s.charAt(j) ? dp[i] : 0);
+        for (int i = 1; i <= m; i++) {
+            for (int j = n; j >= 1; j--) {
+                dp[j] += (s.charAt(i - 1) == t.charAt(j - 1) ? dp[j - 1] : 0);
             }
         }
-
-        return dp[m];
+        return dp[n];
     }
 
     public static void main(String[] args) {
-        String s = "ddd";
-        String t = "dd";
+        String s = "tttt";
+        String t = "tt";
         System.out.println(new Solution().numDistinct(s, t));
     }
 }

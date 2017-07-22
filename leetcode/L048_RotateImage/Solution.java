@@ -1,44 +1,24 @@
-package leetcode.L048_RotateImage;
-
-/**
- * @author: deadend
- * @date: 12:28 PM 11/14/16
- * @version: 1.0
- * @description:
- */
+package leetcode.again.L048_RotateImage;
 
 
 public class Solution {
-
     public void rotate(int[][] matrix) {
-        // 沿主对角线翻折
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = i; j < matrix[0].length; j++) {
-                int tmp = matrix[i][j];
+        final int n = matrix.length;
+
+        for (int i = 0; i < n / 2; i++) {
+            for (int j = 0; j < n; j++) {
+                int t = matrix[i][j];
+                matrix[i][j] = matrix[n - 1 - i][j];
+                matrix[n - 1 - i][j] = t;
+            }
+        }
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < i; j++) {
+                int t = matrix[i][j];
                 matrix[i][j] = matrix[j][i];
-                matrix[j][i] = tmp;
+                matrix[j][i] = t;
             }
-        }
-
-        // 左右翻折
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[0].length / 2; j++) {
-                int tmp = matrix[i][j];
-                matrix[i][j] = matrix[i][matrix[0].length - 1 - j];
-                matrix[i][matrix[0].length - 1 - j] = tmp;
-            }
-        }
-    }
-
-    public static void main(String[] args) {
-//        int[][] matrix = {{1,2,3},{4,5,6},{7,8,9}};
-        int[][] matrix = {{1}};
-        new Solution().rotate(matrix);
-        for (int[] row : matrix) {
-            for (int col : row) {
-                System.out.print(col);
-            }
-            System.out.println();
         }
     }
 }

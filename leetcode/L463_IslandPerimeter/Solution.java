@@ -1,33 +1,35 @@
-package leetcode.L463_IslandPerimeter;
+package leetcode.again.L463_IslandPerimeter;
 
 /**
  * @author: deadend
- * @date: 2:25 PM 11/26/16
+ * @date: P10:35 PM 3/16/17
  * @version: 1.0
  * @description:
  */
 
 
 public class Solution {
-    public int islandPerimeter(int[][] grid) {
-        final int m = grid.length;
-        final int n = grid[0].length;
+    private int[][] dirs = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
 
-        int result = 0;
+    public int islandPerimeter(int[][] grid) {
+        final int m = grid.length, n = grid[0].length;
+
+        int cells = 0;
+        int count = 0;
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
-                result += i - 1 < 0 ? 2 * (0 ^ grid[i][j]) : grid[i-1][j] ^ grid[i][j];
-                result += i + 1 >= m ? 2 * (0 ^ grid[i][j]) : grid[i+1][j] ^ grid[i][j];
-                result += j - 1 < 0 ? 2 * (0 ^ grid[i][j]) : grid[i][j-1] ^ grid[i][j];
-                result += j + 1 >= n ? 2 * (0 ^ grid[i][j]) : grid[i][j+1] ^ grid[i][j];
+                if (grid[i][j] == 1) {
+                    cells++;
+                    for (int[] d : dirs) {
+                        int nx = i + d[0];
+                        int ny = j + d[1];
+                        if (nx >= 0 && nx < m && ny >= 0 && ny < n && grid[nx][ny] == 1) {
+                            count++;
+                        }
+                    }
+                }
             }
         }
-        return result / 2;
-    }
-
-    public static void main(String[] args) {
-//        int[][] grid = {{0,1,0,0}, {1,1,1,0}, {0,1,0,0}, {1,1,0,0}};
-        int[][] grid = {{1,0}};
-        System.out.println(new Solution().islandPerimeter(grid));
+        return 4 * cells - count;
     }
 }

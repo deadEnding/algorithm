@@ -1,8 +1,8 @@
-package leetcode.L240_SearchA2dMatrixII;
+package leetcode.again.L240_SearchA2dMatrixII;
 
 /**
  * @author: deadend
- * @date: 11:02 AM 12/11/16
+ * @date: 7:13 PM 2/28/17
  * @version: 1.0
  * @description:
  */
@@ -14,26 +14,16 @@ public class Solution {
             return false;
         }
 
-        final int m = matrix.length;
-        final int n = matrix[0].length;
-
-        for (int i = 0, j = n - 1; i < m && j >= 0;) {
-            if (matrix[i][j] == target) {
+        int r = 0, c = matrix[0].length - 1;
+        while (r < matrix.length && c >= 0) {
+            if (target == matrix[r][c]) {
                 return true;
-            } else if (matrix[i][j] > target) {
-                j--;
+            } else if (target < matrix[r][c]) {
+                c--;
             } else {
-                i++;
+                r++;
             }
         }
         return false;
     }
-
-    public static void main(String[] args) {
-        int[][] matrix = {{-5}};
-        System.out.println(new Solution().searchMatrix(matrix, -5));
-    }
 }
-
-
-

@@ -1,47 +1,43 @@
-package leetcode.L160_IntersectionOfTwoLinkedLists;
+package leetcode.again.L160_IntersectionOfTwoLinkedLists;
 
-/**
- * @author: deadend
- * @date: 3:44 PM 12/7/16
- * @version: 1.0
- * @description:
- */
 
 class ListNode {
     int val;
     ListNode next;
-    ListNode(int x) { val = x; }
+    ListNode(int x) {
+        val = x;
+        next = null;
+    }
 }
 
 public class Solution {
-    private int getLength(ListNode list) {
+    private int getLength(ListNode head) {
         int len = 0;
-        while (list != null) {
+        while (head != null) {
             len++;
-            list = list.next;
+            head = head.next;
         }
         return len;
     }
 
+    private ListNode runStep(ListNode head, int steps) {
+        while (steps-- > 0) {
+            head = head.next;
+        }
+        return head;
+    }
+
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
-        int m = getLength(headA);
-        int n = getLength(headB);
+        int l1 = getLength(headA);
+        int l2 = getLength(headB);
 
-        if (m > n) {
-            ListNode tmp = headA;
-            headA = headB;
-            headB = tmp;
-        }
-
-        for (int i = 0; i < Math.abs(n - m); i++) {
-            headB = headB.next;
-        }
-
+        headA = runStep(headA, Math.max(0, l1 - l2));
+        headB = runStep(headB, Math.max(0, l2 - l1));
         while (headA != headB) {
             headA = headA.next;
             headB = headB.next;
         }
+
         return headA;
     }
 }
-

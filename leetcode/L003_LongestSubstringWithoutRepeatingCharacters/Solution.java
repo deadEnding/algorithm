@@ -1,33 +1,45 @@
-package leetcode.L003_LongestSubstringWithoutRepeatingCharacters;
+package leetcode.again.L003_LongestSubstringWithoutRepeatingCharacters;
+
 
 import java.util.HashMap;
-
-/**
- * @author: deadend
- * @date: 1:15 PM 11/24/16
- * @version: 1.0
- * @description:
- */
-
+import java.util.HashSet;
 
 public class Solution {
     public int lengthOfLongestSubstring(String s) {
-        HashMap<Character, Integer> index = new HashMap<>();   // 长度256的数组亦可
-
+        HashMap<Character, Integer> visited = new HashMap<>();
         int max = 0;
         for (int i = 0, start = 0; i < s.length(); i++) {
             char c = s.charAt(i);
-            if (index.containsKey(c) && index.get(c) >= start) {
-                start = index.get(c) + 1;
+            if (visited.containsKey(c) && visited.get(c) >= start) {
+                start = visited.get(c) + 1;
             }
-            index.put(c, i);
+
+            visited.put(c, i);
             max = Math.max(max, i - start + 1);
         }
+
         return max;
     }
+}
 
-    public static void main(String[] args) {
-        String s = "123456JKL:";
-        System.out.println(new Solution().lengthOfLongestSubstring(s));
+class BasicSolution {
+    public int lengthOfLongestSubstring(String s) {
+        HashSet<Character> visited = new HashSet<>();
+        int max = 0;
+        for (int i = 0, start = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if (visited.contains(c)) {
+                while (s.charAt(start) != c) {
+                    visited.remove(s.charAt(start++));
+                }
+                start++;
+            } else {
+                visited.add(c);
+            }
+
+            max = Math.max(max, i - start + 1);
+        }
+
+        return max;
     }
 }

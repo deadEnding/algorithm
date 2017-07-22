@@ -1,109 +1,63 @@
-package leetcode.L310_MinimumHeightTrees;
+package leetcode.again.L310_MinimumHeightTrees;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 
 /**
  * @author: deadend
- * @date: 9:51 PM 12/13/16
+ * @date: 9:09 AM 3/1/17
  * @version: 1.0
  * @description:
  */
 
+
 public class Solution {
     public List<Integer> findMinHeightTrees(int n, int[][] edges) {
-        LinkedList<Integer> result = new LinkedList<>();
-        if (n == 0) {
-            return result;
-        }
-
-        ArrayList<HashSet<Integer>> adj = new ArrayList<>();
-        HashSet<Integer> nodes = new HashSet<>();
-        for (int i = 0; i < n; i++) {
-            nodes.add(i);
-            adj.add(i, new HashSet<Integer>());
-        }
-
-        for (int[] pair : edges) {
-            adj.get(pair[0]).add(pair[1]);
-            adj.get(pair[1]).add(pair[0]);
-        }
-
-        while (nodes.size() > 2) {
-            LinkedList<Integer> leaves = new LinkedList<>();
-            for (int node : nodes) {
-                if (adj.get(node).size() == 1) {
-                    leaves.add(node);
-                }
-            }
-
-            for (int leaf : leaves) {
-                for (int next : adj.get(leaf)) {
-                    adj.get(next).remove(leaf);
-                }
-                nodes.remove(leaf);
-            }
-        }
-
-        for (int node : nodes) {
-            result.add(node);
-        }
-        return result;
-    }
-
-    public static void main(String[] args) {
-        int[][] edges = {{0, 3}, {1, 3}, {2, 3}, {4, 3}, {5, 4}};
-        System.out.println(new Solution().findMinHeightTrees(6, edges).toString());
-    }
-}
-
-
-// 深搜求最长路径，超时
-class DFSSolution {
-    private ArrayList<Integer> maxPath;
-    
-    private void dfs(int ix, HashSet<Integer>[] adj, boolean[] visited, ArrayList<Integer> path) {
-        path.add(ix);
-        if (maxPath == null || maxPath.size() < path.size()) {
-            maxPath = new ArrayList<>(path);
-        }
-        visited[ix] = true;
-        for (int next : adj[ix]) {
-            if (!visited[next]) {
-                dfs(next, adj, visited, path);
-            }
-        }
-        visited[ix] = false;
-        path.remove(path.size() - 1);
-    }
-
-    public List<Integer> findMinHeightTrees(int n, int[][] edges) {
-        List<Integer> result = new ArrayList<>();
-        if (n == 0) {
-            return result;
-        }
-
         HashSet<Integer>[] adj = new HashSet[n];
         for (int i = 0; i < n; i++) {
             adj[i] = new HashSet<>();
         }
 
-        for (int[] pair : edges) {
-            adj[pair[0]].add(pair[1]);
-            adj[pair[1]].add(pair[0]);
+        int[] degree = new int[n];
+        for (int[] e : edges) {
+            adj[e[0]].add(e[1]);
+            adj[e[1]].add(e[0]);
+            degree[e[0]]++;
+            degree[e[1]]++;
         }
 
-        boolean[] visited = new boolean[n];
+        int remain = n;
+        while (remain > 2) {
+            HashSet<Integer> leaves = new HashSet<>();
+            for (int i = 0; i < n; i++) {
+                if (degree[i] == 1) {
+                    leaves.add(i);
+                }
+            }
+
+            for (int i : leaves) {
+                for (int neig : adj[i]) {
+                    degree[neig]--;
+                    adj[neig].remove(i);
+                }
+                degree[i] = -1;
+            }
+            remain -= leaves.size();
+        }
+
+        List<Integer> result = new LinkedList<>();
         for (int i = 0; i < n; i++) {
-            dfs(i, adj, visited, new ArrayList<Integer>());
-        }
-
-        result.add(maxPath.get(maxPath.size() / 2));
-        if (maxPath.size() % 2 == 0) {
-            result.add(maxPath.get(maxPath.size() / 2 - 1));
+            if (degree[i] >= 0) {
+                result.add(i);
+            }
         }
         return result;
+    }
+
+    public static void main(String[] args) {
+        int n = 6;
+        int[][] edges = {{0, 3}, {1, 3}, {2, 3}, {4, 3}, {5, 4}};
+        System.out.println(new Solution().findMinHeightTrees(n, edges));
     }
 }

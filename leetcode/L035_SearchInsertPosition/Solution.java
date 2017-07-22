@@ -1,51 +1,51 @@
-package leetcode.L035_SearchInsertPosition;
+package leetcode.again.L035_SearchInsertPosition;
 
 /**
  * @author: deadend
- * @date: 2:40 PM 11/P10/16
+ * @date: 8:50 AM 2/28/17
  * @version: 1.0
  * @description:
  */
 
 
+
 public class Solution {
     public int searchInsert(int[] nums, int target) {
-        int left = 0;
-        int right = nums.length;
-
-        // [left, right)范围，去掉 < target 的元素，保留 >= target 的元素
-        while (left < right) {
-            int mid = left + (right - left) / 2;
-            if (nums[mid] < target) {
-                left = mid + 1;
+        int l = 0, r = nums.length;
+        while (l < r) {
+            int m = l + (r - l) / 2;
+            if (nums[m] < target) {
+                l = m + 1;
             } else {
-                right = mid;
+                r = m;
             }
         }
-        return left;
+
+        return l;
     }
 
     public static void main(String[] args) {
-        int[] nums = {0,1};
-        System.out.println(new Solution2().searchInsert(nums, 2));
+        int[] nums = {1,1,2,2,2,3,3};
+        System.out.println(new Solution().searchInsert(nums, 1));
     }
 }
 
-class Solution2 {
-    public int searchInsert(int[] nums, int target) {
-        int left = 0;
-        int right = nums.length - 1;
 
-        while (left <= right) {
-            int mid = left + (right - left) / 2;
-            if (nums[mid] < target) {
-                left = mid + 1;
-            } else if (nums[mid] > target) {
-                right = mid - 1;
+class OldSolution {
+    public int searchInsert(int[] nums, int target) {
+        int l = 0;
+        int r = nums.length;
+
+        while (l <= r) {
+            int m = l + (r - l) / 2;
+            if (nums[m] == target) {
+                return m;
+            } else if (nums[m] > target) {
+                r = m - 1;
             } else {
-                return mid;
+                l = m + 1;
             }
         }
-        return left;
+        return l;
     }
 }

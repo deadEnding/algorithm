@@ -1,10 +1,8 @@
-package leetcode.L453_MinimumMovesToEqualArrayElements;
-
-import java.util.Arrays;
+package leetcode.again.L453_MinimumMovesToEqualArrayElements;
 
 /**
  * @author: deadend
- * @date: P10:49 PM 12/23/16
+ * @date: P10:53 AM 3/2/17
  * @version: 1.0
  * @description:
  */
@@ -12,16 +10,14 @@ import java.util.Arrays;
 
 public class Solution {
     public int minMoves(int[] nums) {
-        if (nums.length == 0) {
+        if (nums.length == 0)
             return 0;
-        }
-        
+        long sum = 0;
         int min = Integer.MAX_VALUE;
-        int sum = 0;
-        for (int num : nums) {
-            min = Math.min(min, num);
+        for (int num: nums) {
             sum += num;
+            min = Math.min(min, num);
         }
-        return sum - nums.length * min;
+        return (int) (sum - (long)min * nums.length);
     }
 }

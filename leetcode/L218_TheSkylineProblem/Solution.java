@@ -1,27 +1,74 @@
-package leetcode.L218_TheSkylineProblem;
+package leetcode.again.L218_TheSkylineProblem;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.TreeMap;
 
 /**
  * @author: deadend
- * @date: 4:52 PM 2/15/17
+ * @date: 1:11 PM 3/11/17
  * @version: 1.0
  * @description:
  */
 
+
 public class Solution {
     public List<int[]> getSkyline(int[][] buildings) {
-        List<int[]> heights = new ArrayList<>();
+        final int n = buildings.length;
+        ArrayList<int[]> xh = new ArrayList<>();
+        for (int[] b : buildings) {
+            xh.add(new int[] {b[0], b[2]});
+            xh.add(new int[] {b[1], -b[2]});
+        }
+
+        Collections.sort(xh, (h1, h2) -> (h1[0] != h2[0] ? h1[0] - h2[0] : h2[1] - h1[1]));
+
+        TreeMap<Integer, Integer> hc = new TreeMap<>();
+        hc.put(0, 1);
+
+        List<int[]> result = new ArrayList<>();
+        int lastHeight = 0;
+        for (int[] h : xh) {
+            if (h[1] > 0) {
+                hc.put(h[1], hc.getOrDefault(h[1], 0) + 1);
+            } else {
+                hc.put(-h[1], hc.get(-h[1]) - 1);
+                if (hc.get(-h[1]) == 0) {
+                    hc.remove(-h[1]);
+                }
+            }
+
+            int maxHeight = hc.lastKey();
+            if (lastHeight != maxHeight) {
+                result.add(new int[] {h[0], maxHeight});
+                lastHeight = maxHeight;
+            }
+        }
+
+        return result;
+    }
+}
+
+
+
+
+
+class FirstSolution {
+    public List<int[]> getSkyline(int[][] buildings) {
+        final int n = buildings.length;
+        ArrayList<int[]> heights = new ArrayList<>();
         for (int[] b : buildings) {
             heights.add(new int[] {b[0], b[2]});
             heights.add(new int[] {b[1], -b[2]});
         }
-        Collections.sort(heights, (a, b) -> (a[0] == b[0] ? b[1] - a[1] : a[0] - b[0]));
+
+        Collections.sort(heights, (h1, h2) -> (h1[0] != h2[0] ? h1[0] - h2[0] : h2[1] - h1[1]));
 
         List<int[]> result = new ArrayList<>();
         TreeMap<Integer, Integer> map = new TreeMap<>();
-        int prevHeight = 0;
         map.put(0, 1);
+        int prevHeight = 0;
         for (int[] h : heights) {
             if (h[1] > 0) {
                 map.put(h[1], map.getOrDefault(h[1], 0) + 1);
@@ -33,7 +80,7 @@ public class Solution {
             }
 
             int maxHeight = map.lastKey();
-            if (maxHeight != prevHeight) {
+            if (prevHeight != maxHeight) {
                 result.add(new int[] {h[0], maxHeight});
                 prevHeight = maxHeight;
             }
@@ -42,10 +89,10 @@ public class Solution {
     }
 
     public static void main(String[] args) {
-        int[][] b = {{2,9,10}, {3,7,15}, {5,12,12}, {15,20,10}, {19,24,8}};
-        List<int[]> result = new Solution().getSkyline(b);
-        for (int[] p : result) {
-            System.out.println(p[0] + "  " + p[1]);
+        int[][] b = {{1,2,5}, {1,2,4}};
+        List<int[]> ps = new Solution().getSkyline(b);
+        for (int[] p : ps) {
+            System.out.println(p[0] + " " + p[1]);
         }
     }
 }

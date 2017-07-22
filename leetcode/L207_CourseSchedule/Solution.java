@@ -1,85 +1,85 @@
-package leetcode.L207_CourseSchedule;
+package leetcode.again.L207_CourseSchedule;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 
 /**
  * @author: deadend
- * @date: 7:57 PM 12/8/16
+ * @date: 12:45 PM 3/15/17
  * @version: 1.0
  * @description:
  */
 
 
-// 拓扑排序: 每次删除入度为0的节点
 public class Solution {
     public boolean canFinish(int numCourses, int[][] prerequisites) {
-        HashSet<Integer>[] adjacency = new HashSet[numCourses];
-        for (int i = 0; i < numCourses; i++) {
-            adjacency[i] = new HashSet<>();
-        }
-
-        for (int[] pair : prerequisites) {
-            adjacency[pair[1]].add(pair[0]);
-        }
-
+        HashSet<Integer>[] adj = new HashSet[numCourses];
         int[] indegree = new int[numCourses];
+
         for (int i = 0; i < numCourses; i++) {
-            for (int next : adjacency[i]) {
-                indegree[next]++;
-            }
+            adj[i] = new HashSet<>();
         }
 
-        for (int i = 0, j; i < numCourses; i++) {
-            for (j = 0; j < numCourses && indegree[j] != 0; j++) {}
+        for (int[] p : prerequisites) {
+            adj[p[1]].add(p[0]);
+            indegree[p[0]]++;
+        }
 
-            if (j == numCourses) {
+        int count = numCourses;
+        while (count > 0) {
+            HashSet<Integer> removed = new HashSet<>();
+            for (int i = 0; i < numCourses; i++) {
+                if (indegree[i] == 0) {
+                    removed.add(i);
+                }
+            }
+
+            if (removed.isEmpty()) {
                 return false;
             }
 
-            indegree[j] = -1;
-            for (int next : adjacency[j]) {
-                indegree[next]--;
+            for (int rm : removed) {
+                indegree[rm] = -1;
+                for (int neig : adj[rm]) {
+                    indegree[neig]--;
+                }
             }
+            count -= removed.size();
         }
         return true;
-    }
-
-    public static void main(String[] args) {
-        int[][] pre = {{5,8},{3,5},{1,9},{4,5},{0,2},{1,9},{7,8},{4,9}};
-        int n = 10;
-        System.out.println(new Solution().canFinish(n, pre));
     }
 }
 
 class DFSSolution {
     public boolean canFinish(int numCourses, int[][] prerequisites) {
-        ArrayList<Integer>[] adjacency = new ArrayList[numCourses];
+        ArrayList<Integer>[] adj = new ArrayList[numCourses];
+
         for (int i = 0; i < numCourses; i++) {
-            adjacency[i] = new ArrayList<>();
+            adj[i] = new ArrayList<>();
         }
 
-        for (int[] pair : prerequisites) {
-            adjacency[pair[1]].add(pair[0]);
+        for (int[] p : prerequisites) {
+            adj[p[1]].add(p[0]);
         }
 
         boolean[] visited = new boolean[numCourses];
         for (int i = 0; i < numCourses; i++) {
-            if (hasCycle(i, adjacency, visited)) {
+            if (hasCycle(i, adj, visited)) {
                 return false;
             }
         }
         return true;
     }
 
-    private boolean hasCycle(int ix, ArrayList<Integer>[] adjacency, boolean[] visited) {
+    private boolean hasCycle(int ix, ArrayList<Integer>[] adj, boolean[] visited) {
         if (visited[ix]) {
             return true;
         }
 
         visited[ix] = true;
-        for (int i = 0; i < adjacency[ix].size(); i++) {    // 使用for-each会超时
-            if (hasCycle(adjacency[ix].get(i), adjacency, visited)) {
+        for (int i = 0; i < adj[ix].size(); i++) {
+            if (hasCycle(adj[ix].get(i), adj, visited)) {
                 return true;
             }
         }

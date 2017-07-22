@@ -1,5 +1,4 @@
-package leetcode.L332_ReconstructItinerary;
-
+package leetcode.again.L332_ReconstructItinerary;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -8,35 +7,33 @@ import java.util.PriorityQueue;
 
 /**
  * @author: deadend
- * @date: 12:34 PM 12/16/16
+ * @date: 8:21 PM 3/17/17
  * @version: 1.0
  * @description:
  */
 
-// 欧拉路径
+
 public class Solution {
-    private HashMap<String, PriorityQueue<String>> map = new HashMap<>();
-
-    LinkedList<String> path = new LinkedList<>();
-
-    // 直到无路可走，即为终点
-    private void dfs(String from) {
-        PriorityQueue<String> tos = map.get(from);
+    private void dfs(String from, HashMap<String, PriorityQueue<String>> adj, LinkedList<String> path) {
+        PriorityQueue<String> tos = adj.get(from);
         while (tos != null && !tos.isEmpty()) {
-            String s = tos.poll();
-            dfs(s);
+            String to = tos.poll();
+            dfs(to, adj, path);
         }
         path.addFirst(from);
     }
 
     public List<String> findItinerary(String[][] tickets) {
+        HashMap<String, PriorityQueue<String>> adj = new HashMap<>();
         for (String[] pair : tickets) {
-            if (!map.containsKey(pair[0])) {
-                map.put(pair[0], new PriorityQueue<String>());
+            if (!adj.containsKey(pair[0])) {
+                adj.put(pair[0], new PriorityQueue<>());
             }
-            map.get(pair[0]).offer(pair[1]);
+            adj.get(pair[0]).offer(pair[1]);
         }
-        dfs("JFK");
+
+        LinkedList<String> path = new LinkedList<>();
+        dfs("JFK", adj, path);
         return path;
     }
 }

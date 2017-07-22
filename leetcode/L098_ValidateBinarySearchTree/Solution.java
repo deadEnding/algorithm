@@ -1,11 +1,5 @@
-package leetcode.L098_ValidateBinarySearchTree;
+package leetcode.again.L098_ValidateBinarySearchTree;
 
-/**
- * @author: deadend
- * @date: P10:49 PM 12/2/16
- * @version: 1.0
- * @description:
- */
 
 class TreeNode {
     int val;
@@ -15,15 +9,17 @@ class TreeNode {
 }
 
 public class Solution {
-    private boolean isValid(TreeNode root, long from, long to) {
+
+    private boolean validate(TreeNode root, long s, long e) {
         if (root == null) {
             return true;
         }
-        return from < root.val && root.val < to && isValid(root.left, from, root.val)
-                && isValid(root.right, root.val, to);
+
+        return s < root.val && root.val < e &&
+                validate(root.left, s, root.val) && validate(root.right, root.val, e);
     }
 
     public boolean isValidBST(TreeNode root) {
-        return isValid(root, Integer.MIN_VALUE - 1L, Integer.MAX_VALUE + 1L);
+        return validate(root, Integer.MIN_VALUE - 1L, Integer.MAX_VALUE + 1L);
     }
 }

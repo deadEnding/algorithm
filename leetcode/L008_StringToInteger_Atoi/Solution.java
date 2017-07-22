@@ -1,54 +1,45 @@
-package leetcode.L008_StringToInteger_Atoi;
-
-/**
- * @author: deadend
- * @date: 1:02 PM 11/27/16
- * @version: 1.0
- * @description:
- */
+package leetcode.again.L008_StringToInteger_Atoi;
 
 
 public class Solution {
     public int myAtoi(String str) {
-        // Start typing your Java solution below
-        // DO NOT write Main() function
-        if(str == null) {
+        if (str == null) {
             return 0;
         }
+
         str = str.trim();
-        if (str.length() == 0) {
+        if (str.equals("")) {
             return 0;
         }
-            
+
         int sign = 1;
         int index = 0;
-    
-        if (str.charAt(index) == '+') {
-            index++;
-        } else if (str.charAt(index) == '-') {
-            sign = -1;
+        if (str.charAt(index) == '+' || str.charAt(index) == '-') {
+            sign = str.charAt(index) == '+' ? 1 : -1;
             index++;
         }
-        long num = 0;
+
+        long num = 0L;
         for (; index < str.length(); index++) {
-            if (str.charAt(index) < '0' || str.charAt(index) > '9')
-                break;
-            num = num * 10 + (str.charAt(index) - '0');
-            if (num > Integer.MAX_VALUE ) {
+            char c = str.charAt(index);
+            if (!Character.isDigit(c)) {
                 break;
             }
-        }   
-        if (num * sign >= Integer.MAX_VALUE) {
+
+            num = num * 10 + c - '0';
+            if (num > Integer.MAX_VALUE) {
+                break;
+            }
+        }
+
+        if (sign * num > Integer.MAX_VALUE) {
             return Integer.MAX_VALUE;
         }
-        if (num * sign <= Integer.MIN_VALUE) {
+
+        if (sign * num < Integer.MIN_VALUE) {
             return Integer.MIN_VALUE;
         }
-        return (int)num * sign;
-    }
 
-    public static void main(String[] args) {
-        String s = "  +-123^";
-        System.out.println(new Solution().myAtoi(s));
+        return (int) (sign * num);
     }
 }

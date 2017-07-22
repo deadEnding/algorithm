@@ -1,88 +1,47 @@
-package leetcode.L232_ImplementQueueUsingStacks;
+package leetcode.again.L232_ImplementQueueUsingStacks;
+
 
 import java.util.LinkedList;
 
-/**
- * @author: deadend
- * @date: 11:02 AM 12/P10/16
- * @version: 1.0
- * @description:
- */
-
 public class MyQueue {
 
-    private LinkedList<Integer> stackNewest = new LinkedList<>();
-    private LinkedList<Integer> stackOldest = new LinkedList<>();
+    private LinkedList<Integer> stack0;
+    private LinkedList<Integer> stack1;
 
-    // Push element x to the back of queue.
-    public void push(int x) {
-        stackNewest.push(x);
+    /** Initialize your data structure here. */
+    public MyQueue() {
+        stack0 = new LinkedList<>();
+        stack1 = new LinkedList<>();
     }
 
-    private void checkToFlush() {
-        if (stackOldest.isEmpty()) {
-            while (!stackNewest.isEmpty()) {
-                stackOldest.push(stackNewest.pop());
+    /** Push element x to the back of queue. */
+    public void push(int x) {
+        stack0.push(x);
+    }
+
+    private void check() {
+        if (stack1.isEmpty()) {
+            while (!stack0.isEmpty()) {
+                stack1.push(stack0.pop());
             }
         }
     }
 
-    // Removes the element from in front of queue.
-    public void pop() {
-        checkToFlush();
-        stackOldest.pop();
+    /** Removes the element from in front of queue and returns that element. */
+    public int pop() {
+        check();
+        return stack1.pop();
     }
 
-    // Get the front element.
+    /** Get the front element. */
     public int peek() {
-        checkToFlush();
-        return stackOldest.peek();
+        check();
+        return stack1.peek();
     }
 
-    // Return whether the queue is empty.
+    /** Returns whether the queue is empty. */
     public boolean empty() {
-        return stackOldest.isEmpty() && stackNewest.isEmpty();
+        return stack0.isEmpty() && stack1.isEmpty();
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-class MyQueue2 {
-    private LinkedList<Integer> stack = new LinkedList<>();
-    private LinkedList<Integer> assistantStack = new LinkedList<>();
-    
-    // Push element x to the back of queue.
-    public void push(int x) {
-        while (!stack.isEmpty()) {
-            assistantStack.push(stack.pop());
-        }
-        assistantStack.push(x);
-        while (!assistantStack.isEmpty()) {
-            stack.push(assistantStack.pop());
-        }
-    }
-
-    // Removes the element from in front of queue.
-    public void pop() {
-        stack.pop();
-    }
-
-    // Get the front element.
-    public int peek() {
-        return stack.peek();
-    }
-
-    // Return whether the queue is empty.
-    public boolean empty() {
-        return stack.isEmpty();
-    }
-}

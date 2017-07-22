@@ -1,8 +1,8 @@
-package leetcode.L292_NimGame;
+package leetcode.again.L292_NimGame;
 
 /**
  * @author: deadend
- * @date: 5:02 PM 12/12/16
+ * @date: 7:37 PM 3/11/17
  * @version: 1.0
  * @description:
  */

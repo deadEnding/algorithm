@@ -1,11 +1,4 @@
-package leetcode.L445_AddTwoNumbersII;
-
-/**
- * @author: deadend
- * @date: 4:05 PM 12/23/16
- * @version: 1.0
- * @description:
- */
+package leetcode.again.L445_AddTwoNumbersII;
 
 class ListNode {
     int val;
@@ -13,39 +6,44 @@ class ListNode {
     ListNode(int x) { val = x; }
 }
 
+
 public class Solution {
-    private int getLength(ListNode l) {
-        int len = 0;
-        while (l != null) {
-            len++;
-            l = l.next;
-        }
-        return len;
-    }
+    private ListNode reverse(ListNode head) {
+        ListNode dummy = new ListNode(-1);
 
-    private ListNode helper(ListNode l1, ListNode l2, int delta) {
-        if (l1 == null && l2 == null) {
-            return new ListNode(0);
+        while (head != null) {
+            ListNode t = head.next;
+            head.next = dummy.next;
+            dummy.next = head;
+            head = t;
         }
 
-        ListNode next = helper(l1.next, delta > 0 ? l2 : l2.next, delta > 0 ? delta - 1 : 0);
-        next.val += l1.val + (delta > 0 ? 0 : l2.val);
-        ListNode curr = new ListNode(next.val / 10);
-        next.val %= 10;
-        curr.next = next;
-        return curr;
+        return dummy.next;
     }
 
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        int len1 = getLength(l1);
-        int len2 = getLength(l2);
+        ListNode rl1 = reverse(l1);
+        ListNode rl2 = reverse(l2);
+        ListNode dummy = new ListNode(-1);
+        ListNode r = dummy;
 
-        ListNode l;
-        if (len1 >= len2) {
-            l = helper(l1, l2, len1 - len2);
-        } else {
-            l = helper(l2, l1, len2 - len1);
+        int c = 0;
+        for (ListNode p = rl1, q = rl2; p != null || q != null;) {
+            int a = p == null ? 0 : p.val;
+            p = p == null ? null : p.next;
+            int b = q == null ? 0 : q.val;
+            q = q == null ? null : q.next;
+
+            int s = a + b + c;
+            c = s / 10;
+            r.next = new ListNode(s % 10);
+            r = r.next;
         }
-        return l.val == 0 ? l.next : l;
+
+        if (c != 0) {
+            r.next = new ListNode(c);
+        }
+
+        return reverse(dummy.next);
     }
 }

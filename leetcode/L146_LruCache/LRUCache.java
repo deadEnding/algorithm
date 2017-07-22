@@ -1,34 +1,81 @@
-package leetcode.L146_LruCache;
-
-import java.util.*;
-
-/**
- * @author: deadend
- * @date: P10:51 AM 12/7/16
- * @version: 1.0
- * @description:
- */
+package leetcode.again.L146_LRUCache;
 
 
-public class LRUCache extends LinkedHashMap<Integer, Integer> {
+import java.util.HashMap;
+
+public class LRUCache {
+
+    class Node {
+        int key, val;
+        Node prev, next;
+
+        public Node(int key, int val) {
+            this.key = key;
+            this.val = val;
+        }
+    }
 
     private int capacity;
+    private int count;
+    private Node dummy;
+    private HashMap<Integer, Node> map;
 
     public LRUCache(int capacity) {
-        super(capacity, 0.75f, true);   // accessOrder: LRU实现
         this.capacity = capacity;
+        dummy = new Node(-1, -1);
+        dummy.prev = dummy.next = dummy;
+        map = new HashMap<>();
+    }
+
+    private void link(Node prev, Node node) {
+        Node next = prev.next;
+        prev.next = node;
+        node.next = next;
+        node.prev = prev;
+        next.prev = node;
+    }
+
+    private void unlink(Node node) {
+        node.prev.next = node.next;
+        node.next.prev = node.prev;
+    }
+
+    private void removeFirst() {
+        map.remove(dummy.next.key);
+        unlink(dummy.next);
+    }
+
+    private void addLast(Node node) {
+        map.put(node.key, node);
+        link(dummy.prev, node);
+    }
+
+    private void moveToLast(Node node) {
+        unlink(node);
+        link(dummy.prev, node);
     }
 
     public int get(int key) {
-        return containsKey(key) ? super.get(key) : -1;
+        if (!map.containsKey(key)) {
+            return -1;
+        }
+
+        Node node = map.get(key);
+        moveToLast(node);
+        return node.val;
     }
 
-    public void set(int key, int value) {
-        super.put(key, value);
-    }
-
-    @Override
-    protected boolean removeEldestEntry(Map.Entry<Integer, Integer> eldest) {
-        return super.size() > capacity;
+    public void put(int key, int value) {
+        if (map.containsKey(key)) {
+            Node node = map.get(key);
+            node.val = value;
+            moveToLast(node);
+        } else {
+            Node node = new Node(key, value);
+            addLast(node);
+            if (++count > capacity) {
+                removeFirst();
+            }
+        }
     }
 }

@@ -1,54 +1,39 @@
-package leetcode.L331_VerifyPreorderSerializationOfABinaryTree;
+package leetcode.again.L331_VerifyPreorderSerializationOfABinaryTree;
 
 import java.util.LinkedList;
 
 /**
  * @author: deadend
- * @date: 11:00 AM 12/16/16
+ * @date: P10:58 AM 3/1/17
  * @version: 1.0
  * @description:
  */
 
+
 public class Solution {
     public boolean isValidSerialization(String preorder) {
-        String[] vals = preorder.split(",");
-
-        int degree = 1;
-        for (String val : vals) {
-            if (--degree < 0) {
-                return false;
-            }
-            degree += val.equals("#") ? 0 : 2;
-        }
-        return degree == 0;
-    }
-}
-
-class StackSolution {
-    public boolean isValidSerialization(String preorder) {
-        final String dummy = "#";
+        final String nval = "#";
         String[] vals = preorder.split(",");
         LinkedList<String> stack = new LinkedList<>();
 
-        for (String val : vals) {
-            if (val.equals(dummy)) {
-                while (!stack.isEmpty() && stack.peek().equals(dummy)) {
+        for (String v : vals) {
+            if (v.equals(nval)) {
+                while (!stack.isEmpty() && stack.peek().equals(nval)) {
                     if (stack.size() < 2) {
                         return false;
                     }
                     stack.pop();
                     stack.pop();
                 }
-                stack.push(dummy);
-            } else {
-                stack.push(val);
             }
+            stack.push(v);
         }
-        return stack.size() == 1 && stack.pop().equals(dummy);
+
+        return stack.size() == 1 && stack.peek().equals(nval);
     }
 
     public static void main(String[] args) {
-        String preorder = "1,#,#,#,#";
-        System.out.println(new Solution().isValidSerialization(preorder));
+        String s = "1,#";
+        System.out.println(new Solution().isValidSerialization(s));
     }
 }

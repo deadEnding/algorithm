@@ -1,29 +1,22 @@
-package leetcode.L504_Base7;
+package leetcode.again.L504_Base7;
 
 /**
  * @author: deadend
- * @date: 12:46 PM 2/12/17
- * @version: 1.0
- * @description:
+ * @date: 4:42 PM 28/03/2017
  */
 
 
 public class Solution {
-    private String convertTo7WithUnsigned(int num) {
-        StringBuffer buffer = new StringBuffer();
-        while (num != 0) {
-            int t = num / 7;
-            buffer.insert(0, num - t * 7);
-            num = t;
-        }
-        return buffer.length() == 0 ? "0" : buffer.toString();
-    }
+    public String convertToBase7(int num) {
+        boolean sign = num >= 0;
+        StringBuilder builder = new StringBuilder();
+        num = Math.abs(num);
+        do {
+            builder.append(num % 7);
+            num /= 7;
+        } while (num != 0);
 
-    public String convertTo7(int num) {
-        return (num < 0 ? "-" : "") + convertTo7WithUnsigned(Math.abs(num));
-    }
-
-    public static void main(String[] args) {
-        System.out.println(new Solution().convertTo7(0));
+        builder.append(sign ? "" : "-");
+        return builder.reverse().toString();
     }
 }

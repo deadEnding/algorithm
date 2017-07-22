@@ -1,13 +1,10 @@
-package leetcode.L016_3SumClosest;
+package leetcode.again.L016_3sumClosest;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  * @author: deadend
- * @date: P10:36 PM 11/9/16
+ * @date: 9:22 PM 3/2/17
  * @version: 1.0
  * @description:
  */
@@ -15,38 +12,60 @@ import java.util.List;
 
 public class Solution {
     public int threeSumClosest(int[] nums, int target) {
+        final int n = nums.length;
         Arrays.sort(nums);
-        long min = Integer.MAX_VALUE;
+
+        Integer minDiff = null;
+        for (int i = 0; i < n - 2; i++) {
+            for (int j = i + 1, k = n - 1; j < k;) {
+                int sum = nums[i] + nums[j] + nums[k];
+                if (minDiff == null || Math.abs(target - sum) < Math.abs(minDiff)) {
+                    minDiff = target - sum;
+                }
+
+                if (sum == target) {
+                    return sum;
+                } else if (sum < target) {
+                    j++;
+                } else {
+                    k--;
+                }
+            }
+        }
+
+        return target - minDiff;
+    }
+}
+
+class OldSolution {
+    public int threeSumClosest(int[] nums, int target) {
+        Arrays.sort(nums);
+        long closet = Long.MAX_VALUE;
 
         for (int i = 0; i < nums.length - 2; i++) {
             int j = i + 1;
             int k = nums.length - 1;
 
             while (j < k) {
-                long sum = nums[i] + nums[j] + nums[k];
-                if (Math.abs(sum - target) < Math.abs(min - target))
-                    min = sum;
+                long sum = (long) nums[i] + nums[j] + nums[k];
+                if (closet == Long.MAX_VALUE || Math.abs(sum - target) < Math.abs(closet - target)) {
+                    closet = sum;
+                }
+
                 if (sum < target) {
-                    do {
-                        j++;
-                    } while (j < k && nums[j] == nums[j - 1]);
-                } else if (sum > target)  {
-                    do {
-                        k--;
-                    } while (j < k && nums[k] == nums[k + 1]);
+                    j++;
+                } else if (sum > target) {
+                    k--;
                 } else {
-                    do {
-                        j++;
-                        k--;
-                    } while (j < k && nums[j] == nums[j - 1] && nums[k] == nums[k + 1]);
+                    return target;
                 }
             }
         }
-        return (int)min;
+        return (int) closet;
     }
 
     public static void main(String[] args) {
-        int[] nums = new int[]{1,1,-1,-1,3};
-        System.out.println(new Solution().threeSumClosest(nums, -1));
+        int[] nums = {1,2,5,10,11};
+        System.out.println(new Solution().threeSumClosest(nums, 12));
     }
 }

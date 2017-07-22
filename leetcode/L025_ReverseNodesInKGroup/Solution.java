@@ -1,11 +1,5 @@
-package leetcode.L025_ReverseNodesInKGroup;
+package leetcode.again.L025_ReverseNodesInKGroup;
 
-/**
- * @author: deadend
- * @date: 9:55 AM 11/30/16
- * @version: 1.0
- * @description:
- */
 
 class ListNode {
     int val;
@@ -14,25 +8,75 @@ class ListNode {
 }
 
 public class Solution {
-    public ListNode reverseKGroup(ListNode head, int k) {
-        int len = 0;
-        ListNode p;
-        for (p = head; len < k && p != null; len++, p = p.next) {}
 
+    private int lengthOf(ListNode head) {
+        int len = 0;
+        while (head != null) {
+            head = head.next;
+            len++;
+        }
+
+        return len;
+    }
+
+    private ListNode reverseKGroup(ListNode head, int k, int len) {
         if (len < k) {
             return head;
         }
 
         ListNode dummy = new ListNode(-1);
-        dummy.next = head;
-        ListNode last = head;
-        for (int i = 1; i < k; i++) {
-            ListNode tmp = last.next;
-            last.next = tmp.next;
+
+        ListNode p = head;
+        for (int i = 0; i < k; i++) {
+            ListNode tmp = p;
+            p = p.next;
             tmp.next = dummy.next;
             dummy.next = tmp;
         }
-        last.next = reverseKGroup(p, k);
+
+        head.next = reverseKGroup(p, k, len - k);
         return dummy.next;
+    }
+
+    public ListNode reverseKGroup(ListNode head, int k) {
+        return reverseKGroup(head, k, lengthOf(head));
+    }
+}
+
+class OldSolution {
+
+    private int getLength(ListNode head) {
+        int len = 0;
+        while (head != null) {
+            len++;
+            head = head.next;
+        }
+        return len;
+    }
+
+    private ListNode reverse(ListNode head, int k, int len) {
+        if (len < k) {
+            return head;
+        }
+
+        ListNode dummy = new ListNode(-1), p = head, next = null;
+        for (int i = 0; i < k; i++) {
+            next = p.next;
+            p.next = dummy.next;
+            dummy.next = p;
+            p = next;
+        }
+
+        head.next = reverse(next, k, len - k);
+        return dummy.next;
+    }
+
+    public ListNode reverseKGroup(ListNode head, int k) {
+        if (k <= 1 || head == null) {
+            return head;
+        }
+
+        int len = getLength(head);
+        return reverse(head, k, len);
     }
 }

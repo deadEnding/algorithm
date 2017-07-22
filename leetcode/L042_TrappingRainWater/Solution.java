@@ -1,8 +1,8 @@
-package leetcode.L042_TrappingRainWater;
+package leetcode.again.L042_TrappingRainWater;
 
 /**
  * @author: deadend
- * @date: 9:07 AM 11/14/16
+ * @date: 9:34 AM 3/4/17
  * @version: 1.0
  * @description:
  */
@@ -11,45 +11,76 @@ package leetcode.L042_TrappingRainWater;
 public class Solution {
     public int trap(int[] height) {
         final int n = height.length;
-
-        int water = 0;
-        for (int l = 0, r = n - 1, level = 0; l < r;) {
-            int lower = height[height[l] < height[r] ? l++ : r--];
-            level = Math.max(level, lower);
-            water += level - lower;
+        int sum = 0;
+        int lmax = 0, rmax = 0;
+        for (int i = 0, j = n - 1; i <= j;) {
+            if (lmax < rmax) {
+                sum += height[i] < lmax ? lmax - height[i] : 0;
+                lmax = Math.max(lmax, height[i]);
+                i++;
+            } else {
+                sum += height[j] < rmax ? rmax - height[j] : 0;
+                rmax = Math.max(rmax, height[j]);
+                j--;
+            }
         }
-
-        return water;
-    }
-
-    public static void main(String[] args) {
-        int[] height = {1,2,1};
-        System.out.println(new Solution().trap(height));
+        return sum;
     }
 }
 
-class Solution2 {
 
+class OldSolution {
     public int trap(int[] height) {
         final int n = height.length;
-        if (n <= 2) {
+        int sum = 0;
+        int l = 0, r = n - 1;
+        int lmax = 0, rmax = 0;
+        while (l <= r) {
+            if (height[l] < height[r]) {
+                sum += Math.max(lmax, height[l]) - height[l];
+                lmax = Math.max(lmax, height[l]);
+                l++;
+            } else {
+                sum += Math.max(rmax, height[r]) - height[r];
+                rmax = Math.max(rmax, height[r]);
+                r--;
+            }
+        }
+        return sum;
+    }
+
+    public static void main(String[] args) {
+        int[] h = {0,1,0,2,1,0,1,3,2,1,2,1};
+        System.out.println(new BasicSolution().trap(h));
+    }
+}
+
+class BasicSolution {
+    public int trap(int[] height) {
+        final int n = height.length;
+        if (n <= 1) {
             return 0;
         }
 
-        int[] left = new int[n];
-        int[] right = new int[n];
-        left[0] = height[0];
-        right[n-1] = height[n-1];
+        int max = 0;
         for (int i = 1; i < n; i++) {
-            left[i] = Math.max(left[i-1], height[i]);
-            right[n-1-i] = Math.max(right[n-i], height[n-1-i]);
+            if (height[i] > height[max]) {
+                max = i;
+            }
         }
 
-        int water = 0;
-        for (int i = 0; i < n; i++) {
-            water += Math.min(left[i], right[i]) - height[i];
+        int sum = 0;
+        int lmax = 0;
+        for (int i = 0; i < max; i++) {
+            sum += Math.max(lmax, height[i]) - height[i];
+            lmax = Math.max(lmax, height[i]);
         }
-        return water;
+
+        int rmax = 0;
+        for (int i = n - 1; i > max; i--) {
+            sum += Math.max(rmax, height[i]) - height[i];
+            rmax = Math.max(rmax, height[i]);
+        }
+        return sum;
     }
-
 }

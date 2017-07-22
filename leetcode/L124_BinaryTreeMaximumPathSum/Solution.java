@@ -1,8 +1,8 @@
-package leetcode.L124_BinaryTreeMaximumPathSum;
+package leetcode.again.L124_BinaryTreeMaximumPathSum;
 
 /**
  * @author: deadend
- * @date: 12:31 PM 12/5/16
+ * @date: P10:48 PM 3/3/17
  * @version: 1.0
  * @description:
  */
@@ -14,24 +14,24 @@ class TreeNode {
     TreeNode(int x) { val = x; }
 }
 
+
 public class Solution {
     private int max = Integer.MIN_VALUE;
 
-    private int dfs(TreeNode root) {
+    private int postorder(TreeNode root) {
         if (root == null) {
             return 0;
         }
 
-        int lmax = Math.max(0, dfs(root.left));
-        int rmax = Math.max(0, dfs(root.right));
+        int lmax = Math.max(0, postorder(root.left));
+        int rmax = Math.max(0, postorder(root.right));
 
         max = Math.max(max, lmax + rmax + root.val);
         return Math.max(lmax, rmax) + root.val;
-
     }
 
     public int maxPathSum(TreeNode root) {
-        dfs(root);
+        postorder(root);
         return max;
     }
 }

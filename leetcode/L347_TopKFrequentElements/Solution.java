@@ -1,10 +1,13 @@
-package leetcode.L347_TopKFrequentElements;
+package leetcode.again.L347_TopKFrequentElements;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * @author: deadend
- * @date: 2:45 PM 11/26/16
+ * @date: 12:32 PM 3/1/17
  * @version: 1.0
  * @description:
  */
@@ -13,42 +16,8 @@ import java.util.*;
 public class Solution {
     public List<Integer> topKFrequent(int[] nums, int k) {
         HashMap<Integer, Integer> counter = new HashMap<>();
-        for (int n : nums) {
-            counter.put(n, counter.containsKey(n) ? counter.get(n) + 1 : 1);
-        }
-
-        PriorityQueue<Map.Entry<Integer, Integer>> heap = new PriorityQueue<>(
-            counter.size(),
-            new Comparator<Map.Entry<Integer, Integer>>() {
-                public int compare(Map.Entry<Integer, Integer> o1, Map.Entry<Integer, Integer> o2) {
-                    return o2.getValue() - o1.getValue();
-                }
-            }
-        );
-
-        heap.addAll(counter.entrySet());
-        List<Integer> result = new ArrayList<>(k);
-        for (int i = 0; i < k; i++) {
-            result.add(heap.poll().getKey());
-        }
-        return result;
-    }
-
-    public static void main(String[] args) {
-        int[] nums = {1,1,1,2,2,3};
-        List<Integer> result = new BucketSolution().topKFrequent(nums, 2);
-        for (int i : result) {
-            System.out.print(i + " ");
-        }
-        System.out.println();
-    }
-}
-
-class BucketSolution {
-    public List<Integer> topKFrequent(int[] nums, int k) {
-        HashMap<Integer, Integer> counter = new HashMap<>();
-        for (int n : nums) {
-            counter.put(n, counter.containsKey(n) ? counter.get(n) + 1 : 1);
+        for (int num : nums) {
+            counter.put(num, counter.getOrDefault(num, 0) + 1);
         }
 
         ArrayList<Integer>[] buckets = new ArrayList[nums.length + 1];
@@ -60,17 +29,18 @@ class BucketSolution {
             buckets[count].add(key);
         }
 
-        List<Integer> topK = new LinkedList<>();
-        for (int i = buckets.length - 1; i >= 0; i--) {
-            if (k == 0) {
-                break;
-            }
-
+        LinkedList<Integer> topK = new LinkedList<>();
+        for (int i = nums.length; i > 0 && k > 0; i--) {
             if (buckets[i] != null) {
                 topK.addAll(buckets[i]);
                 k -= buckets[i].size();
             }
         }
         return topK;
+    }
+
+    public static void main(String[] args) {
+        int[] nums = {1};
+        System.out.println(new Solution().topKFrequent(nums, 1));
     }
 }

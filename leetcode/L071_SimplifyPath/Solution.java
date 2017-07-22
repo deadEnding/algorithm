@@ -1,11 +1,11 @@
-package leetcode.L071_SimplifyPath;
+package leetcode.again.L071_SimplifyPath;
 
 import java.util.LinkedList;
-import java.util.regex.Pattern;
+import java.util.Stack;
 
 /**
  * @author: deadend
- * @date: 3:07 PM 12/1/16
+ * @date: 3:12 PM 3/2/17
  * @version: 1.0
  * @description:
  */
@@ -13,34 +13,34 @@ import java.util.regex.Pattern;
 
 public class Solution {
     public String simplifyPath(String path) {
+        String[] ps = path.split("/", -1);
         LinkedList<String> stack = new LinkedList<>();
-
-        String[] slugs = path.split("/");
-        for (int i = slugs.length - 1; i >= 0; i--) {
-            if (slugs[i].equals("") || slugs[i].equals(".")) {
+        for (String p : ps) {
+            if (p.equals("") || p.equals(".")) {
                 continue;
             }
 
-            if (!slugs[i].equals("..") && !stack.isEmpty() && stack.peek().equals("..")) {
-                stack.pop();
+            if (p.equals("..")) {
+                if (!stack.isEmpty()) {
+                    stack.pop();
+                }
             } else {
-                stack.push(slugs[i]);
+                stack.push(p);
             }
         }
 
-        StringBuffer sb = new StringBuffer();
+        StringBuffer buffer = new StringBuffer();
         while (!stack.isEmpty()) {
-            String slug = stack.pop();
-            if (!slug.equals("..")) {
-                sb.append("/" + slug);
-            }
+            buffer.insert(0, stack.pop() + (buffer.length() > 0 ? "/" : ""));
         }
-
-        return sb.length() == 0 ? "/" : path.startsWith("/") ? sb.toString() : sb.substring(1).toString();
+        if (path.startsWith("/")) {
+            buffer.insert(0, "/");
+        }
+        return buffer.toString();
     }
 
     public static void main(String[] args) {
-        String path = "//";
-        System.out.println(new Solution().simplifyPath(path));
+        System.out.println(new Solution().simplifyPath("").length());
     }
 }
+

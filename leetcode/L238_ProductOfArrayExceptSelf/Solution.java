@@ -1,41 +1,45 @@
-package leetcode.L238_ProductOfArrayExceptSelf;
-
-/**
- * @author: deadend
- * @date: 9:44 AM 11/23/16
- * @version: 1.0
- * @description:
- */
+package leetcode.again.L238_ProductOfArrayExceptSelf;
 
 
 public class Solution {
     public int[] productExceptSelf(int[] nums) {
         final int n = nums.length;
         int[] result = new int[n];
-        if (n == 0) {
-            return result;
+        for (int i = n - 1; i >= 0; i--) {
+            result[i] = i == n - 1 ? 1 : result[i + 1] * nums[i + 1];
         }
 
-        int[] left = new int[n];
-        int[] right = new int[n];
-
-        left[0] = right[n - 1] = 1;
-        for (int i = 1; i < n; i++) {
-            left[i] = left[i - 1] * nums[i - 1];
-            right[n - 1 - i] = right[n - i] * nums[n - i];
+        for (int i = 0, left = 1; i < n; i++) {
+            result[i] *= left;
+            left *= nums[i];
         }
 
-        for (int i = 0; i < n; i++) {
-            result[i] = left[i] * right[i];
-        }
         return result;
     }
+}
 
-    public static void main(String[] args) {
-        int[] nums = {};
-        int[] result = new Solution().productExceptSelf(nums);
-        for (int i : result) {
-            System.out.print(i + " ");
+
+class BasicSolution {
+    public int[] productExceptSelf(int[] nums) {
+        final int n = nums.length;
+
+        int[] left = new int[n + 1];
+        int[] right = new int[n + 1];
+        left[0] = right[n] = 1;
+
+        for (int i = 0; i < n; i++) {
+            left[i + 1] = left[i] * nums[i];
         }
+
+        for (int i = n - 1; i >= 0; i--) {
+            right[i] = right[i + 1] * nums[i];
+        }
+
+        int[] result = new int[n];
+        for (int i = 0; i < n; i++) {
+            result[i] = left[i] * right[i + 1];
+        }
+
+        return result;
     }
 }

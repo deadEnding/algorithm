@@ -1,13 +1,11 @@
-package leetcode.L508_MostFrequentSubtreeSum;
+package leetcode.again.L508_MostFrequentSubtreeSum;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
  * @author: deadend
- * @date: 2:28 PM 2/11/17
- * @version: 1.0
- * @description:
+ * @date: 7:34 PM 28/03/2017
  */
 
 class TreeNode {
@@ -18,36 +16,35 @@ class TreeNode {
 }
 
 public class Solution {
-    private int helper(TreeNode root, HashMap<Integer, Integer> count) {
+    private int helper(TreeNode root, HashMap<Integer, Integer> map) {
         if (root == null) {
             return 0;
         }
 
-        int sum = root.val + helper(root.left, count) + helper(root.right, count);
-        count.put(sum, count.getOrDefault(sum, 0) + 1);
+        int sum = helper(root.left, map) + helper(root.right, map);
+        map.put(sum, map.getOrDefault(sum, 0) + 1);
         return sum;
     }
 
     public int[] findFrequentTreeSum(TreeNode root) {
-        HashMap<Integer, Integer> count = new HashMap<>();
-        helper(root, count);
-
-        int c = 0;
-        ArrayList<Integer> highest = new ArrayList<>();
-        for (int key : count.keySet()) {
-            int val = count.get(key);
-            if (val >= c) {
-                if (val > c) {
-                    highest.clear();
-                    c = val;
+        HashMap<Integer, Integer> map = new HashMap<>();
+        helper(root, map);
+        int max = 0;
+        ArrayList<Integer> tmp = new ArrayList<>();
+        for (int key : map.keySet()) {
+            int val = map.get(key);
+            if (val >= max) {
+                if (val > max) {
+                    tmp.clear();
+                    max = val;
                 }
-                highest.add(key);
+                tmp.add(key);
             }
         }
 
-        int[] result = new int[highest.size()];
+        int[] result = new int[tmp.size()];
         for (int i = 0; i < result.length; i++) {
-            result[i] = highest.get(i);
+            result[i] = tmp.get(i);
         }
         return result;
     }
