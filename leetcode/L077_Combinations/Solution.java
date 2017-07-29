@@ -13,6 +13,31 @@ import java.util.List;
 
 
 public class Solution {
+    private List<List<Integer>> result = new ArrayList<>();
+
+    private void dfs(int ix, int n, int k, ArrayList<Integer> path) {
+        if (ix == n + 1) {
+            if (path.size() == k) {
+                result.add(new ArrayList<>(path));
+            }
+            return;
+        }
+
+        path.add(ix);
+        dfs(ix + 1, n, k, path);
+        path.remove(path.size() - 1);
+
+        dfs(ix + 1, n, k, path);
+    }
+
+    public List<List<Integer>> combine(int n, int k) {
+        dfs(1, n, k, new ArrayList<>());
+        return result;
+    }
+}
+
+
+class OldSolution {
     private List<List<Integer>> result = new LinkedList<>();
 
     private void combine(int ix, int n, int k, ArrayList<Integer> path) {

@@ -15,6 +15,28 @@ class ListNode {
 
 public class Solution {
     public ListNode partition(ListNode head, int x) {
+        ListNode smaller = new ListNode(-1), bigger = new ListNode(-1);
+        ListNode s = smaller, b = bigger;
+
+        for (ListNode p = head; p != null; p = p.next) {
+            if (p.val < x) {
+                s.next = p;
+                s = s.next;
+            } else {
+                b.next = p;
+                b = b.next;
+            }
+        }
+
+        s.next = bigger.next;
+        b.next = null;
+        return smaller.next;
+    }
+}
+
+
+class OtherSolution {
+    public ListNode partition(ListNode head, int x) {
         ListNode lt = new ListNode(-1);
         ListNode ge = new ListNode(-1);
         ListNode ltTail = lt, geTail = ge, curr = head;

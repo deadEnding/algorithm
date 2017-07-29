@@ -7,8 +7,27 @@ package leetcode.L050_Pow_x_N;
  * @description:
  */
 
-
 public class Solution {
+    public double myPow(double x, int n) {
+        double pow = 1;
+
+        double base = x;
+        long m = Math.abs((long) n);
+        while (m > 0) {
+            if (m % 2 == 1) {
+                pow *= base;
+            }
+
+            base *= base;
+            m >>= 1;
+        }
+
+        return n < 0 ? 1.0 / pow : pow;
+    }
+}
+
+
+class OldSolution {
     public double myPow(double x, int n) {
         if (n == 0) {
             return 1;

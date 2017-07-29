@@ -1,8 +1,6 @@
 package leetcode.L056_MergeIntervals;
 
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author: deadend
@@ -20,6 +18,32 @@ class Interval {
 
 
 public class Solution {
+
+    public List<Interval> merge(List<Interval> intervals) {
+        List<Interval> merged = new LinkedList<>();
+        if (intervals.isEmpty()) {
+            return merged;
+        }
+
+        Collections.sort(intervals, (i1, i2) -> (i1.start - i2.start));
+        Interval itv = new Interval(intervals.get(0).start, intervals.get(0).end);
+        for (int i = 1; i <= intervals.size(); i++) {
+            if (i == intervals.size() || intervals.get(i).start > itv.end) {
+                merged.add(itv);
+                if (i != intervals.size()) {
+                    itv = new Interval(intervals.get(i).start, intervals.get(i).end);
+                }
+            } else {
+                itv.end = Math.max(itv.end, intervals.get(i).end);
+            }
+        }
+
+        return merged;
+    }
+}
+
+
+class OldSolution {
     public List<Interval> merge(List<Interval> intervals) {
         if (intervals.size() < 2)
             return intervals;

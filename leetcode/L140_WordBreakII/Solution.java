@@ -10,6 +10,36 @@ import java.util.*;
  */
 
 public class Solution {
+    private ArrayList<String> dfs(String s, HashSet<String> dict, HashMap<String, ArrayList<String>> cache) {
+        if (s.equals("")) {
+            return new ArrayList<String>() {{ add(""); }};
+        }
+
+        if (!cache.containsKey(s)) {
+            ArrayList<String> result = new ArrayList<>();
+            for (int i = 0; i < s.length(); i++) {
+                String t = s.substring(0, i + 1);
+                if (dict.contains(t)) {
+                    ArrayList<String> rear = dfs(s.substring(i + 1), dict, cache);
+                    for (String r : rear) {
+                        result.add(t + (r.equals("") ? r : (" " + r)));
+                    }
+                }
+            }
+            cache.put(s, result);
+        }
+
+        return cache.get(s);
+    }
+
+    public List<String> wordBreak(String s, List<String> wordDict) {
+        HashSet<String> dict = new HashSet<>();
+        dict.addAll(wordDict);
+        return dfs(s, dict, new HashMap<>());
+    }
+}
+
+class OldSolution {
     private ArrayList<String> backtrace(String s, HashSet<String> set, HashMap<String, ArrayList<String>> map) {
         if (map.containsKey(s)) {
             return map.get(s);

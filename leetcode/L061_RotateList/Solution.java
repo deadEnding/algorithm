@@ -15,6 +15,35 @@ class ListNode {
 
 public class Solution {
     public ListNode rotateRight(ListNode head, int k) {
+        if (head == null) {
+            return null;
+        }
+
+        ListNode tail = head;
+        int len = 1;
+        while (tail.next != null) {
+            tail = tail.next;
+            len++;
+        }
+
+        tail.next = head;
+        int step = len - k % len;
+
+        ListNode p = head;
+        while (--step > 0) {
+            p = p.next;
+        }
+
+        head = p.next;
+        p.next = null;
+
+        return head;
+    }
+}
+
+
+class OldSolution {
+    public ListNode rotateRight(ListNode head, int k) {
         ListNode tail = null;
         ListNode curr = head;
         int len = 0;

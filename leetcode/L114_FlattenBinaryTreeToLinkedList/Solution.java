@@ -18,6 +18,31 @@ class TreeNode {
 
 
 public class Solution {
+
+    private TreeNode helper(TreeNode root) {
+        if (root == null) {
+            return null;
+        }
+
+        TreeNode leftTail = helper(root.left);
+        TreeNode rightTail = helper(root.right);
+        TreeNode rightHead = root.right;
+        if (leftTail != null) {
+            root.right = root.left;
+            root.left = null;
+            leftTail.right = rightHead;
+        }
+
+        return rightTail != null ? rightTail : (leftTail != null ? leftTail : root);
+    }
+
+
+    public void flatten(TreeNode root) {
+        helper(root);
+    }
+}
+
+class OldSolution {
     private TreeNode last;
 
     private void preOrder(TreeNode root) {

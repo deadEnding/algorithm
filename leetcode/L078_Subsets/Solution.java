@@ -12,6 +12,30 @@ import java.util.List;
 
 
 public class Solution {
+
+    private List<List<Integer>> result = new LinkedList<>();
+
+    private void dfs(int ix, int[] nums, LinkedList<Integer> path) {
+        if (ix == nums.length) {
+            result.add(new LinkedList<>(path));
+            return;
+        }
+
+        path.addLast(nums[ix]);
+        dfs(ix + 1, nums, path);
+        path.removeLast();
+
+        dfs(ix + 1, nums, path);
+    }
+
+    public List<List<Integer>> subsets(int[] nums) {
+        dfs(0, nums, new LinkedList<>());
+        return result;
+    }
+}
+
+
+class OtherSolution {
     private List<List<Integer>> result = new LinkedList<>();
 
     public List<List<Integer>> subsets(int[] nums) {

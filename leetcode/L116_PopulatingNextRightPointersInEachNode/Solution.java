@@ -20,6 +20,24 @@ class TreeLinkNode {
 
 public class Solution {
     public void connect(TreeLinkNode root) {
+        if (root == null) {
+            return;
+        }
+
+        TreeLinkNode dummy = new TreeLinkNode(-1);
+        for (TreeLinkNode h = root; h.left != null; h = h.left) {
+            for (TreeLinkNode p = h, last = dummy; p != null; p = p.next) {
+                last.next = p.left;
+                p.left.next = p.right.next;
+                last = p.right;
+            }
+        }
+    }
+}
+
+
+class OldSolution {
+    public void connect(TreeLinkNode root) {
         if (root == null)
             return;
 

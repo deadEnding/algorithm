@@ -20,7 +20,42 @@ class TreeNode {
     TreeNode(int x) { val = x; }
 }
 
+// 中序遍历，指针跟踪
 public class Solution {
+
+    private int length(ListNode head) {
+        int len = 0;
+        while (head != null) {
+            head = head.next;
+            len++;
+        }
+
+        return len;
+    }
+
+    private ListNode current;
+
+    private TreeNode sortedListToBST(int s, int e) {
+        if (s > e) {
+            return null;
+        }
+
+        int m = s + (e - s) / 2;
+        TreeNode left = sortedListToBST(s, m - 1);
+        TreeNode root = new TreeNode(current.val);
+        current = current.next;
+        root.left = left;
+        root.right = sortedListToBST(m + 1, e);
+        return root;
+    }
+
+    public TreeNode sortedListToBST(ListNode head) {
+        current = head;
+        return sortedListToBST(0, length(head) - 1);
+    }
+}
+
+class OldSolution {
     private ListNode current;
 
     private int getLength(ListNode head) {

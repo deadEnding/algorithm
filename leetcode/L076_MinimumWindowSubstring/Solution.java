@@ -12,6 +12,44 @@ import java.util.HashMap;
 
 public class Solution {
     public String minWindow(String s, String t) {
+        HashMap<Character, Integer> map = new HashMap<>();
+        for (char c : t.toCharArray()) {
+            map.put(c, map.getOrDefault(c, 0) + 1);
+        }
+
+        int count = t.length();
+        String minWin = null;
+        for (int i = 0, start = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if (map.containsKey(c)) {
+                map.put(c, map.get(c) - 1);
+                if (map.get(c) >= 0) {
+                    count--;
+                }
+            }
+
+            while (count == 0) {
+                if (minWin == null || minWin.length() > i - start + 1) {
+                    minWin = s.substring(start, i + 1);
+                }
+
+                char sc = s.charAt(start++);
+                if (map.containsKey(sc)) {
+                    map.put(sc, map.get(sc) + 1);
+                    if (map.get(sc) > 0) {
+                        count++;
+                    }
+                }
+            }
+        }
+
+        return minWin == null ? "" : minWin;
+    }
+}
+
+
+class OldSolution {
+    public String minWindow(String s, String t) {
         if (s.equals("") || t.equals("")) {
             return "";
         }

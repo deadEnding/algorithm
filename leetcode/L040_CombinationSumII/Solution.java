@@ -1,6 +1,7 @@
 package leetcode.L040_CombinationSumII;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -13,6 +14,38 @@ import java.util.List;
 
 
 public class Solution {
+
+    private List<List<Integer>> result = new LinkedList<>();
+
+    private void dfs(int ix, int[] cdd, int remain, LinkedList<Integer> path) {
+        if (remain <= 0) {
+            if (remain == 0)
+                result.add(new LinkedList<>(path));
+            return;
+        }
+
+        HashSet<Integer> used = new HashSet<>();
+        for (int i = ix; i < cdd.length; i++) {
+            if (used.contains(cdd[i])) {
+                continue;
+            }
+
+            path.addLast(cdd[i]);
+            dfs(i + 1, cdd, remain - cdd[i], path);
+            path.removeLast();
+
+            used.add(cdd[i]);
+        }
+    }
+
+    public List<List<Integer>> combinationSum2(int[] candidates, int target) {
+        Arrays.sort(candidates);
+        dfs(0, candidates, target, new LinkedList<>());
+        return result;
+    }
+}
+
+class OldSolution {
     private List<List<Integer>> result = new LinkedList<>();
 
     public List<List<Integer>> combinationSum2(int[] candidates, int target) {

@@ -10,6 +10,30 @@ package leetcode.L074_SearchA2dMatrix;
 
 public class Solution {
     public boolean searchMatrix(int[][] matrix, int target) {
+        if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {
+            return false;
+        }
+
+        final int m = matrix.length;
+        final int n = matrix[0].length;
+
+        int rs = 0, ce = n - 1;
+        while (rs < m && ce >= 0) {
+            if (matrix[rs][ce] == target) {
+                return true;
+            } else if (matrix[rs][ce] < target) {
+                rs++;
+            } else {
+                ce--;
+            }
+        }
+
+        return false;
+    }
+}
+
+class OldSolution {
+    public boolean searchMatrix(int[][] matrix, int target) {
         final int m = matrix.length;
         final int n = matrix[0].length;
 

@@ -17,6 +17,28 @@ class TreeNode {
 }
 
 public class Solution {
+
+    private int min = 0;
+
+    private void preorder(TreeNode root, int depth) {
+        if (root == null)
+            return;
+
+        if (root.left == null && root.right == null) {
+            min = Math.min(min == 0 ? Integer.MAX_VALUE : min, depth + 1);
+        }
+
+        preorder(root.left, depth + 1);
+        preorder(root.right, depth + 1);
+    }
+
+    public int minDepth(TreeNode root) {
+        preorder(root, 0);
+        return min;
+    }
+}
+
+class OldSolution {
     public int minDepth(TreeNode root) {
         if (root == null) {
             return 0;

@@ -9,7 +9,32 @@ import java.util.LinkedList;
  * @description:
  */
 
+
 public class Solution {
+    public int jump(int[] nums) {
+        if (nums.length == 1) {
+            return 0;
+        }
+
+        int step = 0;
+        for (int l = 0, r = 0, nr = 0; l <= r; l++) {
+            nr = Math.max(nr, l + nums[l]);
+            if (nr >= nums.length - 1) {
+                step++;
+                break;
+            }
+
+            if (l == r) {
+                r = nr;
+                step++;
+            }
+        }
+
+        return step;
+    }
+}
+
+class OldSolution {
     public int jump(int[] nums) {
         final int n = nums.length;
         if (n <= 1) {

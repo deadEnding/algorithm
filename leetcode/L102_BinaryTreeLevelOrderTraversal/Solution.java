@@ -11,7 +11,43 @@ class TreeNode {
     TreeNode(int x) { val = x; }
 }
 
+
+
 public class Solution {
+
+    private void addIfNotNull(LinkedList<TreeNode> level, TreeNode node) {
+        if (node != null) {
+            level.add(node);
+        }
+    }
+
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        List<List<Integer>> result = new LinkedList<>();
+        if (root == null) {
+            return result;
+        }
+
+        LinkedList<TreeNode> level = new LinkedList<>();
+        level.add(root);
+        while (!level.isEmpty()) {
+            LinkedList<Integer> nums = new LinkedList<>();
+            LinkedList<TreeNode> nlevel = new LinkedList<>();
+
+            for (TreeNode node : level) {
+                nums.add(node.val);
+                addIfNotNull(nlevel, node.left);
+                addIfNotNull(nlevel, node.right);
+            }
+
+            result.add(nums);
+            level = nlevel;
+        }
+
+        return result;
+    }
+}
+
+class OldSolution {
     public List<List<Integer>> levelOrder(TreeNode root) {
         List<List<Integer>> result = new LinkedList<>();
         if (root == null)

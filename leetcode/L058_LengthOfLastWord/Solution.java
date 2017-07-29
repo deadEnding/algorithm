@@ -10,6 +10,23 @@ package leetcode.L058_LengthOfLastWord;
 
 public class Solution {
     public int lengthOfLastWord(String s) {
+        for (int i = s.length() - 1; i >= 0; i--) {
+            if (s.charAt(i) != ' ') {
+                for (int j = i; j >= -1; j--) {
+                    if (j == -1 || s.charAt(j) == ' ') {
+                        return i - j;
+                    }
+                }
+            }
+        }
+
+        return 0;
+    }
+}
+
+
+class OldSolution {
+    public int lengthOfLastWord(String s) {
         int len = 0;
         for (int i = s.length() - 1; i >= 0; i--) {
             char c = s.charAt(i);

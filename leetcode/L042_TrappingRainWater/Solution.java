@@ -11,6 +11,28 @@ package leetcode.L042_TrappingRainWater;
 public class Solution {
     public int trap(int[] height) {
         final int n = height.length;
+
+        int sum = 0;
+        int lh = 0, rh = 0;
+        for (int l = 0, r = n - 1; l <= r;) {
+            if (height[l] <= height[r]) {
+                lh = Math.max(lh, height[l]);
+                sum += lh - height[l];
+                l++;
+            } else {
+                rh = Math.max(rh, height[r]);
+                sum += rh - height[r];
+                r--;
+            }
+        }
+
+        return sum;
+    }
+}
+
+class OldSolution {
+    public int trap(int[] height) {
+        final int n = height.length;
         int sum = 0;
         int lmax = 0, rmax = 0;
         for (int i = 0, j = n - 1; i <= j;) {
@@ -29,7 +51,7 @@ public class Solution {
 }
 
 
-class OldSolution {
+class OldestSolution {
     public int trap(int[] height) {
         final int n = height.length;
         int sum = 0;

@@ -1,5 +1,6 @@
 package leetcode.L039_CombinationSum;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -12,6 +13,31 @@ import java.util.List;
 
 
 public class Solution {
+
+    private List<List<Integer>> result = new ArrayList<>();
+
+    private void dfs(int ix, int[] cdd, int remain, ArrayList<Integer> path) {
+        if (remain <= 0) {
+            if (remain == 0)
+                result.add(new ArrayList<>(path));
+            return;
+        }
+
+        for (int i = ix; i < cdd.length; i++) {
+            path.add(cdd[i]);
+            dfs(i, cdd, remain - cdd[i], path);
+            path.remove(path.size() - 1);
+        }
+    }
+
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        dfs(0, candidates, target, new ArrayList<>());
+        return result;
+    }
+}
+
+
+class OldSolution {
     private List<List<Integer>> result = new LinkedList<>();
 
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
