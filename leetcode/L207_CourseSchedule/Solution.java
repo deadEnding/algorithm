@@ -14,6 +14,48 @@ import java.util.HashSet;
 
 public class Solution {
     public boolean canFinish(int numCourses, int[][] prerequisites) {
+        HashSet<Integer>[] children = new HashSet[numCourses];
+        int[] indegree = new int[numCourses];
+
+        for (int i = 0; i < numCourses; i++) {
+            children[i] = new HashSet<>();
+        }
+
+        for (int[] p : prerequisites) {
+            indegree[p[0]]++;
+            children[p[1]].add(p[0]);
+        }
+
+        int count = numCourses;
+        while (count > 0) {
+            HashSet<Integer> removed = new HashSet<>();
+            for (int i = 0; i < numCourses; i++) {
+                if (indegree[i] == 0) {
+                    removed.add(i);
+                }
+            }
+
+            if (removed.isEmpty()) {
+                return false;
+            }
+
+            for (int rm : removed) {
+                indegree[rm] = -1;
+                for (int child : children[rm]) {
+                    indegree[child]--;
+                }
+            }
+
+            count -= removed.size();
+        }
+
+        return true;
+    }
+}
+
+
+class OldSolution {
+    public boolean canFinish(int numCourses, int[][] prerequisites) {
         HashSet<Integer>[] adj = new HashSet[numCourses];
         int[] indegree = new int[numCourses];
 

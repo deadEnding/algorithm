@@ -18,6 +18,35 @@ public class Solution {
             return new int[0];
         }
 
+        int[] result = new int[n - k + 1];
+        Deque<Integer> deque = new LinkedList<>();
+
+        for (int i = 0, j = 0; i < n; i++) {
+            while (!deque.isEmpty() && nums[i] > nums[deque.getLast()]) {
+                deque.removeLast();
+            }
+
+            deque.addLast(i);
+
+            if (i >= k - 1) {
+                result[j++] = nums[deque.getFirst()];
+                if (i - k + 1 == deque.getFirst()) {
+                    deque.removeFirst();
+                }
+            }
+        }
+
+        return result;
+    }
+}
+
+class OldSolution {
+    public int[] maxSlidingWindow(int[] nums, int k) {
+        final int n = nums.length;
+        if (n == 0) {
+            return new int[0];
+        }
+
         Deque<Integer> deque = new LinkedList<>();
         int[] maxs = new int[n - k + 1];
         for (int i = 0, ix = 0; i < nums.length; i++) {
@@ -25,7 +54,7 @@ public class Solution {
                 deque.removeFirst();
             }
 
-            while (!deque.isEmpty() && nums[i] > nums[deque.getLast()]) {
+            while (!deque.isEmpty() && nums[i] >= nums[deque.getLast()]) {
                 deque.removeLast();
             }
 

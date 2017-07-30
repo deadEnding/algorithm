@@ -34,4 +34,19 @@ public class Count2s {
         }
         return count;
     }
+
+    public int count2sInRange0(int n) {
+        int count = 0;
+        for (int base = 1; base <= n; base *= 10) {
+            int x = n / base;
+            int y = n % base;
+            count += (x + 7) / 10 * base + (x % 10 == 2 ? y + 1 : 0);
+        }
+        return count;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(new Count2s().count2sInRange(1723));
+        System.out.println(new Count2s().count2sInRange0(1723));
+    }
 }

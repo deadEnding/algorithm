@@ -17,8 +17,28 @@ class TreeNode {
     TreeNode(int x) { val = x; }
 }
 
-
 public class Solution {
+    public List<Integer> preorderTraversal(TreeNode root) {
+        LinkedList<Integer> result = new LinkedList<>();
+        LinkedList<TreeNode> stack = new LinkedList<>();
+        TreeNode p = root;
+
+        while (p != null || !stack.isEmpty()) {
+            while (p != null) {
+                stack.push(p);
+                result.add(p.val);
+                p = p.left;
+            }
+
+            p = stack.pop();
+            p = p.right;
+        }
+        return result;
+    }
+}
+
+
+class MainSolution {
     public List<Integer> preorderTraversal(TreeNode root) {
         List<Integer> result = new LinkedList<>();
         LinkedList<TreeNode> stack = new LinkedList<>();

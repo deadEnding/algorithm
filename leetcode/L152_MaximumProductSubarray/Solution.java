@@ -7,8 +7,30 @@ package leetcode.L152_MaximumProductSubarray;
  * @description:
  */
 
-
 public class Solution {
+    public int maxProduct(int[] nums) {
+        int max = Integer.MIN_VALUE;
+        int smax = 1, smin = 1;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] >= 0) {
+                smax = Math.max(nums[i], smax * nums[i]);
+                smin = Math.min(nums[i], smin * nums[i]);
+            } else {
+                int t = smin;
+                smin = Math.min(nums[i], smax * nums[i]);
+                smax = Math.max(nums[i], t * nums[i]);
+            }
+
+            max = Math.max(max, smax);
+        }
+
+        return max;
+    }
+}
+
+
+
+class OldSolution {
     public int maxProduct(int[] nums) {
         if (nums.length == 0) {
             return 0;

@@ -6,6 +6,30 @@ public class Solution {
         final int m = dungeon.length;
         final int n = dungeon[0].length;
 
+        int[][] dp = new int[2][n];
+        for (int i = m - 1; i >= 0; i--) {
+            for (int j = n - 1; j >= 0; j--) {
+                if (i == m - 1 && j == n - 1) {
+                    dp[i % 2][j] = Math.min(0, dungeon[i][j]);
+                } else if (i == m - 1) {
+                    dp[i % 2][j] = Math.min(0, dp[i % 2][j + 1] + dungeon[i][j]);
+                } else if (j == n - 1) {
+                    dp[i % 2][j] = Math.min(0, dp[(i + 1) % 2][j] + dungeon[i][j]);
+                } else {
+                    dp[i % 2][j] = Math.min(0, Math.max(dp[(i + 1) % 2][j], dp[i % 2][j + 1]) + dungeon[i][j]);
+                }
+            }
+        }
+
+        return -dp[0][0] + 1;
+    }
+}
+
+class OldSolution {
+    public int calculateMinimumHP(int[][] dungeon) {
+        final int m = dungeon.length;
+        final int n = dungeon[0].length;
+
         int[] dp = new int[n + 1];
         dp[n] = Integer.MIN_VALUE;
         for (int i = m - 1; i >= 0; i--) {

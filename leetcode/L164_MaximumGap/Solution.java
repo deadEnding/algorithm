@@ -1,8 +1,83 @@
 package leetcode.L164_MaximumGap;
 
 import java.util.Arrays;
+import java.util.LinkedList;
+
+
 
 public class Solution {
+    public int maximumGap(int[] nums) {
+        if (nums.length < 2) {
+            return 0;
+        }
+
+        LinkedList<Integer>[] buckets = new LinkedList[10];
+        for (int i = 0; i < 10; i++) {
+            buckets[i] = new LinkedList<>();
+        }
+
+        for (int i = 0, exp = 1; i < 10; i++, exp *= 10) {
+
+            for (int num : nums) {
+                buckets[num / exp % 10].offer(num);
+            }
+
+            for (int j = 0, k = 0; j < 10; j++) {
+                while (!buckets[j].isEmpty()) {
+                    nums[k++] = buckets[j].poll();
+                }
+            }
+        }
+
+        int maxGap = 0;
+        for (int i = 1; i < nums.length; i++) {
+            maxGap = Math.max(maxGap, nums[i] - nums[i - 1]);
+        }
+
+        return maxGap;
+    }
+}
+
+
+// 基数排序
+class RadisSortingSolution {
+    public int maximumGap(int[] nums) {
+        if (nums.length < 2) {
+            return 0;
+        }
+
+        LinkedList<Integer>[] buckets = new LinkedList[10];
+        for (int i = 0; i < buckets.length; i++) {
+            buckets[i] = new LinkedList<>();
+        }
+
+        for (int i = 0, exp = 1; i < 10; i++, exp *= 10) {
+
+            for (int n : nums) {
+                buckets[n / exp % 10].offer(n);
+            }
+
+            for (int j = 0, k = 0; j < buckets.length; j++) {
+                while (!buckets[j].isEmpty()) {
+                    nums[k++] = buckets[j].poll();
+                }
+            }
+        }
+
+        int max = 0;
+        for (int i = 1; i < nums.length; i++) {
+            max = Math.max(max, nums[i] - nums[i - 1]);
+        }
+        return max;
+    }
+
+    public static void main(String[] args) {
+        int[] nums = {3, 5, 2, 9};
+        System.out.println(new Solution().maximumGap(nums));
+    }
+}
+
+class BucketSolution {
     public int maximumGap(int[] nums) {
         if (nums == null || nums.length <= 1) {
             return 0;
@@ -40,7 +115,7 @@ public class Solution {
                 last = bucketMin[i];
             }
 
-            if (bucketMin[i] != Integer.MIN_VALUE) {
+            if (bucketMax[i] != Integer.MIN_VALUE) {
                 maxGap = Math.max(maxGap, bucketMax[i] - bucketMin[i]);
                 last = bucketMax[i];
             }

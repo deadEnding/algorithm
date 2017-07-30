@@ -7,8 +7,27 @@ package leetcode.L154_FindMinimumInRotatedSortedArrayII;
  * @description:
  */
 
-
 public class Solution {
+    public int findMin(int[] nums) {
+        int l = 0;
+        int r = nums.length - 1;
+
+        while (l < r) {
+            int m = l + (r - l) / 2;
+            if (nums[m] > nums[r]) {
+                l = m + 1;
+            } else if (nums[m] < nums[r]) {
+                r = m;
+            } else {
+                r--;
+            }
+        }
+        return nums[l];
+    }
+}
+
+
+class OldSolution {
     public int findMin(int[] nums) {
         int l = 0;
         int r = nums.length - 1;

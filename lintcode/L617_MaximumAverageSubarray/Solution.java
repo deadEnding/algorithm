@@ -3,6 +3,7 @@ package lintcode.L617_MaximumAverageSubarray;
 
 import java.util.Random;
 
+// Timeout
 public class Solution {
     public double maxAverage(int[] nums, int k) {
         final int n = nums.length;

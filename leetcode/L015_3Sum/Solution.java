@@ -1,11 +1,10 @@
-package leetcode.L015_3sum;
+package leetcode.L015_3Sum;
 
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
-
 
 
 public class Solution {

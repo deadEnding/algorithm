@@ -7,6 +7,7 @@ package leetcode.L167_TwoSumIIInputArrayIsSorted;
  * @description:
  */
 
+// O(n)
 public class Solution {
     public int[] twoSum(int[] numbers, int target) {
         int left = 0;
@@ -32,6 +33,7 @@ public class Solution {
     }
 }
 
+// O(nlogn)
 class Solution1 {
     private int search(int[] numbers, int left, int right, int target) {
         while (left <= right) {
