@@ -36,10 +36,10 @@ public class SquareCounting {
     }
 
     public static void main(String[] args) throws FileNotFoundException {
-        FileInputStream fis = new FileInputStream("/home/deadend/Downloads/A-large.in");
+        FileInputStream fis = new FileInputStream("/home/deadend/Downloads/B-large.in");
         System.setIn(fis);
 
-        PrintStream ps=new PrintStream(new FileOutputStream("/home/deadend/Downloads/A-large.out"));
+        PrintStream ps=new PrintStream(new FileOutputStream("/home/deadend/Downloads/B-large.out"));
         System.setOut(ps);
 
         Scanner sc = new Scanner(System.in);

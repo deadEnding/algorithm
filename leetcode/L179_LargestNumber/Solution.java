@@ -11,7 +11,39 @@ import java.util.Comparator;
  */
 
 
+
 public class Solution {
+    private static Integer[] toIntegerArray(int[] nums) {
+        Integer[] arr = new Integer[nums.length];
+        for (int i = 0; i < nums.length; i++) {
+            arr[i] = nums[i];
+        }
+        return arr;
+    }
+
+    public String largestNumber(int[] nums) {
+        final int n = nums.length;
+        Integer[] arr = toIntegerArray(nums);
+        Arrays.sort(arr, new Comparator<Integer>() {
+            public int compare(Integer i1, Integer i2) {
+                String s1 = String.valueOf(i1);
+                String s2 = String.valueOf(i2);
+                return (s2 + s1).compareTo(s1 + s2);
+            }
+        });
+
+        StringBuilder builder = new StringBuilder();
+        for (Integer i : arr) {
+            if (builder.length() == 0 && i == 0) {
+                return "0";
+            }
+            builder.append(i);
+        }
+        return builder.toString();
+    }
+}
+
+class OldSolution {
     public String largestNumber(int[] nums) {
         Integer[] arr = new Integer[nums.length];
         for (int i = 0; i < nums.length; i++) {

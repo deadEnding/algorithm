@@ -7,7 +7,42 @@ package leetcode.L188_BestTimeToBuyAndSellStockIV;
  * @description:
  */
 
+
 public class Solution {
+    private int quickSolve(int[] prices) {
+        int len = prices.length, profit = 0;
+        for (int i = 1; i < len; i++)
+            // as long as there is a price gap, we gain a profit.
+            if (prices[i] > prices[i - 1]) profit += prices[i] - prices[i - 1];
+        return profit;
+    }
+
+    public int maxProfit(int k, int[] prices) {
+        final int n = prices.length;
+        if (n <= 1) {
+            return 0;
+        }
+
+        if (k >= n / 2) {
+            return quickSolve(prices);
+        }
+
+        int[][] dp = new int[2][n + 1];
+        int max = 0;
+        for (int i = 1; i <= k ;i++) {
+            int subMax = -prices[0];
+            for (int j = 1; j <= n; j++) {
+                dp[i % 2][j] = Math.max(dp[i % 2][j - 1], prices[j - 1] + subMax);
+                subMax = Math.max(subMax, dp[(i - 1) % 2][j] - prices[j - 1]);
+                max = Math.max(max, dp[i % 2][j]);
+            }
+        }
+
+        return max;
+    }
+}
+
+class OldSolution {
     private int quickSolve(int[] prices) {
         int profit = 0;
         for (int i = 1; i < prices.length; i++) {
@@ -37,14 +72,9 @@ public class Solution {
         }
         return global[n - 1][k];
     }
-
-    public static void main(String[] args) {
-        int k = 2;
-        int[] prices = {2,6,5,0,3};
-        System.out.println(new Solution().maxProfit(k, prices));
-    }
 }
 
+// Wrong
 class BasicSolution {
     private int quickSolve(int[] prices) {
         int profit = 0;

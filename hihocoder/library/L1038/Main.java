@@ -35,7 +35,7 @@ public class Main {
 /*
 class TimeoutMain {
 
-    public static void Main(String[] args) {
+    public static void PileUpChess(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
         int c = sc.nextInt();

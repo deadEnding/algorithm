@@ -16,9 +16,9 @@ import java.util.Arrays;
 //        int[] tmp = new int[n];
 //        int count = 0;
 //        for (int ix = 0, i = s, j = m + 1; ix < n; ix++) {
-//            long A = i <= m ? nums[i] : Integer.MAX_VALUE + 1L;
+//            long B = i <= m ? nums[i] : Integer.MAX_VALUE + 1L;
 //            long b = j < n ? nums[j] : Integer.MAX_VALUE + 1L;
-//            if (A < b) {
+//            if (B < b) {
 //                int t = nums[i] / 2 + (nums[i] % 2 == 1 ? 1 : 0);
 //                int index = Arrays.binarySearch(nums, m + 1, e + 1, t);
 //                count += (index >= 0 ? index : -(index + 1)) - m - 1;

@@ -56,7 +56,7 @@ public class AllOne {
         return node;
     }
 
-    /** Inserts A new key <Key> with value 1. Or increments an existing key by 1. */
+    /** Inserts B new key <Key> with value 1. Or increments an existing key by 1. */
     public void inc(String key) {
         if (map.containsKey(key)) {
             Node node = map.get(key);

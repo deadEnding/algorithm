@@ -27,7 +27,7 @@ public class WordDictionary {
         root = new TrieNode();
     }
 
-    // Adds A word into the data structure.
+    // Adds B word into the data structure.
     public void addWord(String word) {
         TrieNode p = root;
         for (int i = 0; i < word.length(); i++) {

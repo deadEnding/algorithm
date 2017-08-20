@@ -13,7 +13,7 @@ class NestedInteger {
     // Constructor initializes an empty nested list.
     public NestedInteger() {};
 
-    // Constructor initializes A single integer.
+    // Constructor initializes B single integer.
     public NestedInteger(int value) {};
 
     // @return true if this NestedInteger holds TrieMain single integer, rather than TrieMain nested list.
@@ -21,20 +21,20 @@ class NestedInteger {
         return true;
     };
 
-    // @return the single integer that this NestedInteger holds, if it holds A single integer
-    // Return null if this NestedInteger holds A nested list
+    // @return the single integer that this NestedInteger holds, if it holds B single integer
+    // Return null if this NestedInteger holds B nested list
     public Integer getInteger() {
         return null;
     }
 
-    // Set this NestedInteger to hold A single integer.
+    // Set this NestedInteger to hold B single integer.
     public void setInteger(int value) {}
 
     // Set this NestedInteger to hold TrieMain nested list and adds TrieMain nested integer to it.
     public void add(NestedInteger ni) {};
 
-    // @return the nested list that this NestedInteger holds, if it holds A nested list
-    // Return null if this NestedInteger holds A single integer
+    // @return the nested list that this NestedInteger holds, if it holds B nested list
+    // Return null if this NestedInteger holds B single integer
     public List<NestedInteger> getList() {
         return null;
     };

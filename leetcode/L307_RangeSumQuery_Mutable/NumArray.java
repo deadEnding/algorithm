@@ -10,6 +10,67 @@ package leetcode.L307_RangeSumQuery_Mutable;
 public class NumArray {
 
     class BIT {
+        int[] sums;
+
+        public BIT(int[] nums) {
+            final int n = nums.length;
+            sums = new int[n + 1];
+            for (int i = 0; i < n; i++) {
+                add(i, nums[i]);
+            }
+        }
+
+        private int lowbit(int x) {
+            return x & -x;
+        }
+
+        public void add(int ix, int delta) {
+            ix++;
+            while (ix < sums.length) {
+                System.out.println(ix + " " + lowbit(ix));
+                sums[ix] += delta;
+                ix += lowbit(ix);
+            }
+        }
+
+        public int sum(int ix) {
+            ix++;
+            int sum = 0;
+            while (ix > 0) {
+                sum += sums[ix];
+                ix -= lowbit(ix);
+            }
+            return sum;
+        }
+    }
+
+    private int[] nums;
+    private BIT bit;
+
+    public NumArray(int[] nums) {
+        this.nums = nums;
+        this.bit = new BIT(nums);
+    }
+
+    public void update(int i, int val) {
+        bit.add(i, val - nums[i]);
+        nums[i] = val;
+    }
+
+    public int sumRange(int i, int j) {
+        return bit.sum(j) - bit.sum(i - 1);
+    }
+
+    public static void main(String[] args) {
+        int[] nums = {1,3,5};
+        NumArray numArray = new NumArray(nums);
+        System.out.println(numArray.sumRange(0, 2));
+    }
+}
+
+class OldNumArray {
+
+    class BIT {
         private int[] sums;
 
         public BIT(int[] nums) {
@@ -43,7 +104,7 @@ public class NumArray {
     private int[] nums;
     private BIT bit;
 
-    public NumArray(int[] nums) {
+    public OldNumArray(int[] nums) {
         this.nums = nums;
         this.bit = new BIT(nums);
     }

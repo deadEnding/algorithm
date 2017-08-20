@@ -9,10 +9,10 @@ import java.util.Scanner;
 public class DiwaliLightings {
 
     public static void main(String[] args) throws FileNotFoundException {
-//        FileInputStream fis = new FileInputStream("/Users/deadend/Downloads/A-small-practice.in");
-//        PrintStream ps=new PrintStream(new FileOutputStream("/Users/deadend/Downloads/A-small.out"));
-        FileInputStream fis = new FileInputStream("/Users/deadend/Downloads/A-large-practice.in");
-        PrintStream ps=new PrintStream(new FileOutputStream("/Users/deadend/Downloads/A-large.out"));
+//        FileInputStream fis = new FileInputStream("/Users/deadend/Downloads/B-small-practice.in");
+//        PrintStream ps=new PrintStream(new FileOutputStream("/Users/deadend/Downloads/B-small.out"));
+        FileInputStream fis = new FileInputStream("/Users/deadend/Downloads/B-large-practice.in");
+        PrintStream ps=new PrintStream(new FileOutputStream("/Users/deadend/Downloads/B-large.out"));
         System.setIn(fis);
         System.setOut(ps);
 

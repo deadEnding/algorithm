@@ -1,8 +1,10 @@
-package custom.templates;
-
+package custom.templates.practice;
 
 import java.util.HashMap;
 
+/**
+ * Created by yuhui.zzc on 13/08/2017.
+ */
 public class LRUCache {
 
     class Node {
@@ -16,22 +18,20 @@ public class LRUCache {
     }
 
     private int capacity;
-    private Node dummy;
-    private HashMap<Integer, Node> map;
+
+    private Node dummy = new Node(-1, -1);
+    private HashMap<Integer, Node> map = new HashMap<>();
 
     public LRUCache(int capacity) {
         this.capacity = capacity;
-        dummy = new Node(-1, -1);
         dummy.prev = dummy.next = dummy;
-        map = new HashMap<>();
     }
 
     private void link(Node prev, Node node) {
-        Node next = prev.next;
+        prev.next.prev = node;
+        node.next = prev.next;
         prev.next = node;
-        node.next = next;
         node.prev = prev;
-        next.prev = node;
     }
 
     private void unlink(Node node) {
@@ -39,19 +39,19 @@ public class LRUCache {
         node.next.prev = node.prev;
     }
 
-    private void removeFirst() {
-        map.remove(dummy.next.key);
-        unlink(dummy.next);
-    }
-
-    private void addLast(Node node) {
+    private void addToLast(Node node) {
         map.put(node.key, node);
         link(dummy.prev, node);
     }
 
     private void moveToLast(Node node) {
         unlink(node);
-        link(dummy.prev, node);
+        addToLast(node);
+    }
+
+    private void removeFirst() {
+        map.remove(dummy.next.key);
+        unlink(dummy.next);
     }
 
     public int get(int key) {
@@ -70,8 +70,7 @@ public class LRUCache {
             node.val = value;
             moveToLast(node);
         } else {
-            Node node = new Node(key, value);
-            addLast(node);
+            addToLast(new Node(key, value));
             if (map.size() > capacity) {
                 removeFirst();
             }

@@ -8,11 +8,11 @@ import java.util.Scanner;
 
 public class AmbiguousCipher {
     private static int c2i(char c) {
-        return c - 'A';
+        return c - 'B';
     }
 
     private static char i2c(int i) {
-        return (char) (i + 'A');
+        return (char) (i + 'B');
     }
 
     private static String solve(String s) {
@@ -37,10 +37,10 @@ public class AmbiguousCipher {
     }
 
     public static void main(String[] args) throws FileNotFoundException {
-        FileInputStream fis = new FileInputStream("/Users/deadend/Downloads/A-large-practice1.in");
+        FileInputStream fis = new FileInputStream("/Users/deadend/Downloads/B-large-practice1.in");
         System.setIn(fis);
 
-        PrintStream ps=new PrintStream(new FileOutputStream("/Users/deadend/Downloads/A-large.out"));
+        PrintStream ps=new PrintStream(new FileOutputStream("/Users/deadend/Downloads/B-large.out"));
         System.setOut(ps);
 
         Scanner sc = new Scanner(System.in);

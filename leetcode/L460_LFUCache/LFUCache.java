@@ -1,73 +1,94 @@
 package leetcode.L460_LFUCache;
 
+
+import custom.templates.practice.LRUCache;
+
 import java.util.HashMap;
 import java.util.LinkedHashSet;
-
-/**
- * @author: deadend
- * @date: 2:42 PM 2/13/17
- * @version: 1.0
- * @description:
- */
-
 
 public class LFUCache {
 
     class Node {
         int count;
-        LinkedHashSet<Integer> keys = new LinkedHashSet<>();
+        LinkedHashSet<Integer> keys;
         Node prev, next;
-        public Node(int cnt) {
-            count = cnt;
+
+        public Node(int count) {
+            this.count = count;
+            this.keys = new LinkedHashSet<>();
         }
     }
 
+    private int capacity;
     private Node dummy = new Node(-1);
-    private int capacity = 0;
-    private HashMap<Integer, Integer> vmap = new HashMap<>();
-    private HashMap<Integer, Node> nmap = new HashMap<>();
+    private HashMap<Integer, Integer> valMap = new HashMap<>();
+    private HashMap<Integer, Node> nodeMap = new HashMap<>();
 
     public LFUCache(int capacity) {
         this.capacity = capacity;
+        dummy.next = dummy.prev = dummy;
+    }
+
+    private void link(Node prev, Node node) {
+        Node next = prev.next;
+        prev.next = node;
+        node.prev = prev;
+        next.prev = node;
+        node.next = next;
+    }
+
+    private void unlink(Node node) {
+        node.prev.next = node.next;
+        node.next.prev = node.prev;
+    }
+
+    private void moveToNext(int key) {
+        Node node = nodeMap.get(key);
+        node.keys.remove(key);
+        if (node.next.count != node.count + 1) {
+            link(node, new Node(node.count + 1));
+        }
+
+        node.next.keys.add(key);
+        nodeMap.put(key, node.next);
+
+        if (node.keys.isEmpty()) {
+            unlink(node);
+        }
+
+    }
+
+    private void addToFirst(int key) {
+        if (dummy.next.count != 1) {
+            link(dummy, new Node(1));
+        }
+
+        nodeMap.put(key, dummy.next);
+        dummy.next.keys.add(key);
+    }
+
+    private void removeLFU() {
+        int lfuKey = 0;
+        for (int key : dummy.next.keys) {
+            lfuKey = key;
+            break;
+        }
+
+        valMap.remove(lfuKey);
+        nodeMap.remove(lfuKey);
+        dummy.next.keys.remove(lfuKey);
+        if (dummy.next.keys.isEmpty()) {
+            unlink(dummy.next);
+        }
     }
 
     public int get(int key) {
-        if (vmap.containsKey(key)) {
-            increaseCount(key);
-            return vmap.get(key);
-        }
-        return -1;
-    }
-
-    private void increaseCount(int key) {
-        Node node = nmap.get(key);
-        node.keys.remove(key);
-        if (node.next == null) {
-            node.next = new Node(node.count + 1);
-            node.next.prev = node;
-            node.next.keys.add(key);
-        } else if (node.next.count == node.count + 1) {
-            node.next.keys.add(key);
-        } else {
-            Node tmp = new Node(node.count + 1);
-            tmp.keys.add(key);
-            tmp.prev = node;
-            tmp.next = node.next;
-            node.next.prev = tmp;
-            node.next = tmp;
-        }
-        if (node.keys.size() == 0) {
-            remove(node);
+        if (!valMap.containsKey(key)) {
+            return -1;
         }
 
-        nmap.put(key, node.next);
-    }
-
-    private void remove(Node node) {
-        node.prev.next = node.next;
-        if (node.next != null) {
-            node.next.prev = node.prev;
-        }
+        moveToNext(key);
+        return valMap.get(key);
     }
 
     public void put(int key, int value) {
@@ -75,54 +96,22 @@ public class LFUCache {
             return;
         }
 
-        if (vmap.containsKey(key)) {
-            vmap.put(key, value);
-            increaseCount(key);
+        if (nodeMap.containsKey(key)) {
+            valMap.put(key, value);
+            moveToNext(key);
         } else {
-            if (vmap.size() == capacity) {
+            if (valMap.size() == capacity) {
                 removeLFU();
             }
-            vmap.put(key, value);
-            addKey(key);
+            valMap.put(key, value);
+            addToFirst(key);
         }
-    }
-
-    private void removeLFU() {
-        int lfuKey = 0;
-        for (int n : dummy.next.keys) {
-            lfuKey = n;
-            break;
-        }
-
-        dummy.next.keys.remove(lfuKey);
-        vmap.remove(lfuKey);
-        nmap.remove(lfuKey);
-        if (dummy.next.keys.size() == 0) {
-            dummy.next = dummy.next.next;
-            if (dummy.next != null) {
-                dummy.next.prev = dummy;
-            }
-        }
-    }
-
-    private void addKey(int key) {
-        if (dummy.next == null || dummy.next.count != 1) {
-            Node node = new Node(1);
-            node.next = dummy.next;
-            node.prev = dummy;
-            if (dummy.next != null) {
-                dummy.next.prev = node;
-            }
-            dummy.next = node;
-        }
-        dummy.next.keys.add(key);
-        nmap.put(key, dummy.next);
     }
 
     public void print() {
         Node p = dummy.next;
-        System.out.println("-------------- keys: " + vmap.size());
-        while (p != null) {
+        System.out.println("-------------- keys: " + valMap.size());
+        while (p != dummy) {
             System.out.print(p.count + ": ");
             for (int key : p.keys) {
                 System.out.print(key + " ");
@@ -136,13 +125,13 @@ public class LFUCache {
         LFUCache cache = new LFUCache(1);
         cache.put(2,1);
         cache.print();
-        cache.get(2);
+        System.out.println(cache.get(2));
         cache.print();
         cache.put(3,2);
         cache.print();
-        cache.get(2);
+        System.out.println(cache.get(2));
         cache.print();
-        cache.get(3);
+        System.out.println(cache.get(3));
         cache.print();
     }
 }

@@ -1,9 +1,6 @@
 package leetcode.L187_RepeatedDnaSequences;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author: deadend
@@ -13,6 +10,36 @@ import java.util.List;
  */
 
 public class Solution {
+    public List<String> findRepeatedDnaSequences(String s) {
+        final int n = s.length();
+        HashSet<String> result = new HashSet<>();
+        HashSet<Integer> set = new HashSet<>();
+
+        final HashMap<Character, Integer> map = new HashMap<Character, Integer>() {{
+            put('A', 0);
+            put('C', 0);
+            put('G', 0);
+            put('T', 0);
+        }};
+
+        int hash = 0;
+        for (int i = 0; i < n; i++) {
+            hash += (hash << 1) + map.get(s.charAt(i));
+            hash &= (1 << 20) - 1;
+            if (i >= 9) {
+                if (set.contains(hash)) {
+                    result.add(s.substring(i - 9, i + 1));
+                } else {
+                    set.add(hash);
+                }
+            }
+        }
+
+        return new ArrayList<>(result);
+    }
+}
+
+class OldSolution {
     public List<String> findRepeatedDnaSequences(String s) {
         HashSet<String> result = new HashSet<>();
         HashSet<Integer> set = new HashSet<>();

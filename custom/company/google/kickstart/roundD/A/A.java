@@ -58,10 +58,10 @@ public class A {
     }
 
     public static void main(String[] args) throws FileNotFoundException {
-        FileInputStream fis = new FileInputStream("/Users/deadend/Downloads/A-small-attempt1.in");
-        PrintStream ps=new PrintStream(new FileOutputStream("/Users/deadend/Downloads/A-small.out"));
-//        FileInputStream fis = new FileInputStream("/Users/deadend/Downloads/A-large.in");
-//        PrintStream ps=new PrintStream(new FileOutputStream("/Users/deadend/Downloads/A-large.out"));
+        FileInputStream fis = new FileInputStream("/Users/deadend/Downloads/B-small-attempt1.in");
+        PrintStream ps=new PrintStream(new FileOutputStream("/Users/deadend/Downloads/B-small.out"));
+//        FileInputStream fis = new FileInputStream("/Users/deadend/Downloads/B-large.in");
+//        PrintStream ps=new PrintStream(new FileOutputStream("/Users/deadend/Downloads/B-large.out"));
         System.setIn(fis);
         System.setOut(ps);
 

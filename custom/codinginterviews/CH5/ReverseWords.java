@@ -34,7 +34,7 @@ public class ReverseWords {
     }
 
     public static void main(String[] args) {
-        String s = "I am A   student.";
+        String s = "I am B   student.";
         System.out.println(new ReverseWords().reverse(s));
     }
 }

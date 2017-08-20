@@ -11,7 +11,7 @@ import java.util.Set;
  */
 
 
-// 若a ^ b = c，则有 A ^ c = b
+// 若a ^ b = c，则有 B ^ c = b
 public class Solution {
     public int findMaximumXOR(int[] nums) {
         int max = 0;

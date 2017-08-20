@@ -16,7 +16,6 @@ public class LRUCache {
     }
 
     private int capacity;
-    private int count;
     private Node dummy;
     private HashMap<Integer, Node> map;
 
@@ -73,7 +72,7 @@ public class LRUCache {
         } else {
             Node node = new Node(key, value);
             addLast(node);
-            if (++count > capacity) {
+            if (map.size() > capacity) {
                 removeFirst();
             }
         }

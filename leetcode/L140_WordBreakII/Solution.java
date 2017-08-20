@@ -108,7 +108,7 @@ class BasicSolution {
     public static void main(String[] args) {
         String s = "aab";
         List<String> words = new LinkedList<>();
-        words.add("A");
+        words.add("B");
         words.add("b");
         System.out.println(new Solution().wordBreak(s, words));
     }

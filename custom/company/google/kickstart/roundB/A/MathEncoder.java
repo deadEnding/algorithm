@@ -42,10 +42,10 @@ public class MathEncoder {
     }
 
     public static void main(String[] args) throws FileNotFoundException {
-//        FileInputStream fis = new FileInputStream("/Users/deadend/Downloads/A-small-practice1.in");
-//        PrintStream ps=new PrintStream(new FileOutputStream("/Users/deadend/Downloads/A-small.out"));
-        FileInputStream fis = new FileInputStream("/Users/deadend/Downloads/A-large-practice1.in");
-        PrintStream ps=new PrintStream(new FileOutputStream("/Users/deadend/Downloads/A-large.out"));
+//        FileInputStream fis = new FileInputStream("/Users/deadend/Downloads/B-small-practice1.in");
+//        PrintStream ps=new PrintStream(new FileOutputStream("/Users/deadend/Downloads/B-small.out"));
+        FileInputStream fis = new FileInputStream("/Users/deadend/Downloads/B-large-practice1.in");
+        PrintStream ps=new PrintStream(new FileOutputStream("/Users/deadend/Downloads/B-large.out"));
         System.setIn(fis);
         System.setOut(ps);
 

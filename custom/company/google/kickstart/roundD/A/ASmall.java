@@ -6,10 +6,10 @@ import java.util.Scanner;
 public class ASmall {
 
     public static void main(String[] args) throws Exception{
-        FileInputStream fis = new FileInputStream("/Users/deadend/Downloads/A-small-attempt2.in");
-        PrintStream ps=new PrintStream(new FileOutputStream("/Users/deadend/Downloads/A-small.out"));
-//        FileInputStream fis = new FileInputStream("/Users/deadend/Downloads/A-large.in");
-//        PrintStream ps=new PrintStream(new FileOutputStream("/Users/deadend/Downloads/A-large.out"));
+        FileInputStream fis = new FileInputStream("/Users/deadend/Downloads/B-small-attempt2.in");
+        PrintStream ps=new PrintStream(new FileOutputStream("/Users/deadend/Downloads/B-small.out"));
+//        FileInputStream fis = new FileInputStream("/Users/deadend/Downloads/B-large.in");
+//        PrintStream ps=new PrintStream(new FileOutputStream("/Users/deadend/Downloads/B-large.out"));
         System.setIn(fis);
         System.setOut(ps);
 
