@@ -11,8 +11,32 @@ import java.util.Set;
  */
 
 
-// 若a ^ b = c，则有 B ^ c = b
-public class Solution {
+// 若a ^ b = c，则有 a ^ c = b
+class Solution {
+    public int findMaximumXOR(int[] nums) {
+        int max = 0;
+        for (int i = 31, mask = 0; i >= 0; i--) {
+            mask = mask | (1 << i);
+            HashSet<Integer> prefixs = new HashSet<>();
+            for (int num : nums) {
+                prefixs.add(mask & num);
+            }
+
+            int newMax = max | (1 << i);
+            for (int prefix : prefixs) {
+                if (prefixs.contains(newMax ^ prefix)) {
+                    max = newMax;
+                    break;
+                }
+            }
+        }
+
+        return max;
+    }
+}
+
+// 若a ^ b = c，则有 a ^ c = b
+class OldSolution {
     public int findMaximumXOR(int[] nums) {
         int max = 0;
         for (int i = 31, mask = 0; i >= 0; i--) {

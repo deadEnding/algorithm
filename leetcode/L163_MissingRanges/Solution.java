@@ -1,5 +1,6 @@
 package leetcode.L163_MissingRanges;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -10,8 +11,27 @@ import java.util.List;
  * @description:
  */
 
+class Solution {
+    public List<String> findMissingRanges(int[] nums, int lower, int upper) {
+        List<String> result = new ArrayList<>();
+        long prev = lower - 1L;
+        for (int i = 0; i <= nums.length; i++) {
+            long curr = i < nums.length ? nums[i] : upper + 1L;
+            if (prev + 2 == curr) {
+                result.add(String.valueOf(prev + 1));
+            } else if (prev + 2 < curr) {
+                result.add(String.format("%d->%d", prev + 1, curr - 1));
+            }
 
-public class Solution {
+            prev = curr;
+        }
+
+        return result;
+    }
+}
+
+
+class OldSolution {
     public List<String> findMissingRanges(int[] nums, int lower, int upper) {
         List<String> result = new LinkedList<>();
         long prev = lower - 1L;

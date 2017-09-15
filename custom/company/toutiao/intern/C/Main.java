@@ -1,4 +1,4 @@
-package custom.company.toutiao.C;
+package custom.company.toutiao.intern.C;
 
 import java.util.Scanner;
 

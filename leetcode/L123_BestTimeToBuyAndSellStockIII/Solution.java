@@ -7,8 +7,31 @@ package leetcode.L123_BestTimeToBuyAndSellStockIII;
  * @description:
  */
 
-
 public class Solution {
+    public int maxProfit(int[] prices) {
+        int k = 2;
+        final int n = prices.length;
+        if (n <= 1) {
+            return 0;
+        }
+        int[][] dp = new int[k + 1][n + 1];
+
+        int max = 0;
+        for (int i = 1; i <= k ;i++) {
+            int subMax = - prices[0];
+            for (int j = 1; j <= n; j++) {
+                dp[i][j] = Math.max(dp[i][j - 1], prices[j - 1] + subMax);
+                subMax = Math.max(subMax, dp[i - 1][j] - prices[j - 1]);
+                max = Math.max(max, dp[i][j]);
+            }
+        }
+
+        return max;
+    }
+}
+
+
+class OldSolution {
     public int maxProfit(int[] prices) {
         if (prices == null || prices.length <= 1) {
             return 0;

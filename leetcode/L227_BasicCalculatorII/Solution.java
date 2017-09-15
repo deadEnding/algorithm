@@ -10,7 +10,55 @@ import java.util.LinkedList;
  * @description:
  */
 
-public class Solution {
+class Solution {
+    public int calculate(String s) {
+        final int n = s.length();
+        char sign = '+';
+        LinkedList<Integer> stack = new LinkedList<>();
+
+        for (int i = 0; i < n; i++) {
+            char c = s.charAt(i);
+            if (Character.isDigit(c)) {
+                int v = c - '0';
+                while (i + 1 < n && Character.isDigit(s.charAt(i + 1))) {
+                    v = v * 10 + s.charAt(++i) - '0';
+                }
+
+                switch (sign) {
+                    case '+':
+                        stack.push(v);
+                        break;
+                    case '-':
+                        stack.push(-v);
+                        break;
+                    case '*':
+                        stack.push(stack.pop() * v);
+                        break;
+                    case '/':
+                        stack.push(stack.pop() / v);
+                        break;
+                    default:
+                        break;
+                }
+            } else if (!Character.isSpaceChar(c)) {
+                sign = c;
+            }
+        }
+
+        int sum = 0;
+        while (!stack.isEmpty()) {
+            sum += stack.pop();
+        }
+        return sum;
+    }
+
+    public static void main(String[] args) {
+        String s = "42";
+        System.out.println(new Solution().calculate(s));
+    }
+}
+
+class OldSolution {
     public int calculate(String s) {
         long num = 0;
         char sign = '+';
@@ -92,10 +140,5 @@ class BasicSolution {
             result += stack.pop() * stack.pop();
         }
         return result;
-    }
-
-    public static void main(String[] args) {
-        String s = " 3+5 / 2 ";
-        System.out.println(new Solution().calculate(s));
     }
 }

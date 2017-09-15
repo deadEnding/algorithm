@@ -1,5 +1,6 @@
 package leetcode.L448_FindAllNumbersDisappearedInAnArray;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -11,7 +12,34 @@ import java.util.List;
  */
 
 
-public class Solution {
+class Solution {
+    private void swap(int[] nums, int i, int j) {
+        if (i != j) {
+            int tmp = nums[i];
+            nums[i] = nums[j];
+            nums[j] = tmp;
+        }
+    }
+
+    public List<Integer> findDisappearedNumbers(int[] nums) {
+        final int n = nums.length;
+        for (int i = 0; i < n; i++) {
+            while (nums[nums[i] - 1] != nums[i]) {
+                swap(nums, i, nums[i] - 1);
+            }
+        }
+
+        List<Integer> result = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            if (i != nums[i] - 1) {
+                result.add(i + 1);
+            }
+        }
+        return result;
+    }
+}
+
+class OldSolution {
     private void swap(int[] nums, int i, int j) {
         int tmp = nums[i];
         nums[i] = nums[j];

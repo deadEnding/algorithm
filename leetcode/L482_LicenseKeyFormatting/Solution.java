@@ -8,7 +8,28 @@ package leetcode.L482_LicenseKeyFormatting;
  */
 
 
-public class Solution {
+class Solution {
+    public String licenseKeyFormatting(String s, int k) {
+        final int n = s.length();
+        StringBuilder builder = new StringBuilder();
+        for (int i = n - 1, count = 0; i >= 0; i--) {
+            char c = s.charAt(i);
+            if (c != '-') {
+                if (count == k) {
+                    builder.insert(0, '-');
+                    count = 0;
+                }
+
+                builder.insert(0, Character.toUpperCase(c));
+                count++;
+            }
+        }
+
+        return builder.toString();
+    }
+}
+
+class OldSolution {
     public String licenseKeyFormatting(String S, int K) {
         S = S.toUpperCase();
         StringBuffer buffer = new StringBuffer();

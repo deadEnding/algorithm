@@ -9,8 +9,40 @@ import java.util.HashMap;
  * @description:
  */
 
+class Solution {
+    public int lengthOfLongestSubstringKDistinct(String s, int k) {
+        if (k == 0) {
+            return 0;
+        }
 
-public class Solution {
+        final int n = s.length();
+        int max = 0;
+        HashMap<Character, Integer> map = new HashMap<>();
+        for (int i = 0, start = 0; i < n; i++) {
+            char c = s.charAt(i);
+            if (map.containsKey(c)) {
+                map.put(c, map.getOrDefault(c, 0) + 1);
+            } else {
+                while (map.size() == k) {
+                    char sc = s.charAt(start++);
+                    map.put(sc, map.get(sc) - 1);
+                    if (map.get(sc) == 0) {
+                        map.remove(sc);
+                    }
+                }
+
+                map.put(c, 1);
+            }
+
+            max = Math.max(max, i - start + 1);
+        }
+
+        return max;
+    }
+}
+
+
+class OldSolution {
     public int lengthOfLongestSubstringKDistinct(String s, int k) {
         if (k == 0) {
             return 0;

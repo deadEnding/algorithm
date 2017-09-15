@@ -10,7 +10,42 @@ import java.util.HashMap;
  */
 
 
-public class Solution {
+class Solution {
+    public String fractionToDecimal(int numerator, int denominator) {
+        StringBuilder builder = new StringBuilder();
+        if (numerator < 0 && denominator > 0 || numerator > 0 && denominator < 0) {
+            builder.append("-");
+        }
+
+        long nume = Math.abs((long) numerator);
+        long deno = Math.abs((long) denominator);
+        builder.append(nume / deno);
+
+        long remain = nume % deno;
+        HashMap<Long, Integer> map = new HashMap<>();
+        String tmp = "";
+        while (remain != 0 && !map.containsKey(remain)) {
+            map.put(remain, tmp.length());
+            long t = remain * 10;
+            tmp += t / deno;
+            remain = t % deno;
+        }
+
+        if (remain == 0) {
+            builder.append(tmp.length() > 0 ? "." + tmp : "");
+        } else {
+            int ix = map.get(remain);
+            builder.append("." + tmp.substring(0, ix));
+            builder.append("(" + tmp.substring(ix) + ")");
+        }
+
+        return builder.toString();
+    }
+}
+
+
+
+class OldSolution {
     public String fractionToDecimal(int numerator, int denominator) {
         StringBuilder builder = new StringBuilder();
         if (numerator > 0 && denominator < 0 || numerator < 0 && denominator > 0) {

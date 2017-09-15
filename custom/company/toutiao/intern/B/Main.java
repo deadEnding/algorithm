@@ -1,4 +1,4 @@
-package custom.company.toutiao.B;
+package custom.company.toutiao.intern.B;
 
 import java.util.HashSet;
 import java.util.Scanner;

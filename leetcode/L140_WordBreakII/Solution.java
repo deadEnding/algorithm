@@ -9,6 +9,34 @@ import java.util.*;
  * @description:
  */
 
+class TimeoutDPSolution {
+    public List<String> wordBreak(String s, List<String> wordDict) {
+        final int n = s.length();
+        HashSet<String> set = new HashSet<>();
+        set.addAll(wordDict);
+
+        ArrayList<String>[] dp = new ArrayList[n];
+        for (int i = n - 1; i >= 0; i--) {
+            for (int j = i + 1; i <= n; j++) {
+                if (set.contains(s.substring(i, j)) && (j == n || dp[j] != null)) {
+                    dp[i] = new ArrayList<>();
+                    String w = s.substring(i, j);
+                    if (j == n) {
+                        dp[i].add(w);
+                    } else {
+                        for (String rw : dp[j]) {
+                            dp[i].add(w + " " + rw);
+                        }
+                    }
+                }
+            }
+        }
+
+        return dp[0];
+    }
+}
+
+
 public class Solution {
     private ArrayList<String> dfs(String s, HashSet<String> dict, HashMap<String, ArrayList<String>> cache) {
         if (s.equals("")) {

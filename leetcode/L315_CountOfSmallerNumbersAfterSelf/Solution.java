@@ -11,7 +11,64 @@ import java.util.List;
  */
 
 
-public class Solution {
+class Solution {
+    class Node {
+        int val, dup, leftCount;
+        Node left, right;
+        public Node(int val) {
+            this.val = val;
+            this.dup = 1;
+        }
+    }
+
+    private Node root;
+
+    private Node insert(Node root, int val) {
+        if (root == null) {
+            root = new Node(val);
+        } else if (root.val == val) {
+            root.dup++;
+        } else if (root.val > val) {
+            root.leftCount++;
+            root.left = insert(root.left, val);
+        } else {
+            root.right = insert(root.right, val);
+        }
+        return root;
+    }
+
+    private int search(Node root, int val) {
+        if (root == null) {
+            return 0;
+        } else if (root.val == val) {
+            return root.leftCount;
+        } else if (root.val > val) {
+            return search(root.left, val);
+        } else {
+            return root.dup + root.leftCount + search(root.right, val);
+        }
+    }
+
+    public List<Integer> countSmaller(int[] nums) {
+        final int n = nums.length;
+        List<Integer> count = new LinkedList<>();
+
+        for (int i = n - 1; i >= 0; i--) {
+            root = insert(root, nums[i]);
+            count.add(0, search(root, nums[i]));
+        }
+
+        return count;
+    }
+
+    public static void main(String[] args) {
+        int[] nums = {5,2,6,1};
+        System.out.println(new Solution().countSmaller(nums));
+    }
+}
+
+
+class OldSolution {
 
     class TreeNode {
         int val, dup, leftCount;

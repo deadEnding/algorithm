@@ -9,8 +9,41 @@ import java.util.LinkedList;
  * @description:
  */
 
-
 public class Solution {
+    public int calculate(String s) {
+        final int n = s.length();
+        LinkedList<Integer> stack = new LinkedList<>();
+        int sign = 1;
+        int result = 0;
+        for (int i = 0; i < n; i++) {
+            char c = s.charAt(i);
+            if (c == '+') {
+                sign = 1;
+            } else if (c == '-') {
+                sign = -1;
+            } else if (Character.isDigit(c)) {
+                int v = c - '0';
+                while (i + 1 < n && Character.isDigit(s.charAt(i + 1))) {
+                    v = v * 10 + s.charAt(++i) - '0';
+                }
+                result += v * sign;
+            } else if (c == '(') {
+                stack.push(result);
+                stack.push(sign);
+                result = 0;
+                sign = 1;
+            } else if (c == ')') {
+                sign = stack.pop();
+                result = stack.pop() + sign * result;
+            }
+        }
+
+        return result;
+    }
+}
+
+
+class OldSolution {
     public int calculate(String s) {
         final int n = s.length();
         LinkedList<Integer> stack = new LinkedList<>();

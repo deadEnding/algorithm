@@ -9,14 +9,41 @@ import java.util.PriorityQueue;
  * @description:
  */
 
+class MedianFinder {
 
-public class MedianFinder {
+    private PriorityQueue<Integer> leftHalfHeap;
+    private PriorityQueue<Integer> rightHalfHeap;
+
+    public MedianFinder() {
+        leftHalfHeap = new PriorityQueue<>((i1, i2) -> (i2 - i1));
+        rightHalfHeap = new PriorityQueue<>();
+    }
+
+    public void addNum(int num) {
+        leftHalfHeap.offer(num);
+        rightHalfHeap.offer(leftHalfHeap.poll());
+        if (leftHalfHeap.size() < rightHalfHeap.size()) {
+            leftHalfHeap.offer(rightHalfHeap.poll());
+        }
+    }
+
+    public double findMedian() {
+        if (leftHalfHeap.size() == rightHalfHeap.size()) {
+            return (leftHalfHeap.peek() + rightHalfHeap.peek()) / 2.0;
+        } else {
+            return leftHalfHeap.peek();
+        }
+    }
+}
+
+
+class OldMedianFinder {
 
     private PriorityQueue<Integer> smallNums;
     private PriorityQueue<Integer> largeNums;
 
     /** initialize your data structure here. */
-    public MedianFinder() {
+    public OldMedianFinder() {
         smallNums = new PriorityQueue<>((i1, i2) -> (i2 - i1));
         largeNums = new PriorityQueue<>();
     }

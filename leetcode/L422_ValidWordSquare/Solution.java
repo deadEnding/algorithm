@@ -11,7 +11,22 @@ import java.util.List;
  */
 
 
-public class Solution {
+class Solution {
+    public boolean validWordSquare(List<String> words) {
+        final int n = words.size();
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < words.get(i).length(); j++) {
+                if (j >= n || words.get(j).length() <= i || words.get(i).charAt(j) != words.get(j).charAt(i)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+}
+
+
+class OldSolution {
     public boolean validWordSquare(List<String> words) {
         final int n = words.size();
         for (int i = 0; i < n; i++) {

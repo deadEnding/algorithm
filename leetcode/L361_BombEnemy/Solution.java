@@ -13,7 +13,116 @@ public class Solution {
         if (grid == null || grid.length == 0 || grid[0].length == 0) {
             return 0;
         }
-final int m = grid.length;
+
+        final int m = grid.length;
+        final int n = grid[0].length;
+        int max = 0;
+        int re = 0;
+        int[] ce = new int[n];
+
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (j == 0 || grid[i][j - 1] == 'W') {
+                    re = 0;
+                    for (int k = j; k < n && grid[i][k] != 'W'; k++) {
+                        re += grid[i][k] == 'E' ? 1 : 0;
+                    }
+                }
+
+                if (i == 0 || grid[i - 1][j] == 'W') {
+                    ce[j] = 0;
+                    for (int k = i; k < m && grid[k][j] != 'W'; k++) {
+                        ce[j] += grid[k][j] == 'E' ? 1 : 0;
+                    }
+                }
+
+                if (grid[i][j] == '0') {
+                    max = Math.max(max, re + ce[j]);
+                }
+            }
+        }
+
+        return max;
+    }
+}
+
+class NewBasicSolution {
+    public int maxKilledEnemies(char[][] grid) {
+        if (grid == null || grid.length == 0 || grid[0].length == 0) {
+            return 0;
+        }
+
+        final int m = grid.length;
+        final int n = grid[0].length;
+
+        int[][] top = new int[m][n];
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (grid[i][j] == 'W') {
+                    top[i][j] = 0;
+                } else {
+                    int prev = i == 0 ? 0 : top[i - 1][j];
+                    int curr = grid[i][j] == 'E' ? 1 : 0;
+                    top[i][j] =  prev + curr;
+                }
+            }
+        }
+
+        int[][] bottom = new int[m][n];
+        for (int i = m - 1; i >= 0; i--) {
+            for (int j = 0; j < n; j++) {
+                if (grid[i][j] == 'W') {
+                    bottom[i][j] = 0;
+                } else {
+                    int prev = i == m - 1 ? 0 : bottom[i + 1][j];
+                    int curr = grid[i][j] == 'E' ? 1 : 0;
+                    bottom[i][j] =  prev + curr;
+                }
+            }
+        }
+
+        int max = 0;
+        for (int i = 0; i < m; i++) {
+            int[] left = new int[n];
+            for (int j = 0; j < n; j++) {
+                if (grid[i][j] == 'W') {
+                    left[j] = 0;
+                } else {
+                    int prev = j == 0 ? 0 : left[j - 1];
+                    int curr = grid[i][j] == 'E' ? 1 : 0;
+                    left[j] = prev + curr;
+                }
+            }
+
+            int[] right = new int[n];
+            for (int j = n - 1; j >= 0; j--) {
+                if (grid[i][j] == 'W') {
+                    right[j] = 0;
+                } else {
+                    int prev = j == n - 1 ? 0 : right[j + 1];
+                    int curr = grid[i][j] == 'E' ? 1 : 0;
+                    right[j] = prev + curr;
+                }
+            }
+
+            for (int j = 0; j < n; j++) {
+                if (grid[i][j] == '0') {
+                    max = Math.max(max, top[i][j] + bottom[i][j] + left[j] + right[j]);
+                }
+            }
+        }
+
+        return max;
+    }
+}
+
+class OldSolution {
+    public int maxKilledEnemies(char[][] grid) {
+        if (grid == null || grid.length == 0 || grid[0].length == 0) {
+            return 0;
+        }
+
+        final int m = grid.length;
         final int n = grid[0].length;
         int max = 0;
         int re = 0;

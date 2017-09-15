@@ -15,6 +15,30 @@ public class Solution {
         String[] slugs = input.split("\\n");
         LinkedList<String> stack = new LinkedList<>();
 
+        int len = 0, max = 0;
+        for (String slug : slugs) {
+            int start = slug.lastIndexOf('\t') + 1;
+            while (!stack.isEmpty() && start < stack.size()) {
+                len -= stack.pop().length();
+            }
+
+            stack.push(slug.substring(start));
+            len += slug.length() - start;
+            if (slug.contains(".")) {
+                max = Math.max(max, len + stack.size() - 1);
+            }
+        }
+
+        return max;
+    }
+}
+
+
+class OldSolution {
+    public int lengthLongestPath(String input) {
+        String[] slugs = input.split("\\n");
+        LinkedList<String> stack = new LinkedList<>();
+
         int len = 0;
         int max = 0;
         for (String s : slugs) {
