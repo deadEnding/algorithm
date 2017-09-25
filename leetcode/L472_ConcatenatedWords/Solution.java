@@ -1,9 +1,6 @@
 package leetcode.L472_ConcatenatedWords;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author: deadend
@@ -13,7 +10,44 @@ import java.util.List;
  */
 
 
-public class Solution {
+class Solution {
+
+    private boolean isComprised(String word, HashSet<String> set, HashMap<String, Boolean> cache, boolean isOriginal) {
+        if (!isOriginal && set.contains(word)) {
+            return true;
+        }
+
+        if (!cache.containsKey(word)) {
+            for (int i = 1; i < word.length(); i++) {
+                if (isComprised(word.substring(0, i), set, cache, false) && isComprised(word.substring(i), set, cache, false)) {
+                    cache.put(word, true);
+                    return true;
+                }
+            }
+            cache.put(word, false);
+        }
+
+        return cache.get(word);
+    }
+
+    public List<String> findAllConcatenatedWordsInADict(String[] words) {
+        HashSet<String> set = new HashSet<>();
+        for (String w : words) {
+            set.add(w);
+        }
+
+        List<String> result = new ArrayList<>();
+        for (String w : words) {
+            if (isComprised(w, set, new HashMap<>(), true)) {
+                result.add(w);
+            }
+        }
+
+        return result;
+    }
+}
+
+class OldSolution {
 
     private boolean isComprised(String word, HashSet<String> set, HashMap<String, Boolean> cache, boolean isOriginal) {
         if (cache.containsKey(word)) {

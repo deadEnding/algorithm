@@ -10,7 +10,26 @@ import java.util.Arrays;
  */
 
 
-public class Solution {
+class Solution {
+    public int threeSumSmaller(int[] nums, int target) {
+        final int n = nums.length;
+        int count = 0;
+
+        Arrays.sort(nums);
+        for (int i = 0; i < n - 2; i++) {
+            for (int j = i + 1, k = n - 1; j < k; j++) {
+                while (j < k && nums[i] + nums[j] + nums[k] >= target) {
+                    k--;
+                }
+                count += k - j;
+            }
+        }
+
+        return count;
+    }
+}
+
+class OldSolution {
     public int threeSumSmaller(int[] nums, int target) {
         int count = 0;
 

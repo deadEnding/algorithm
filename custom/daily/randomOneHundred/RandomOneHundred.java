@@ -38,9 +38,9 @@ public class RandomOneHundred {
         int n = 10;
         int[] nums = new int[n];
         RandomOneHundred r = new RandomOneHundred();
-        for (int i = 0; i < 10000000; i++) {
-            int[] t = r.generate(n);
-            for (int j = 0; j < t.length; j++) {
+        for (int i = 0; i < 1000; i++) {
+            int[] t = r.generate(100000);
+            for (int j = 0; j < n; j++) {
                 nums[j] += t[j];
             }
         }

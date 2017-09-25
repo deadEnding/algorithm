@@ -17,7 +17,7 @@ public class SegmentTreeIntervalUpdate {
         public SegmentTree(int[] p) {
             n = p.length;
             tree = new TreeNode[4 * n];
-            build(1, p, 0, n - 1);
+            build(1, 0, n - 1, p);
         }
 
         public void pushUp(int root) {
@@ -33,14 +33,14 @@ public class SegmentTreeIntervalUpdate {
             }
         }
 
-        public void build(int root, int[] p, int s, int e) {
+        public void build(int root, int s, int e, int[] p) {
             tree[root] = new TreeNode();
             if (s == e) {
                 tree[root].val = p[s];
             } else {
                 int m = s + (e - s) / 2;
-                build(2 * root, p, s, m);
-                build(2 * root + 1, p, m + 1, e);
+                build(2 * root, s, m, p);
+                build(2 * root + 1, m + 1, e, p);
                 pushUp(root);
             }
         }

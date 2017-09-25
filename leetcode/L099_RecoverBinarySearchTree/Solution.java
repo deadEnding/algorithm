@@ -16,7 +16,35 @@ class TreeNode {
     TreeNode(int x) { val = x; }
 }
 
-public class Solution {
+class Solution {
+
+    private TreeNode first, second, last;
+
+    private void inorder(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+
+        inorder(root.left);
+        if (last != null && last.val > root.val) {
+            if (first == null) {
+                first = last;
+            }
+            second = root;
+        }
+        last = root;
+        inorder(root.right);
+    }
+
+    public void recoverTree(TreeNode root) {
+        inorder(root);
+        int t = first.val;
+        first.val = second.val;
+        second.val = t;
+    }
+}
+
+class OldSolution {
     private void inorder(TreeNode root, ArrayList<TreeNode> nodes) {
         if (root == null) {
             return;

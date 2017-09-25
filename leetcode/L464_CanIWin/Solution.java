@@ -1,5 +1,7 @@
 package leetcode.L464_CanIWin;
 
+import java.util.HashMap;
+
 /**
  * @author: deadend
  * @date: 2:03 PM 11/27/16
@@ -8,7 +10,49 @@ package leetcode.L464_CanIWin;
  */
 
 
-public class Solution {
+class Solution {
+    public boolean canIWin(int maxChoosableInteger, int desiredTotal) {
+        if (desiredTotal <= 0) {
+            return true;
+        }
+
+        if (maxChoosableInteger * (1 + maxChoosableInteger) / 2 < desiredTotal) {
+            return false;
+        }
+
+        return dfs(desiredTotal, maxChoosableInteger, 0, new HashMap<>());
+    }
+
+    private boolean dfs(int total, int n, int used, HashMap<Integer, Boolean> cache) {
+        if (total <= 0) {
+            return false;
+        }
+
+
+        if (!cache.containsKey(used)) {
+            cache.put(used, false);
+            for (int i = 1; i <= n; i++) {
+                int bit = 1 << i;
+                if ((used & bit) == 0) {
+                    if (!dfs(total - i, n, used | bit, cache)) {
+                        cache.put(used, true);
+                        break;
+                    }
+                }
+            }
+        }
+
+        return cache.get(used);
+    }
+
+    public static void main(String[] args) {
+        System.out.println(new Solution().canIWin(10, 1));
+    }
+}
+
+
+// Maybe wrong
+class OldSolution {
     public boolean canIWin(int maxChoosableInteger, int desiredTotal) {
         return helper1(desiredTotal, new boolean[maxChoosableInteger+1]);
     }
@@ -45,9 +89,5 @@ public class Solution {
             }
         }
         return true;
-    }
-
-    public static void main(String[] args) {
-        System.out.println(new Solution().canIWin(10, 11));
     }
 }

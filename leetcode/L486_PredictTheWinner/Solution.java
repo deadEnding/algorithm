@@ -8,7 +8,29 @@ package leetcode.L486_PredictTheWinner;
  */
 
 
-public class Solution {
+class Solution {
+    public boolean PredictTheWinner(int[] nums) {
+        final int n = nums.length;
+        int[][] dp = new int[n][n];
+
+        int[] sum = new int[n + 1];
+        for (int i = 0; i < n; i++) {
+            sum[i + 1] = sum[i] + nums[i];
+        }
+
+        for (int i = n - 1; i >= 0; i--) {
+            dp[i][i] = nums[i];
+            for (int j = i + 1; j < n; j++) {
+                int subsum = sum[j + 1] - sum[i];
+                dp[i][j] = Math.max(subsum - dp[i + 1][j], subsum - dp[i][j - 1]);
+            }
+        }
+
+        return dp[0][n - 1] * 2 >= sum[n];
+    }
+}
+
+class OldSolution {
     public boolean PredictTheWinner(int[] nums) {
         final int n = nums.length;
         int[] sum = new int[n + 1];

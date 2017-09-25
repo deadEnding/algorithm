@@ -10,7 +10,69 @@ import java.util.HashMap;
  */
 
 
-public class Solution {
+class Solution {
+
+    class UF {
+
+        int[] parent;
+        int[] size;
+        int maxSize;
+
+        public UF(int n) {
+            parent = new int[n];
+            size = new int[n];
+            for (int i = 0; i < n; i++) {
+                parent[i] = i;
+                size[i] = 1;
+            }
+            maxSize = n > 0 ? 1 : 0;
+        }
+
+        public int find(int id) {
+            while (id != parent[id]) {
+                parent[id] = parent[parent[id]];
+                id = parent[id];
+            }
+            return id;
+        }
+
+        public void union(int pid, int qid) {
+            int proot = find(pid);
+            int qroot = find(qid);
+            if (proot != qroot) {
+                parent[qroot] = proot;
+                size[proot] += size[qroot];
+                maxSize = Math.max(maxSize, size[proot]);
+            }
+        }
+    }
+
+    public int longestConsecutive(int[] nums) {
+        final int n = nums.length;
+
+        UF uf = new UF(n);
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < n; i++) {
+            if (map.containsKey(nums[i])) {
+                continue;
+            }
+
+            if (map.containsKey(nums[i] - 1)) {
+                uf.union(i, map.get(nums[i] - 1));
+            }
+
+            if (map.containsKey(nums[i] + 1)) {
+                uf.union(i, map.get(nums[i] + 1));
+            }
+            map.put(nums[i], i);
+        }
+
+        return uf.maxSize;
+    }
+}
+
+
+class UFSolution {
 
     class UF {
         private int[] parents;
@@ -71,7 +133,7 @@ public class Solution {
             }
         }
 
-        return uf.maxSize;
+        return uf.getMaxSize();
     }
 }
 

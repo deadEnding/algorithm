@@ -10,17 +10,17 @@ public class SegmentTreePointUpdate {
         n = nums.length;
         if (n > 0) {
             tree = new int[4 * n];
-            build(1, nums, 0, n - 1);
+            build(1, 0, n - 1, nums);
         }
     }
 
-    public void build(int root, int[] nums, int s, int e) {
-        if (s == e) {
-            tree[root] = nums[s];
+    public void build(int root, int ns, int ne, int[] nums) {
+        if (ns == ne) {
+            tree[root] = nums[ns];
         } else {
-            int m = s + (e - s) / 2;
-            build(2 * root, nums, s, m);
-            build(2 * root + 1, nums, m + 1, e);
+            int m = ns + (ne - ns) / 2;
+            build(2 * root, ns, m, nums);
+            build(2 * root + 1, m + 1, ne, nums);
             tree[root] = tree[2 * root] + tree[2 * root + 1];
         }
     }

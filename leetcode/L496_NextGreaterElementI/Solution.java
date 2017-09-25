@@ -10,8 +10,62 @@ import java.util.LinkedList;
  * @description:
  */
 
+class Solution {
+    public int[] nextGreaterElement(int[] nums1, int[] nums2) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < nums1.length; i++) {
+            map.put(nums1[i], -1);
+        }
 
-public class Solution {
+        LinkedList<Integer> stack = new LinkedList<>();
+        for (int i = nums2.length - 1; i >= 0; i--) {
+            while (!stack.isEmpty() && stack.peek() <= nums2[i]) {
+                stack.pop();
+            }
+
+            if (map.containsKey(nums2[i]) && !stack.isEmpty()) {
+                map.put(nums2[i], stack.peek());
+            }
+            stack.push(nums2[i]);
+        }
+
+        int[] result = new int[nums1.length];
+        for (int i = 0; i < nums1.length; i++) {
+            result[i] = map.get(nums1[i]);
+        }
+        return result;
+    }
+}
+
+
+class BasicSolution {
+    public int[] nextGreaterElement(int[] nums1, int[] nums2) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < nums1.length; i++) {
+            map.put(nums1[i], -1);
+        }
+
+        LinkedList<Integer> stack = new LinkedList<>();
+        for (int i = 0; i < nums2.length; i++) {
+            while (!stack.isEmpty() && stack.peek() < nums2[i]) {
+                int top = stack.pop();
+                if (map.containsKey(top)) {
+                    map.put(top, nums2[i]);
+                }
+            }
+            stack.push(nums2[i]);
+        }
+
+        int[] result = new int[nums1.length];
+        for (int i = 0; i < nums1.length; i++) {
+            result[i] = map.get(nums1[i]);
+        }
+        return result;
+    }
+}
+
+
+class OldSolution {
     public int[] nextGreaterElement(int[] findNums, int[] nums) {
         HashMap<Integer, Integer> map = new HashMap<>();
         for (int fn : findNums) {

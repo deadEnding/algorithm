@@ -19,9 +19,38 @@ interface NestedInteger {
 
 public class NestedIterator implements Iterator<Integer> {
 
-    private LinkedList<NestedInteger> stack;
+    private LinkedList<NestedInteger> stack = new LinkedList<>();
 
     public NestedIterator(List<NestedInteger> nestedList) {
+        rpush(nestedList);
+    }
+
+    private void rpush(List<NestedInteger> nestedList) {
+        for (int i = nestedList.size() - 1; i >= 0; i++) {
+            stack.push(nestedList.get(i));
+        }
+    }
+
+    @Override
+    public Integer next() {
+        return stack.pop().getInteger();
+    }
+
+    @Override
+    public boolean hasNext() {
+        while (!stack.isEmpty() && !stack.peek().isInteger()) {
+            rpush(stack.pop().getList());
+        }
+
+        return !stack.isEmpty();
+    }
+}
+
+class NestedIterator0 implements Iterator<Integer> {
+
+    private LinkedList<NestedInteger> stack;
+
+    public NestedIterator0(List<NestedInteger> nestedList) {
         stack = new LinkedList<>();
         push(nestedList);
     }

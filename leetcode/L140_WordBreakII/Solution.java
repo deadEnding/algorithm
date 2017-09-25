@@ -17,9 +17,9 @@ class TimeoutDPSolution {
 
         ArrayList<String>[] dp = new ArrayList[n];
         for (int i = n - 1; i >= 0; i--) {
-            for (int j = i + 1; i <= n; j++) {
-                if (set.contains(s.substring(i, j)) && (j == n || dp[j] != null)) {
-                    dp[i] = new ArrayList<>();
+            dp[i] = new ArrayList<>();
+            for (int j = i + 1; j <= n; j++) {
+                if (set.contains(s.substring(i, j)) && (j == n || !dp[j].isEmpty())) {
                     String w = s.substring(i, j);
                     if (j == n) {
                         dp[i].add(w);
@@ -33,6 +33,16 @@ class TimeoutDPSolution {
         }
 
         return dp[0];
+    }
+
+    public static void main(String[] args) {
+        String s = "asn";
+        String[] ws = {"a","as","n","sn"};
+        List<String> words = new LinkedList<>();
+        for (String w : ws) {
+            words.add(w);
+        }
+        System.out.println(new TimeoutDPSolution().wordBreak(s, words));
     }
 }
 
@@ -131,14 +141,6 @@ class BasicSolution {
         HashMap<Integer, ArrayList<String>> map = new HashMap<>();
         backtrace(0, s, set, map);
         return map.get(0);
-    }
-
-    public static void main(String[] args) {
-        String s = "aab";
-        List<String> words = new LinkedList<>();
-        words.add("B");
-        words.add("b");
-        System.out.println(new Solution().wordBreak(s, words));
     }
 }
 

@@ -11,7 +11,36 @@ import java.util.LinkedList;
  */
 
 
-public class Solution {
+class Solution {
+    public int[] maxSlidingWindow(int[] nums, int k) {
+        final int n = nums.length;
+        if (k == 0) {
+            return new int[0];
+        }
+
+        Deque<Integer> deque = new LinkedList<>();
+
+        int[] max = new int[n - k + 1];
+        for (int i = 0, j = 0; i < n; i++) {
+            while (!deque.isEmpty() && nums[i] > deque.getLast()) {
+                deque.removeLast();
+            }
+
+            deque.addLast(nums[i]);
+            if (i >= k - 1) {
+                max[j++] = deque.getFirst();
+                int oi = i - k + 1;
+                if (nums[oi] == deque.getFirst()) {
+                    deque.removeFirst();
+                }
+            }
+        }
+
+        return max;
+    }
+}
+
+class BasicSolution {
     public int[] maxSlidingWindow(int[] nums, int k) {
         final int n = nums.length;
         if (n == 0) {

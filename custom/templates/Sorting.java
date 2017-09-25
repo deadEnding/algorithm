@@ -137,6 +137,7 @@ public class Sorting {
         }
     }
 
+    // 建堆时间复杂度是 O(n)
     private static void buildHeap(int[] nums) {
         final int n = nums.length;
         for (int i = n / 2 - 1; i >= 0; i--) {
