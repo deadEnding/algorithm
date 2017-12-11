@@ -22,7 +22,7 @@ public class Solution {
         int[] ns = reset();
         Random random = new Random();
         for (int i = ns.length - 1; i >= 0; i--) {
-            int ix = random.nextInt(i);
+            int ix = random.nextInt(i + 1);
             if (ix != i) {
                 int t = ns[i];
                 ns[i] = ns[ix];

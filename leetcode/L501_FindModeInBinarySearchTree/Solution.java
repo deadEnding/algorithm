@@ -1,6 +1,7 @@
 package leetcode.L501_FindModeInBinarySearchTree;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 /**
  * @author: deadend
@@ -14,7 +15,57 @@ class TreeNode {
     TreeNode(int x) { val = x; }
 }
 
-public class Solution {
+class Solution {
+    public int[] findMode(TreeNode root) {
+        if (root == null) {
+            return new int[0];
+        }
+
+        ArrayList<Integer> result = new ArrayList<>();
+        int max = 0, cur = 0;
+
+        LinkedList<TreeNode> stack = new LinkedList<>();
+        TreeNode p = root, last = null;
+        while (p != null || !stack.isEmpty()) {
+            if (p != null) {
+                stack.push(p);
+                p = p.left;
+            } else {
+                p = stack.pop();
+                if (last == null || last.val == p.val) {
+                    cur++;
+                } else {
+                    if (cur > max) {
+                        max = cur;
+                        result.clear();
+                        result.add(last.val);
+                    } else if (cur == max) {
+                        result.add(last.val);
+                    }
+                    cur = 1;
+                }
+                last = p;
+                p = p.right;
+            }
+        }
+
+
+        if (cur > max) {
+            result.clear();
+            result.add(last.val);
+        } else if (cur == max) {
+            result.add(last.val);
+        }
+
+        int[] res = new int[result.size()];
+        for (int i = 0; i < result.size(); i++) {
+            res[i] = result.get(i);
+        }
+        return res;
+    }
+}
+
+class OldSolution {
     private ArrayList<Integer> values = new ArrayList<>();
     private int max = 0;
     private int cur = 0;

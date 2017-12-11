@@ -9,8 +9,39 @@ import java.util.HashMap;
  * @description:
  */
 
-
 class Solution {
+    public boolean canIWin(int maxChoosableInteger, int desiredTotal) {
+        if (desiredTotal <= 0)
+            return true;
+
+        if (maxChoosableInteger * (1 + maxChoosableInteger) / 2 < desiredTotal)
+            return false;
+
+        return dfs(maxChoosableInteger, desiredTotal, 0, new HashMap<Integer, Boolean>());
+    }
+
+    private boolean dfs(int n, int total, int used, HashMap<Integer, Boolean> cache) {
+        if (total <= 0)
+            return false;
+
+        if (!cache.containsKey(used)) {
+            cache.put(used, false);
+            for (int i = 1; i <= n; i++) {
+                int b = 1 << i;
+                if ((used & b) == 0) {
+                    if (!dfs(n, total - i, used | b, cache)) {
+                        cache.put(used, true);
+                        break;
+                    }
+                }
+            }
+        }
+        return cache.get(used);
+    }
+}
+
+
+class SSolution {
     public boolean canIWin(int maxChoosableInteger, int desiredTotal) {
         if (desiredTotal <= 0) {
             return true;

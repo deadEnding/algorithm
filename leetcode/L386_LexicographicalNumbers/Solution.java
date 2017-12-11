@@ -12,7 +12,29 @@ import java.util.List;
  */
 
 
-public class Solution {
+class Solution {
+    private LinkedList<Integer> result = new LinkedList<>();
+
+    private void lexicalOrder(int ix, int n) {
+        if (ix > n) {
+            return;
+        }
+
+        result.add(ix);
+        for (int i = 0; i < 10; i++) {
+            lexicalOrder(ix * 10 + i, n);
+        }
+    }
+
+    public List<Integer> lexicalOrder(int n) {
+        for (int i = 1; i < 10; i++) {
+            lexicalOrder(i, n);
+        }
+        return result;
+    }
+}
+
+class OldSolution {
     private List<Integer> result = new LinkedList<>();
 
     private void lexicalOrder(int ix, int n) {
@@ -34,7 +56,7 @@ public class Solution {
     }
 
     public static void main(String[] args) {
-        System.out.println(new Solution().lexicalOrder(1).toString());
+        System.out.println(new Solution().lexicalOrder(120).toString());
     }
 }
 

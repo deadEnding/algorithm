@@ -10,7 +10,31 @@ import java.util.LinkedList;
  */
 
 
-public class Solution {
+class Solution {
+    public boolean isValidSerialization(String preorder) {
+        final String NULL = "#";
+        String[] vals = preorder.split(",");
+        LinkedList<String> stack = new LinkedList<>();
+
+        for (String v : vals) {
+            if (v.equals(NULL)) {
+                while (!stack.isEmpty() && stack.peek().equals(NULL)) {
+                    if (stack.size() < 2) {
+                        return false;
+                    }
+                    stack.pop();
+                    stack.pop();
+                }
+            }
+            stack.push(v);
+        }
+
+        return stack.size() == 1 && stack.peek().equals(NULL);
+    }
+}
+
+
+class OldSolution {
     public boolean isValidSerialization(String preorder) {
         final String nval = "#";
         String[] vals = preorder.split(",");

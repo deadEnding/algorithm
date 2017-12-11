@@ -1,5 +1,6 @@
 package leetcode.L385_MiniParser;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -41,8 +42,46 @@ class NestedInteger {
 }
 
 
+class Solution {
+    public NestedInteger deserialize(String s) {
+        if (!s.startsWith("[") && !s.endsWith("]")) {
+            return new NestedInteger(Integer.valueOf(s));
+        }
 
-public class Solution {
+        LinkedList<NestedInteger> stack = new LinkedList<>();
+        for (int i = 0; i < s.length() - 1; i++) {
+            char c = s.charAt(i);
+            if (c == '[') {
+                stack.push(new NestedInteger());
+            } else if (c == ']') {
+                NestedInteger t = stack.pop();
+                stack.peek().add(t);
+            } else if (c == ',') {
+            } else {
+                int sign = 1, num = 0;
+                if (c == '-') {
+                    sign = -1;
+                } else {
+                    num = c - '0';
+                }
+                while (i + 1 < s.length() && Character.isDigit(s.charAt(i + 1))) {
+                    num = num * 10 + s.charAt(++i) - '0';
+                }
+                stack.peek().add(new NestedInteger(sign * num));
+            }
+        }
+
+        return stack.peek();
+    }
+
+    public static void main(String[] args) {
+        String s = "[-1]";
+        new Solution().deserialize(s);
+
+    }
+}
+
+class OldSolution {
     public NestedInteger deserialize(String s) {
         if (!s.startsWith("[") && !s.endsWith("]")) {
             return new NestedInteger(Integer.valueOf(s));

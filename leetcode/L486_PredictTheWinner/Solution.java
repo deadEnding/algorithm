@@ -30,6 +30,27 @@ class Solution {
     }
 }
 
+class SSolution {
+    public boolean PredictTheWinner(int[] nums) {
+        final int n = nums.length;
+        int[] sum = new int[n + 1];
+        for (int i = 0; i < n; i++) {
+            sum[i + 1] = sum[i] + nums[i];
+        }
+
+        int[][] dp = new int[n][n];
+        for (int i = n - 1; i >= 0; i--) {
+            dp[i][i] = nums[i];
+            for (int j = i + 1; j < n; j++) {
+                int min = Math.min(dp[i][j - 1], dp[i + 1][j]);
+                dp[i][j] = sum[j + 1] - sum[i] - min;
+            }
+        }
+
+        return dp[0][n - 1] * 2 >= sum[n];
+    }
+}
+
 class OldSolution {
     public boolean PredictTheWinner(int[] nums) {
         final int n = nums.length;
